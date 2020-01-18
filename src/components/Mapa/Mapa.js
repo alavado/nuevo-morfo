@@ -4,9 +4,9 @@ import ReactMapGL from 'react-map-gl'
 const Mapa = () => {
 
   const [viewport, setViewport] = useState({
-    width: '100vw',
+    width: '100%',
     height: '100vh',
-    zoom: 5,
+    zoom: 3,
   })
 
   const mapStyle = {
@@ -18,7 +18,7 @@ const Mapa = () => {
           'http://localhost:5000/foto/{z}/{x}/{y}'
         ],
         tileSize: 256,
-        attribution: 'Map tiles by <a target="_top" rel="noopener" href="http://stamen.com">Stamen Design</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_top" rel="noopener" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
+        attribution: 'Imágenes propiedad del <a target="_top" rel="noopener" href="https://uchile.cl">Departamento de Anatomía y Medicina Legal</a> de la <a target="_top" rel="noopener" href="https://uchile.cl">Universidad de Chile</a>'
       }
     },
     layers: [
@@ -27,7 +27,7 @@ const Mapa = () => {
         type: 'raster',
         source: 'raster-tiles',
         minzoom: 0,
-        maxzoom: 5
+        maxzoom: 8
       }
     ]
   }

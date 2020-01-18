@@ -1,0 +1,15 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.contenedor-lateral {
+  flex: 1;
+  min-width: 240px;
+  background-color: gray;
+}
+
+.contenedor-principal {
+  flex: 5;
+  background-color: black;
+}

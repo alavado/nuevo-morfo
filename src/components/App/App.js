@@ -4,8 +4,13 @@ import Mapa from '../Mapa'
 
 const App = () => {
   return (
-    <div className="App">
-      <Mapa />
+    <div className="app">
+      <section className="contenedor-lateral">
+        Morfo
+      </section>
+      <section className="contenedor-principal">
+        <Mapa />
+      </section>
     </div>
   )
 }
