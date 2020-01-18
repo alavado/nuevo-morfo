@@ -17,7 +17,7 @@ const Mapa = () => {
       'raster-tiles': {
         type: 'raster',
         tiles: [
-          'http://localhost:5000/foto/{z}/{x}/{y}'
+          'http://localhost:1027/foto/{z}/{x}/{y}'
         ],
         tileSize: 512,
         attribution: 'Imágenes propiedad del <a target="_top" rel="noopener" href="https://uchile.cl">Departamento de Anatomía y Medicina Legal</a> de la <a target="_top" rel="noopener" href="https://uchile.cl">Universidad de Chile</a>'
@@ -34,9 +34,9 @@ const Mapa = () => {
 
   const test = vp => {
     console.log({vp})
-    vp.longitude = Math.max(-80.61151048504036, vp.longitude)
+    vp.longitude = Math.max(-75.515, vp.longitude)
     vp.latitude = Math.max(56.63, vp.latitude)
-    vp.longitude = Math.min(-48.6905867619045, vp.longitude)
+    vp.longitude = Math.min(-53.662, vp.longitude)
     vp.zoom = Math.max(2.5, vp.zoom)
     vp.zoom = Math.min(6, vp.zoom)
     setViewport({

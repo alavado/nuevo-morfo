@@ -1,24 +1,57 @@
-.app {
-  height: 100vh;
+@font-face {font-family: "Uber Move Text";
+  src: url("fonts/11469c307f0de6481e3a04cc5d54ae93.eot"); /* IE9*/
+  src: url("fonts/11469c307f0de6481e3a04cc5d54ae93.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("fonts/11469c307f0de6481e3a04cc5d54ae93.woff2") format("woff2"), /* chrome、firefox */
+  url("fonts/11469c307f0de6481e3a04cc5d54ae93.woff") format("woff"), /* chrome、firefox */
+  url("fonts/11469c307f0de6481e3a04cc5d54ae93.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("fonts/11469c307f0de6481e3a04cc5d54ae93.svg#Uber Move Text") format("svg"); /* iOS 4.1- */
 }
 
-.app nav {
+.app {
+  height: 100vh;
+  font-family: "Uber Move Text", sans-serif;
+}
+
+header {
   height: 64px;
   background-color: black;
   color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: space-between;
 }
 
-.app main {
+nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 48px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav a:last-child {
+  margin-left: 36px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding-left: 36px;
+  padding-right: 12px;
+}
+
+main {
   display: flex;
 }
 
-.contenedor-lateral {
-  flex: 1;
-  min-width: 240px;
+aside {
+  width: 240px;
   background-color: gray;
 }
 
 .contenedor-principal {
-  flex: 5;
+  flex: 1;
   background-color: black;
 }

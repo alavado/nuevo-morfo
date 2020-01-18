@@ -5,11 +5,19 @@ import Mapa from '../Mapa'
 const App = () => {
   return (
     <div className="app">
-      <nav>Morfo</nav>
+      <header>
+        <div>Morfo</div>
+        <nav>
+          <a href="">Anatomía</a>
+          <a href="">Neuroanatomía</a>
+          <a href="">Imagenología</a>
+          <a href="">Acceder</a>
+        </nav>
+      </header>
       <main>
-        <section className="contenedor-lateral">
+        <aside>
           
-        </section>
+        </aside>
         <section className="contenedor-principal">
           <Mapa />
         </section>
