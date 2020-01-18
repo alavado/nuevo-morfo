@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactMapGL, { FlyToInterpolator, LinearInterpolator } from 'react-map-gl'
+import ReactMapGL from 'react-map-gl'
 
 const Mapa = () => {
 
@@ -8,7 +8,7 @@ const Mapa = () => {
     height: '100vh',
     latitude: 79.61614103319404,
     longitude: -109.68750000000037,
-    zoom: 3,
+    zoom: 2.5,
   })
 
   const mapStyle = {
@@ -19,7 +19,6 @@ const Mapa = () => {
         tiles: [
           'http://localhost:5000/foto/{z}/{x}/{y}'
         ],
-        // bounds: [46.679604169812826, -160.6640624999998, 82.10632423435905, 31.376953125005794],
         tileSize: 512,
         attribution: 'Imágenes propiedad del <a target="_top" rel="noopener" href="https://uchile.cl">Departamento de Anatomía y Medicina Legal</a> de la <a target="_top" rel="noopener" href="https://uchile.cl">Universidad de Chile</a>'
       }
@@ -28,14 +27,18 @@ const Mapa = () => {
       {
         id: 'simple-tiles',
         type: 'raster',
-        source: 'raster-tiles',
-        minzoom: 0,
-        maxzoom: 8
+        source: 'raster-tiles'
       }
     ]
   }
 
   const test = vp => {
+    console.log({vp})
+    vp.longitude = Math.max(-80.61151048504036, vp.longitude)
+    vp.latitude = Math.max(56.63, vp.latitude)
+    vp.longitude = Math.min(-48.6905867619045, vp.longitude)
+    vp.zoom = Math.max(2.5, vp.zoom)
+    vp.zoom = Math.min(6, vp.zoom)
     setViewport({
       ...vp, 
       width: '100%',
@@ -48,7 +51,8 @@ const Mapa = () => {
       {...viewport}
       onViewportChange={test}
       mapStyle={mapStyle}
-    />
+    >
+    </ReactMapGL>
   )
 }
 
