@@ -4,7 +4,7 @@ import ReactMapGL from 'react-map-gl'
 const Mapa = () => {
 
   const [viewport, setViewport] = useState({
-    width: '100%',
+    width: '100vw',
     height: '100vh',
     latitude: 37.7577,
     longitude: -122.4376,
