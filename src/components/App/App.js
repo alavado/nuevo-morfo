@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="app">
       <header>
-        <div>Morfo</div>
+        <div>Morfo 2020</div>
         <nav>
           <a href="">Anatomía</a>
           <a href="">Neuroanatomía</a>
