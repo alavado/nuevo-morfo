@@ -5,7 +5,7 @@ const Mapa = () => {
 
   const [viewport, setViewport] = useState({
     width: '100%',
-    height: '100vh',
+    height: 'calc(100vh - 64px)',
     latitude: 79.61614103319404,
     longitude: -109.68750000000037,
     zoom: 2.5,
@@ -42,7 +42,7 @@ const Mapa = () => {
     setViewport({
       ...vp, 
       width: '100%',
-      height: '100vh'
+      height: 'calc(100vh - 64px)',
     })
   }
 

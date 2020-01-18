@@ -1,6 +1,15 @@
 .app {
-  display: flex;
   height: 100vh;
+}
+
+.app nav {
+  height: 64px;
+  background-color: black;
+  color: white;
+}
+
+.app main {
+  display: flex;
 }
 
 .contenedor-lateral {
