@@ -1,6 +1,9 @@
 const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
+const models = require('./models')
+const expressGraphQL = require('express-graphql')
+const schema = require('./schema/schema')
 const app = express()
 
 const cors = require('cors')
@@ -14,9 +17,10 @@ mongoose.connection
   .once('open', () => console.log('Connected to MongoLab instance.'))
   .on('error', error => console.log('Error connecting to MongoLab:', error))
 
-app.get('/', (req, res) => {
-  res.send('Hola mundo')
-})
+app.use('/graphql', expressGraphQL({
+  schema,
+  graphiql: true
+}))
 
 app.get('/foto/:z/:x/:y', (req, res) => {
   const { x, y, z } = req.params

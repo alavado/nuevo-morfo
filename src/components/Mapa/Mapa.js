@@ -27,7 +27,15 @@ const Mapa = () => {
           window.location.href.indexOf('localhost') < 0 ? 'https://compsci.cl:1027/foto/{z}/{x}/{y}' : 'http://localhost:1027/foto/{z}/{x}/{y}'
         ],
         tileSize: 256,
-        attribution: 'Imágenes propiedad del <a target="_blank" rel="noopener" href="http://www.medicina.uchile.cl/facultad/campus-y-departamentos/campus-norte/anatomia-y-medicina-legal">Departamento de Anatomía y Medicina Legal</a> de la <a target="_blank" rel="noopener" href="https://uchile.cl">Universidad de Chile</a>'
+        attribution: `
+          ® Imágenes propiedad del
+          <a target="_blank" rel="noopener" href="http://www.medicina.uchile.cl/facultad/campus-y-departamentos/campus-norte/anatomia-y-medicina-legal">
+            Departamento de Anatomía y Medicina Legal
+          </a> de la
+          <a target="_blank" rel="noopener" href="https://uchile.cl">
+            Universidad de Chile
+          </a>
+        `
       }
     },
     layers: [

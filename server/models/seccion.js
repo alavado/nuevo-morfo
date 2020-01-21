@@ -7,4 +7,4 @@ const seccionSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model('Seccion', seccionSchema)
+module.exports = mongoose.model('seccion', seccionSchema)
