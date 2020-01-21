@@ -5,8 +5,7 @@ import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
-
-const isDev = window.location.href.indexOf('localhost') >= 0
+import { isDev } from './helpers/dev'
 
 const client = new ApolloClient({
   uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`

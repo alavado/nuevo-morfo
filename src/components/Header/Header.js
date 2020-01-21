@@ -2,15 +2,15 @@ import React from 'react'
 import './Header.css'
 import query from '../../queries/secciones'
 import { useQuery } from '@apollo/react-hooks'
+import { isDev } from '../../helpers/dev'
 
 const Header = () => {
 
   const { loading, error, data } = useQuery(query)
 
   const autenticarConUCampus = () => {
-    if (window.location.href.indexOf('localhost') < 0) {
+    if (isDev) {
       window.location.href = 'https://www.u-cursos.cl/upasaporte/login?servicio=morfo'
-      return null;
     }
   }
 
