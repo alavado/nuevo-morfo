@@ -21,27 +21,25 @@ app.post('/auth', (req, res) => {
     return
   }
   const url = `${CONTENT_PROVIDER_URL}servicio=${APP_NAME}&ticket=${req.fields.ticket}`
-  https.get(url, function(r){
-    var data = ""
-    r.on('data', function(d) {
-      data+=d
+  https.get(url, r => {
+    let data = ''
+    r.on('data', d => {
+      data += d
     })
-    r.on('end', function() {
+    r.on('end', () => {
       console.log(`data: ${JSON.stringify(JSON.parse(data))}`)
-      if(r.statusCode != 200){
+      if (r.statusCode != 200){
         res.statusCode = 500
-        res.send("Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.")
+        res.send('Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.')
         return
       }
-      data = JSON.parse(data)
-      var sess_id = uid(24)
-      SESSION[sess_id] = data
-			var redirect = REDIRECT_URL+'?sess_id='+sess_id
-			res.send(redirect)
+      const sess_id = uid(24)
+      SESSION[sess_id] = JSON.parse(data)
+			res.send(`${REDIRECT_URL}?sess_id=${sess_id}`)
     })
-    r.on('error', function(){
+    r.on('error', () => {
       res.statusCode = 500
-      res.send("Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.")
+      res.send('Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.')
     })
   })
 })
