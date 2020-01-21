@@ -3,6 +3,7 @@ import './Header.css'
 import query from '../../queries/secciones'
 import { useQuery } from '@apollo/react-hooks'
 import { isDev } from '../../helpers/dev'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
 
@@ -19,12 +20,14 @@ const Header = () => {
       <div id="brand">Morfo</div>
       <nav>
         {!loading && data.secciones.map(({ id, nombre }, i) => (
-          <a
+          <NavLink
+            key={id}
+            to={`/seccion/${id}`}
+            activeClassName="seccion-activa"
             style={{ animationDelay: `${.15 * (data.secciones.length - i)}s` }}
-            href={`/seccion/${id}`}
           >
             {nombre}
-          </a>
+          </NavLink>
         ))}
         <a href="#" onClick={autenticarConUCampus}>Acceder</a>
       </nav>

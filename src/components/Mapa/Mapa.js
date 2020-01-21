@@ -9,7 +9,7 @@ const SIZE = 20;
 
 const Mapa = () => {
 
-  const MIN_ZOOM = 1.4, MAX_ZOOM = 5
+  const MIN_ZOOM = 1.4, MAX_ZOOM = 4
 
   const [viewport, setViewport] = useState({
     width: '100%',

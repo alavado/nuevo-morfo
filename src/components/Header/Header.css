@@ -15,6 +15,12 @@ header {
   justify-content: space-between;
 }
 
+nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
 nav a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.5);
@@ -24,6 +30,13 @@ nav a {
   animation: aparece-nombre-seccion .25s ease-in-out forwards;
   opacity: 0;
   transform: translateY(16px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  border-color: black;
+  transition: border-color .25s ease-in-out;
+  transition: color .25s ease-in-out;
 }
 
 nav a:hover {
@@ -35,6 +48,18 @@ nav a:last-child {
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   padding-left: 36px;
   padding-right: 12px;
+  height: auto;
+}
+
+nav a:hover:not(:last-child):not(.seccion-activa) {
+  border-top: 4px solid #666;
+  margin-top: 0;
+}
+
+nav a.seccion-activa {
+  color: white;
+  border-top: 4px solid #DD0000;
+  margin-top: 0;
 }
 
 @keyframes aparece-nombre-seccion {
