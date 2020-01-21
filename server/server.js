@@ -23,6 +23,8 @@ app.get('/foto/:z/:x/:y', (req, res) => {
   res.sendFile(path.join(__dirname, `images/IMG_0688/pyramid/${z}/${y}/${x}.jpg`))
 })
 
+const formidableMiddleware = require('express-formidable')
+app.use(formidableMiddleware())
 app.use(require('./services/auth'))
 
 const ip = require('ip').address()
