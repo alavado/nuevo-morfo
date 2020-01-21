@@ -20,6 +20,8 @@ app.post('/auth', (req, res) => {
     res.end()
     return
   }
+  console.log({req})
+  console.log({res})
   const url = `${CONTENT_PROVIDER_URL}servicio=${APP_NAME}&ticket=${req.fields.ticket}`
   https.get(url, function(r){
     var data = ""
