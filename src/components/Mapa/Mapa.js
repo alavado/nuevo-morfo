@@ -25,9 +25,9 @@ const Mapa = () => {
       'raster-tiles': {
         type: 'raster',
         tiles: [
-          isDev ? 'https://compsci.cl:1027/foto/{z}/{x}/{y}' : 'http://localhost:1027/foto/{z}/{x}/{y}'
+          isDev ? 'http://localhost:1027/foto/{z}/{x}/{y}' : 'https://compsci.cl:1027/foto/{z}/{x}/{y}'
         ],
-        tileSize: 256,
+        tileSize: 128,
         attribution: `
           ® Imágenes propiedad del
           <a target="_blank" rel="noopener" href="http://www.medicina.uchile.cl/facultad/campus-y-departamentos/campus-norte/anatomia-y-medicina-legal">
@@ -46,14 +46,14 @@ const Mapa = () => {
         type: 'raster',
         source: 'raster-tiles'
       }
-    ]
+    ],
   }
 
   const test = vp => {
-    console.log({vp})
+    // console.log({vp})
     // vp.longitude = Math.max(-41.21381995432413, vp.longitude)
-    vp.latitude = Math.max(80.63, vp.latitude)
-    vp.longitude = Math.min(-53.662, vp.longitude)
+    // vp.latitude = Math.max(80.63, vp.latitude)
+    // vp.longitude = Math.min(-53.662, vp.longitude)
     vp.zoom = Math.max(MIN_ZOOM, vp.zoom)
     vp.zoom = Math.min(MAX_ZOOM, vp.zoom)
     setViewport({
