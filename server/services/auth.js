@@ -1,17 +1,17 @@
 const express = require('express')
 const app = express()
-const Usuario = require('../models/usuarios')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const _ = require('lodash')
+// const Usuario = require('../models/usuarios')
+// const bcrypt = require('bcrypt')
+// const jwt = require('jsonwebtoken')
+// const _ = require('lodash')
 
-const { CADUCIDAD_TOKEN, SEED } = require('../config/config')
+// const { CADUCIDAD_TOKEN, SEED } = require('../config/config')
 
 const https = require('https')
 const uid = require('uid-safe').sync
 const APP_NAME = 'morfo'
 const CONTENT_PROVIDER_URL = 'https://www.u-cursos.cl/upasaporte/?'
-const REDIRECT_URL = 'https://morfo-2.netlify.com/'
+const REDIRECT_URL = 'https://nuevo-morfo.netlify.com/'
 var SESSION = {}
 
 app.post('/auth', (req, res) => {
@@ -60,29 +60,25 @@ app.get('/usuarioucampus', (req, res) => {
   }
 })
 
-app.post('/login', (req, res) => {
-  const {email, password} = req.fields
-  Usuario.findOne({email}, (err, usuario) => {
-    if (err) {
-      return res.status(400).json(err)
-    }
-    if (!usuario || !bcrypt.compareSync(password, usuario.password)) {
-      return res.status(400).json({
-        errors: {
-          login: {
-            message: 'Usuario o contraseña inválido'
-          }
-        }
-      })
-    }
-    const usuarioRes = _.pick(usuario, ['nombre', 'email', 'roles'])
-    const token = jwt.sign({usuarioRes}, SEED, { expiresIn: CADUCIDAD_TOKEN })
-    return setTimeout(() => res.json({usuario: usuarioRes, token}), MSTHROTTLING)
-  })
-})
-
-app.post('/logout', (req, res) => {
-  return res.status(200).json('ok')
-})
+// app.post('/login', (req, res) => {
+//   const {email, password} = req.fields
+//   Usuario.findOne({email}, (err, usuario) => {
+//     if (err) {
+//       return res.status(400).json(err)
+//     }
+//     if (!usuario || !bcrypt.compareSync(password, usuario.password)) {
+//       return res.status(400).json({
+//         errors: {
+//           login: {
+//             message: 'Usuario o contraseña inválido'
+//           }
+//         }
+//       })
+//     }
+//     const usuarioRes = _.pick(usuario, ['nombre', 'email', 'roles'])
+//     const token = jwt.sign({usuarioRes}, SEED, { expiresIn: CADUCIDAD_TOKEN })
+//     return setTimeout(() => res.json({usuario: usuarioRes, token}), MSTHROTTLING)
+//   })
+// })
 
 module.exports = app

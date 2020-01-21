@@ -11,7 +11,11 @@ const App = () => {
           <a href="">Anatomía</a>
           <a href="">Neuroanatomía</a>
           <a href="">Imagenología</a>
-          <a href="">Acceder</a>
+          <a href="#" onClick={() => {
+            if (window.location.href.indexOf('localhost') < 0) {
+              window.location.href = 'https://www.u-cursos.cl/upasaporte/login?servicio=morfo'
+              return null;
+          }}}>Acceder</a>
         </nav>
       </header>
       <main>
