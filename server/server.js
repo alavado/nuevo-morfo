@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.get('/foto/:z/:x/:y', (req, res) => {
   const { x, y, z } = req.params
-  res.sendFile(path.join(__dirname, `images/parque_croacia/pyramid/${z}/${y}/${x}.jpg`))
+  res.sendFile(path.join(__dirname, `images/IMG_0688/pyramid/${z}/${y}/${x}.jpg`))
 })
 
 // app.use(require('./services/auth'))
