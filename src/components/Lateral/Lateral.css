@@ -1,0 +1,6 @@
+aside {
+  width: 240px;
+  background-color: white;
+  box-shadow: 2px 0 4px rgba(0,0,0,.15);
+  z-index: 2;
+}

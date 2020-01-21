@@ -31,7 +31,8 @@ const Mapa = () => {
           ® Imágenes propiedad del
           <a target="_blank" rel="noopener" href="http://www.medicina.uchile.cl/facultad/campus-y-departamentos/campus-norte/anatomia-y-medicina-legal">
             Departamento de Anatomía y Medicina Legal
-          </a> de la
+          </a>
+          de la
           <a target="_blank" rel="noopener" href="https://uchile.cl">
             Universidad de Chile
           </a>

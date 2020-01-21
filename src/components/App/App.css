@@ -12,51 +12,8 @@
   font-family: "Uber Move Text", sans-serif;
 }
 
-#brand {
-  font-size: 15px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-header {
-  height: 64px;
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding-left: 24px;
-  padding-right: 24px;
-  justify-content: space-between;
-}
-
-nav a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
-  margin-left: 36px;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-nav a:hover {
-  color: white;
-}
-
-nav a:last-child {
-  margin-left: 36px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  padding-left: 36px;
-  padding-right: 12px;
-}
-
 main {
   display: flex;
-}
-
-aside {
-  width: 240px;
-  background-color: white;
-  box-shadow: 2px 0 4px rgba(0,0,0,.15);
-  z-index: 2;
 }
 
 .contenedor-principal {
