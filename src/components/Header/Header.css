@@ -6,7 +6,7 @@
 
 header {
   height: 64px;
-  background-color: black;
+  background-color: #212322;
   color: white;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: #AB989D;
   margin-left: 36px;
   text-transform: uppercase;
   font-size: 11px;
@@ -35,7 +35,6 @@ nav a {
   align-items: center;
   margin-top: 4px;
   border-color: black;
-  transition: border-color .25s ease-in-out;
   transition: color .25s ease-in-out;
 }
 
@@ -45,20 +44,20 @@ nav a:hover {
 
 nav a:last-child {
   margin-left: 36px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid #AB989D;
   padding-left: 36px;
   padding-right: 12px;
-  height: auto;
+  height: 24px;
 }
 
 nav a:hover:not(:last-child):not(.seccion-activa) {
-  border-top: 4px solid #666;
+  border-top: 4px solid #AB989D;
   margin-top: 0;
 }
 
 nav a.seccion-activa {
   color: white;
-  border-top: 4px solid #DD0000;
+  border-top: 4px solid #D6001C;
   margin-top: 0;
 }
 

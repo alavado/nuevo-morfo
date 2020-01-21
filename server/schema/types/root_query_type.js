@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const graphql = require('graphql')
 const { GraphQLObjectType, GraphQLID, GraphQLList } = graphql
 const SeccionType = require('./seccion_type')
-const Seccion = mongoose.model('seccion')
+const Seccion = mongoose.model('Seccion')
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',

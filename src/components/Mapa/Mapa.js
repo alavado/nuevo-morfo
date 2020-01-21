@@ -75,7 +75,7 @@ const Mapa = () => {
           viewBox="0 0 24 24"
           style={{
             cursor: 'pointer',
-            fill: '#d00',
+            fill: '#D6001C',
             stroke: 'none',
             transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
           }}
