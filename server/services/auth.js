@@ -12,35 +12,29 @@ const uid = require('uid-safe').sync
 const APP_NAME = 'morfo'
 const CONTENT_PROVIDER_URL = 'https://www.u-cursos.cl/upasaporte/?'
 const REDIRECT_URL = 'https://nuevo-morfo.netlify.com/'
+const MENSAJE_ERROR = 'Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.'
 var SESSION = {}
 
 app.post('/auth', (req, res) => {
   if (!req.fields.ticket) {
-    res.statusCode = 400
-    res.end()
+    res.status(400).end()
     return
   }
   const url = `${CONTENT_PROVIDER_URL}servicio=${APP_NAME}&ticket=${req.fields.ticket}`
   https.get(url, r => {
     let data = ''
-    r.on('data', d => {
-      data += d
-    })
+    r.on('data', d => data += d)
     r.on('end', () => {
       console.log(`data: ${JSON.stringify(JSON.parse(data))}`)
-      if (r.statusCode != 200){
-        res.statusCode = 500
-        res.send('Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.')
+      if (r.statusCode != 200) {
+        res.status(500).send(MENSAJE_ERROR)
         return
       }
       const sess_id = uid(24)
       SESSION[sess_id] = JSON.parse(data)
 			res.send(`${REDIRECT_URL}?sess_id=${sess_id}`)
     })
-    r.on('error', () => {
-      res.statusCode = 500
-      res.send('Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.')
-    })
+    r.on('error', () => res.status(500).send(MENSAJE_ERROR))
   })
 })
 
