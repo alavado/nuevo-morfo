@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactMapGL, { Marker, FullscreenControl, NavigationControl } from 'react-map-gl'
 import { isDev } from '../../helpers/dev';
+import InfoContenido from '../InfoContenido';
 
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
   c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
@@ -71,8 +72,8 @@ const Mapa = () => {
       dragRotate={false}
       scrollZoom={viewport.zoom > MIN_ZOOM || viewport.zoom < MAX_ZOOM}
     >
-      <div style={{ position: 'absolute', right: 16, top: 16 }}>
-        <div style={{ marginBottom: 4 }}>
+      <div style={{ position: 'absolute', left: 8, top: 8 }}>
+        <div style={{ marginBottom: 8 }}>
           <FullscreenControl />
         </div>
         <NavigationControl
@@ -83,9 +84,9 @@ const Mapa = () => {
           style={{ padding: '119px' }}
         />
       </div>
-      {/* <div style={{ position: 'absolute', right: 116, top: 0, backgroundColor: 'white', color: 'black' }}>
-        <h1>test</h1>
-      </div> */}
+      <div style={{ position: 'absolute', right: 0, top: 0 }}>
+        <InfoContenido />
+      </div>
       <Marker latitude={79.61614103319404} longitude={-109.68750000000037}>
         <svg
           height={SIZE}

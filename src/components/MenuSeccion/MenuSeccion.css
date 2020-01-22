@@ -12,9 +12,7 @@
   letter-spacing: 2px;
   color: #212322;
   font-weight: bold;
-  transform: translateX(-12px);
-  opacity: 0;
-  animation: aparece-subseccion .25s ease-in-out forwards;
+  animation: aparece-subseccion .25s ease-in-out both;
 }
 
 .lista-subsecciones a {

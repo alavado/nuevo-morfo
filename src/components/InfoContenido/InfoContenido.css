@@ -1,0 +1,19 @@
+.info-contenido {
+  width: 284px;
+  background: white;
+  padding: 12px 24px;
+  margin: 24px;
+  line-height: 1.8;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .15);
+}
+
+.info-contenido h3 {
+  margin: 8px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.info-contenido p {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
