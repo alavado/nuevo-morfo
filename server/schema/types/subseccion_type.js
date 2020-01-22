@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql
 const mongoose = require('mongoose')
 const Subseccion = mongoose.model('Subseccion')
 
@@ -12,6 +12,12 @@ const SubseccionType = new GraphQLObjectType({
       type: require('./seccion_type'),
       resolve(parentValue) {
         return Subseccion.findSeccion(parentValue.id)
+      }
+    },
+    contenidos: {
+      type: new GraphQLList(require('./contenido_type')),
+      resolve(parentValue) {
+        return Subseccion.findById(parentValue.id).then(s => s.contenidos)
       }
     }
   })

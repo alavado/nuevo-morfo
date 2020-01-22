@@ -9,7 +9,11 @@ const subseccionSchema = new Schema({
   seccion: {
     type: Schema.Types.ObjectId,
     ref: 'Seccion'
-  }
+  },
+  contenidos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Contenido'
+  }]
 })
 
 subseccionSchema.statics.findSeccion = function(id) {

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import './MenuSeccion.css'
+import './MenuSubseccion.css'
 import { useQuery } from '@apollo/react-hooks'
-import query from '../../queries/seccion'
+import query from '../../queries/subseccion'
 
-const MenuSeccion = ({ match }) => {
+const MenuSubseccion = ({ match }) => {
 
   const { loading, error, data } = useQuery(query, {
     variables: {
@@ -12,23 +11,23 @@ const MenuSeccion = ({ match }) => {
     }
   })
 
-  const listaSubsecciones = loading ? null :
-    <ul className="lista-subsecciones">
-      {data.seccion.subsecciones
+  const listaContenidos = loading ? null :
+    <ul className="lista-contenidos">
+      {data.subseccion.contenidos
         .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
         .map(({ id, nombre }, i) => (
-          <Link to={`/subseccion/${id}`}>
+          <a href="#">
             <li
               key={id}
               style={{ animationDelay: `${i * .05}s` }}
             >
               {nombre}
             </li>
-          </Link>
+          </a>
       ))}
     </ul>
   
-  return listaSubsecciones
+  return listaContenidos
 }
 
-export default MenuSeccion
+export default MenuSubseccion
