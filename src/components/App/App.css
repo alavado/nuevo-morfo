@@ -12,6 +12,10 @@
   font-family: "Uber Move Text", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 main {
   display: flex;
 }

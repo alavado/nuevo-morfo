@@ -30,7 +30,7 @@ nav a {
   animation: aparece-nombre-seccion .25s ease-in-out forwards;
   opacity: 0;
   transform: translateY(16px);
-  height: 60px;
+  height: 64px;
   display: flex;
   align-items: center;
   margin-top: 4px;

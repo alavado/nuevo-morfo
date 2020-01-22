@@ -1,5 +1,8 @@
 .menu-subsecciones {
-  margin-top: 24px;
+  padding-top: 24px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .menu-subsecciones li {
@@ -9,7 +12,7 @@
   letter-spacing: 2px;
   color: #212322;
   font-weight: bold;
-  transform: translateX(-20px);
+  transform: translateX(-12px);
   opacity: 0;
   animation: aparece-subseccion .25s ease-in-out forwards;
 }
@@ -20,7 +23,7 @@
 
 @keyframes aparece-subseccion {
   0% {
-    transform: translateX(-20px);
+    transform: translateX(-12px);
     opacity: 0;
   }
   100% {
