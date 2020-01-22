@@ -9,6 +9,10 @@ export default gql`
         id
         nombre
       }
+      seccion {
+        id
+        nombre
+      }
     }
   }
 `

@@ -2,13 +2,17 @@ import React from 'react'
 import './MenuSubseccion.css'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../queries/subseccion'
+import { useDispatch } from 'react-redux'
+import { fijarSeccion } from '../../redux/actions'
 
 const MenuSubseccion = ({ match }) => {
 
+  const dispatch = useDispatch()
   const { loading, error, data } = useQuery(query, {
     variables: {
       id: match.params.id
-    }
+    },
+    onCompleted: data => dispatch(fijarSeccion(data.subseccion.seccion))
   })
 
   const listaContenidos = loading ? null :
