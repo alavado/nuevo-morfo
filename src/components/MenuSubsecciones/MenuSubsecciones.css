@@ -1,0 +1,30 @@
+.menu-subsecciones {
+  margin-top: 24px;
+}
+
+.menu-subsecciones li {
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 24px 0 8px 24px;
+  letter-spacing: 2px;
+  color: #212322;
+  font-weight: bold;
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: aparece-subseccion .25s ease-in-out forwards;
+}
+
+.menu-subsecciones a {
+  text-decoration: none;
+}
+
+@keyframes aparece-subseccion {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}

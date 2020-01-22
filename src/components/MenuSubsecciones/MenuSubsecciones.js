@@ -13,11 +13,18 @@ const MenuSubsecciones = props => {
   })
 
   const subsecciones = loading ? null :
-    <ul>
-      {data.seccion.subsecciones.map(({ id, nombre }) => (
-        <li key={id}>
-          {nombre}
-        </li>
+    <ul className="menu-subsecciones">
+      {data.seccion.subsecciones
+        .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
+        .map(({ id, nombre }, i) => (
+          <a href="#">
+            <li
+              key={id}
+              style={{ animationDelay: `${i * .05}s` }}
+            >
+              {nombre}
+            </li>
+          </a>
       ))}
     </ul>
   
