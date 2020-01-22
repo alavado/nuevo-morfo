@@ -21,6 +21,10 @@
   text-decoration: none;
 }
 
+.lista-subsecciones li:hover {
+  color: #AB989D;
+}
+
 @keyframes aparece-subseccion {
   0% {
     transform: translateX(-12px);

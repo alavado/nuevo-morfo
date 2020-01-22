@@ -10,16 +10,21 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 import { isDev } from './helpers/dev'
 
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
 const client = new ApolloClient({
   uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`
 })
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </ApolloProvider>,
+  <Provider store={store}>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
+  </Provider>,
   document.getElementById('root')
 )
 
