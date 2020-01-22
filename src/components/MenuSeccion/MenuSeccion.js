@@ -1,19 +1,19 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import './MenuSubsecciones.css'
+import './MenuSeccion.css'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../queries/seccion'
 
-const MenuSubsecciones = props => {
+const MenuSeccion = ({ match }) => {
 
   const { loading, error, data } = useQuery(query, {
     variables: {
-      id: props.match.params.id
+      id: match.params.id
     }
   })
 
-  const subsecciones = loading ? null :
-    <ul className="menu-subsecciones">
+  const listaSubsecciones = loading ? null :
+    <ul className="lista-subsecciones">
       {data.seccion.subsecciones
         .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
         .map(({ id, nombre }, i) => (
@@ -28,7 +28,7 @@ const MenuSubsecciones = props => {
       ))}
     </ul>
   
-  return subsecciones
+  return listaSubsecciones
 }
 
-export default MenuSubsecciones
+export default MenuSeccion

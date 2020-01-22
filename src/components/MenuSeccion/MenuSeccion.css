@@ -1,11 +1,11 @@
-.menu-subsecciones {
+.lista-subsecciones {
   padding-top: 24px;
   height: calc(100vh - 64px);
   overflow-y: auto;
   box-sizing: border-box;
 }
 
-.menu-subsecciones li {
+.lista-subsecciones li {
   text-transform: uppercase;
   font-size: 11px;
   padding: 24px 0 8px 24px;
@@ -17,7 +17,7 @@
   animation: aparece-subseccion .25s ease-in-out forwards;
 }
 
-.menu-subsecciones a {
+.lista-subsecciones a {
   text-decoration: none;
 }
 

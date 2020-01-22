@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import './Lateral.css'
-import MenuSubsecciones from '../MenuSubsecciones'
+import MenuSeccion from '../MenuSeccion'
 
 const Lateral = () => {
 
   return (
     <aside>
-      <Route path="/seccion/:id" component={MenuSubsecciones} />
+      <Route path="/seccion/:id" component={MenuSeccion} />
     </aside>
   )
 }
