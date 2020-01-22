@@ -36,8 +36,8 @@ nav a {
   margin-top: 4px;
   border-color: black;
   transition:
-    color .25s ease-in-out,
-    border-color .25s ease-in-out;
+    color .15s ease-in,
+    border-color .15s ease-in;
 }
 
 nav a:hover {
