@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const SubseccionSchema = new Schema({
+const subseccionSchema = new Schema({
   nombre: {
     type: String,
     required: true
@@ -12,4 +12,11 @@ const SubseccionSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Subseccion', SubseccionSchema)
+subseccionSchema.statics.findSeccion = function(id) {
+  return this
+    .findById(id)
+    .populate('seccion')
+    .then(subseccion => subseccion.seccion)
+}
+
+module.exports = mongoose.model('Subseccion', subseccionSchema)

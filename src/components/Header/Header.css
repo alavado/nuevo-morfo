@@ -35,7 +35,9 @@ nav a {
   align-items: center;
   margin-top: 4px;
   border-color: black;
-  transition: color .25s ease-in-out;
+  transition:
+    color .25s ease-in-out,
+    border-color .25s ease-in-out;
 }
 
 nav a:hover {
