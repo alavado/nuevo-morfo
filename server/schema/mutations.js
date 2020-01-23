@@ -3,8 +3,10 @@ const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql
 const mongoose = require('mongoose')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
+const Contenido = mongoose.model('Contenido')
 const SeccionType = require('./types/seccion_type')
 const SubseccionType = require('./types/subseccion_type')
+const ContenidoType = require('./types/contenido_type')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -26,6 +28,17 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         return (new Subseccion(args)).save()
+      }
+    },
+    agregarContenido: {
+      type: ContenidoType,
+      args: {
+        titulo: { type: GraphQLString },
+        descripcion: { type: GraphQLString },
+        subseccion: { type: GraphQLID }
+      },
+      resolve(parentValue, args) {
+        return (new Contenido(args)).save()
       }
     }
   }

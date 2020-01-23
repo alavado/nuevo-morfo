@@ -7,11 +7,7 @@ export default gql`
       nombre
       contenidos {
         id
-        nombre
-      }
-      seccion {
-        id
-        nombre
+        titulo
       }
     }
   }

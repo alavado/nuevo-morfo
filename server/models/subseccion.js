@@ -23,4 +23,8 @@ subseccionSchema.statics.findSeccion = function(id) {
     .then(subseccion => subseccion.seccion)
 }
 
+subseccionSchema.statics.findContenidos = function(id) {
+  return require('./contenido').find({ subseccion: id })
+}
+
 module.exports = mongoose.model('Subseccion', subseccionSchema)

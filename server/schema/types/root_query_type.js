@@ -3,8 +3,10 @@ const graphql = require('graphql')
 const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLNonNull } = graphql
 const SeccionType = require('./seccion_type')
 const SubseccionType = require('./subseccion_type')
+const ContenidoType = require('./contenido_type')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
+const Contenido = mongoose.model('Contenido')
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -27,6 +29,13 @@ const RootQueryType = new GraphQLObjectType({
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, { id }) {
         return Subseccion.findById(id)
+      }
+    },
+    contenido: {
+      type: ContenidoType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, { id }) {
+        return Contenido.findById(id)
       }
     }
   }

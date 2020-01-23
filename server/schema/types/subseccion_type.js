@@ -17,7 +17,7 @@ const SubseccionType = new GraphQLObjectType({
     contenidos: {
       type: new GraphQLList(require('./contenido_type')),
       resolve(parentValue) {
-        return Subseccion.findById(parentValue.id).then(s => s.contenidos)
+        return Subseccion.findContenidos(parentValue.id)
       }
     }
   })

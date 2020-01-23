@@ -29,8 +29,8 @@ const Header = () => {
             to={`/seccion/${seccion.id}`}
             className={
               seccionSeleccionada &&
-              seccionSeleccionada.id === seccion.id &&
-              'seccion-activa'
+              seccionSeleccionada.id === seccion.id ?
+              'seccion-activa' : ''
             }
             onClick={e => dispatch(fijarSeccion(seccion))}
             style={{ animationDelay: `${.15 * (data.secciones.length - i)}s` }}
