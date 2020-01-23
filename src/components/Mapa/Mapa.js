@@ -10,13 +10,13 @@ const SIZE = 20;
 
 const Mapa = () => {
 
-  const MIN_ZOOM = 1.4, MAX_ZOOM = 4
+  const MIN_ZOOM = 1.7, MAX_ZOOM = 4
 
   const [viewport, setViewport] = useState({
     width: '100%',
     height: 'calc(100vh - 64px)',
     latitude: 79.61614103319404,
-    longitude: -109.68750000000037,
+    longitude: -65.68750000000037,
     zoom: MIN_ZOOM,
   })
 
@@ -84,9 +84,9 @@ const Mapa = () => {
           style={{ padding: '119px' }}
         />
       </div>
-      <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
+      {/* <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
         <InfoContenido />
-      </div>
+      </div> */}
       <Marker latitude={79.61614103319404} longitude={-109.68750000000037}>
         <svg
           height={SIZE}

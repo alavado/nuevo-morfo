@@ -15,10 +15,6 @@
   animation: aparece-subseccion .25s ease-in-out both;
 }
 
-.lista-subsecciones a {
-  text-decoration: none;
-}
-
 .lista-subsecciones li:hover {
   color: #AB989D;
 }

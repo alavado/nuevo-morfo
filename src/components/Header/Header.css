@@ -4,6 +4,10 @@
   text-transform: uppercase;
 }
 
+#brand a {
+  color: white;
+}
+
 header {
   height: 64px;
   background-color: #212322;
@@ -22,7 +26,6 @@ nav {
 }
 
 nav a {
-  text-decoration: none;
   color: #AB989D;
   margin-left: 36px;
   text-transform: uppercase;

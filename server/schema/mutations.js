@@ -49,7 +49,9 @@ const mutation = new GraphQLObjectType({
         titulo: { type: GraphQLString }
       },
       resolve(parentValue, args) {
-        return (new Imagen(args)).save()
+        const imagen = (new Imagen(args)).save()
+        console.log({imagen})
+        return imagen
       }
     }
   }

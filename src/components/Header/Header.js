@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <div id="brand">Morfo</div>
+      <div id="brand"><Link to="/" onClick={e => dispatch(fijarSeccion(null))}>Morfo</Link></div>
       <nav>
         {!loading && data.secciones.map((seccion, i) => (
           <Link
