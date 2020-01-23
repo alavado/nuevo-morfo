@@ -3,7 +3,7 @@ import './MenuSubseccion.css'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../queries/subseccion'
 import { useDispatch } from 'react-redux'
-import { fijarSeccion } from '../../redux/actions'
+import { fijarSeccion, fijarSubseccion } from '../../redux/actions'
 
 const MenuSubseccion = ({ match }) => {
 
@@ -12,17 +12,19 @@ const MenuSubseccion = ({ match }) => {
     variables: {
       id: match.params.id
     },
-    onCompleted: data => dispatch(fijarSeccion(data.subseccion.seccion))
+    onCompleted: data => {
+      console.log(data)
+      dispatch(fijarSeccion(data.subseccion.seccion))
+      dispatch(fijarSubseccion(data.subseccion))
+    }
   })
-
-  console.log(data)
 
   const listaContenidos = loading ? null :
     <ul className="lista-contenidos">
       {data.subseccion.contenidos
         .sort((s1, s2) => s1.titulo > s2.titulo ? 1 : -1)
         .map(({ id, titulo }, i) => (
-          <a href="#">
+          <a href="#" key={id}>
             <li
               key={id}
               style={{ animationDelay: `${i * .05}s` }}

@@ -72,7 +72,7 @@ const Mapa = () => {
       dragRotate={false}
       scrollZoom={viewport.zoom > MIN_ZOOM || viewport.zoom < MAX_ZOOM}
     >
-      <div style={{ position: 'absolute', left: 8, top: 8 }}>
+      <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
         <div style={{ marginBottom: 8 }}>
           <FullscreenControl />
         </div>
@@ -84,7 +84,7 @@ const Mapa = () => {
           style={{ padding: '119px' }}
         />
       </div>
-      <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 3 }}>
+      <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
         <InfoContenido />
       </div>
       <Marker latitude={79.61614103319404} longitude={-109.68750000000037}>

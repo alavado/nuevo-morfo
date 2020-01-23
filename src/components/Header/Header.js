@@ -10,7 +10,7 @@ import { fijarSeccion } from '../../redux/actions'
 const Header = () => {
 
   const dispatch = useDispatch()
-  const seccionSeleccionada = useSelector(state => state.seccion.seccion)
+  const seccionSeleccionada = useSelector(state => state.navegacion.seccion)
   const { loading, error, data } = useQuery(query)
 
   const autenticarConUCampus = () => {

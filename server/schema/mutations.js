@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
 const Contenido = mongoose.model('Contenido')
+const Imagen = mongoose.model('Imagen')
 const SeccionType = require('./types/seccion_type')
 const SubseccionType = require('./types/subseccion_type')
 const ContenidoType = require('./types/contenido_type')
+const ImagenType = require('./types/imagen_type')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -39,6 +41,15 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         return (new Contenido(args)).save()
+      }
+    },
+    agregarImagen: {
+      type: ImagenType,
+      args: {
+        titulo: { type: GraphQLString }
+      },
+      resolve(parentValue, args) {
+        return (new Imagen(args)).save()
       }
     }
   }
