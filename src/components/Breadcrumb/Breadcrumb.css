@@ -1,0 +1,33 @@
+.breadcrumb {
+  font-size: 9px;
+  text-transform: uppercase;
+  padding: 0px 18px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  background-color: #212322;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: white;
+  animation: aparece-breadcrumb .25s ease-out both;
+}
+
+.breadcrumb a::before {
+  content: '­­>';
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+@keyframes aparece-breadcrumb {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
