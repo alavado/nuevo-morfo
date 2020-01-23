@@ -13,7 +13,6 @@ const MenuSubseccion = ({ match }) => {
       id: match.params.id
     },
     onCompleted: data => {
-      console.log(data)
       dispatch(fijarSeccion(data.subseccion.seccion))
       dispatch(fijarSubseccion(data.subseccion))
     }

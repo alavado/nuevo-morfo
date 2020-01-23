@@ -1,5 +1,5 @@
 .lista-subsecciones {
-  padding-top: 24px;
+  padding-top: 4px;
   height: calc(100vh - 64px - 20px);
   overflow-y: auto;
   box-sizing: border-box;
