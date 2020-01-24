@@ -1,12 +1,15 @@
 import React from 'react'
 import './Principal.css'
 import Mapa from '../Mapa'
-import { Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 const Principal = () => {
   return (
     <section className="contenedor-principal">
-      <Route path="/contenido/:id" component={Mapa} />
+      <Switch>
+        <Route path="/contenido/:id" component={Mapa} />
+        <Route path="/" component={Mapa} />
+      </Switch>
     </section>
   )
 }

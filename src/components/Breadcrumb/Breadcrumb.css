@@ -14,9 +14,17 @@
   text-decoration: none;
   color: #212322;
   animation: aparece-breadcrumb .25s ease-out both;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.breadcrumb a::before {
+.breadcrumb a:first-child {
+  border-left: 2px solid red;
+  padding-left: 6px;
+  margin-left: 6px;
+}
+
+.breadcrumb a:not(:first-child)::before {
   content: '­­>';
   margin-right: 6px;
   margin-left: 6px;

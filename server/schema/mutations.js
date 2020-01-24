@@ -9,6 +9,7 @@ const SeccionType = require('./types/seccion_type')
 const SubseccionType = require('./types/subseccion_type')
 const ContenidoType = require('./types/contenido_type')
 const ImagenType = require('./types/imagen_type')
+const MarcadorType = require('./types/marcador_type')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -50,8 +51,18 @@ const mutation = new GraphQLObjectType({
         contenido: { type: GraphQLID }
       },
       resolve(parentValue, args) {
-        const imagen = (new Imagen(args)).save()
-        return imagen
+        return (new Imagen(args)).save()
+      }
+    },
+    agregarMarcador: {
+      type: MarcadorType,
+      args: {
+        titulo: { type: GraphQLString },
+        posicion: { type: GraphQLString },
+        imagen: { type: GraphQLID }
+      },
+      resolve(parentValue, args) {
+        return (new Marcador(args)).save()
       }
     }
   }

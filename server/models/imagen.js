@@ -16,4 +16,8 @@ const imagenSchema = new Schema({
   }
 })
 
+imagenSchema.statics.findMarcadores = function(id) {
+  return require('./marcador').find({ imagen: id })
+}
+
 module.exports = mongoose.model('Imagen', imagenSchema)

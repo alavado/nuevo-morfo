@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
     case FIJAR_SECCION: {
       return {
         ...state,
-        seccion: action.payload
+        seccion: action.payload,
+        subseccion: action.payload === null ? null : state.subseccion
       }
     }
     case FIJAR_SUBSECCION: {

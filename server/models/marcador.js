@@ -9,6 +9,10 @@ const marcadorSchema = new Schema({
   posicion: {
     type: String,
     required: true
+  },
+  imagen: {
+    type: Schema.Types.ObjectId,
+    ref: 'Imagen'
   }
 })
 
