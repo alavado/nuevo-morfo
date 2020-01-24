@@ -9,6 +9,11 @@ export default gql`
       imagenes {
         id
         descripcion
+        marcadores {
+          id
+          titulo
+          posicion
+        }
       }
     }
   }

@@ -27,39 +27,24 @@ const Mapa = ({ match }) => {
     longitude: -65.68750000000037,
     zoom: minZoom,
   })
-
-  const marcadores = [
-    {
-      lat: 79.61614103319404,
-      lng: -109.68750000000037
-    },
-    {
-      lat: 79.61614103319404,
-      lng: -65.68750000000037,
-    }
-  ]
   const mapStyle = useMemo(() => contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : '', [contenido])
 
-  const crearMarcador = useCallback(
-    (lat, lng) => (
-      <Marker latitude={lat} longitude={lng}>
-        <svg
-          height={tamañoMarcador}
-          viewBox="0 0 24 24"
-          style={{
-            cursor: 'pointer',
-            fill: '#D6001C',
-            stroke: 'none',
-            transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
-          }}
-        >
-          <path d={parametrosMapa.marcador} />
-        </svg>
-      </Marker>
-    ),
-    [marcador],
-  )
-  
+  const crearMarcador = useCallback((id, lat, lng) => (
+    <Marker key={id} latitude={lat} longitude={lng}>
+      <svg
+        height={tamañoMarcador}
+        viewBox="0 0 24 24"
+        style={{
+          cursor: 'pointer',
+          fill: '#d6001c',
+          stroke: 'none',
+          transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
+        }}
+      >
+        <path d={parametrosMapa.marcador} />
+      </svg>
+    </Marker>
+  ), [marcador])
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)
@@ -93,7 +78,12 @@ const Mapa = ({ match }) => {
       {/* <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
         <InfoContenido />
       </div> */}
-      {marcadores.map(({ lat, lng }) => crearMarcador(lat, lng))}
+      {contenido && contenido.imagenes &&
+        contenido.imagenes[0].marcadores.map(({ id, titulo, posicion }) => {
+          const [lat, lng] = posicion.split(',').map(Number)
+          return crearMarcador(id, lat, lng)
+        })
+      }
     </ReactMapGL>
   )
 }
