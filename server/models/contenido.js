@@ -24,4 +24,8 @@ contenidoSchema.statics.findSubseccion = function(id) {
     .then(contenido => contenido.subseccion)
 }
 
+contenidoSchema.statics.findImagenes = function(id) {
+  return require('./imagen').find({ contenido: id })
+}
+
 module.exports = mongoose.model('Contenido', contenidoSchema)

@@ -2,11 +2,23 @@ import React, { useState, useMemo, useCallback } from 'react'
 import ReactMapGL, { FullscreenControl, NavigationControl, Marker } from 'react-map-gl'
 import InfoContenido from '../InfoContenido';
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import query from '../../queries/contenido'
+import { useQuery } from '@apollo/react-hooks';
+import { fijarContenido } from '../../redux/actions';
 
-const Mapa = () => {
+const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 
-  const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
+const Mapa = ({ match }) => {
+
+  const dispatch = useDispatch()
+  const contenido = useSelector(state => state.contenido.contenido)
+  const { loading, error, data } = useQuery(query, {
+    variables: {
+      id: match.params.id
+    },
+    onCompleted: data => dispatch(fijarContenido(data.contenido))
+  })
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -26,9 +38,7 @@ const Mapa = () => {
       lng: -65.68750000000037,
     }
   ]
-
-  const contenido = useSelector(state => state.contenido.contenido)
-  const mapStyle = useMemo(() => contenido ? construirMapStyle(contenido.imagenes[0]) : '', [contenido])
+  const mapStyle = useMemo(() => contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : '', [contenido])
 
   const crearMarcador = useCallback(
     (lat, lng) => (
