@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  query subseccion($id: ID!) {
+  query Subseccion($id: ID!) {
     subseccion(id: $id) {
       id
       nombre

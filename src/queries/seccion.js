@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  query seccion($id: ID!) {
+  query Seccion($id: ID!) {
     seccion(id: $id) {
       id
       nombre

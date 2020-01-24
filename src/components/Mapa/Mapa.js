@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react'
 import ReactMapGL, { FullscreenControl, NavigationControl, Marker } from 'react-map-gl'
 import InfoContenido from '../InfoContenido';
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa';
+import { useSelector } from 'react-redux';
 
 const Mapa = () => {
 
@@ -26,8 +27,8 @@ const Mapa = () => {
     }
   ]
 
-  const idImagen = 'IMG_0688'
-  const mapStyle = useMemo(() => construirMapStyle(idImagen), [idImagen])
+  const contenido = useSelector(state => state.contenido.contenido)
+  const mapStyle = useMemo(() => contenido ? construirMapStyle(contenido.imagenes[0]) : '', [contenido])
 
   const crearMarcador = useCallback(
     (lat, lng) => (
