@@ -12,6 +12,7 @@ const Lateral = () => {
       <Breadcrumb />
       <Route path="/seccion/:id" component={MenuSeccion} />
       <Route path="/subseccion/:id" component={MenuSubseccion} />
+      <Route path="/contenido/:id" component={() => 'x'} />
     </aside>
   )
 }

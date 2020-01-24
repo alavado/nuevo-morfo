@@ -3,6 +3,7 @@ import './App.css'
 import Mapa from '../Mapa'
 import Header from '../Header'
 import Lateral from '../Lateral'
+import Principal from '../Principal/Principal'
 
 const App = () => {
   return (
@@ -10,9 +11,7 @@ const App = () => {
       <Header />
       <main>
         <Lateral />
-        <section className="contenedor-principal">
-          <Mapa />
-        </section>
+        <Principal />
       </main>
     </div>
   )

@@ -1,9 +1,10 @@
 import React from 'react'
-import './MenuSubseccion.css'
+import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../queries/subseccion'
 import { useDispatch } from 'react-redux'
 import { fijarSeccion, fijarSubseccion } from '../../redux/actions'
+import './MenuSubseccion.css'
 
 const MenuSubseccion = ({ match }) => {
 
@@ -23,14 +24,14 @@ const MenuSubseccion = ({ match }) => {
       {data.subseccion.contenidos
         .sort((s1, s2) => s1.titulo > s2.titulo ? 1 : -1)
         .map(({ id, titulo }, i) => (
-          <a href="#" key={id}>
+          <Link to={`/contenido/${id}`} key={id}>
             <li
               key={id}
               style={{ animationDelay: `${i * .05}s` }}
             >
               {titulo}
             </li>
-          </a>
+          </Link>
       ))}
     </ul>
   
