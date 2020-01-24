@@ -22,9 +22,9 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }))
 
-app.get('/foto/:z/:x/:y', (req, res) => {
-  const { x, y, z } = req.params
-  res.sendFile(path.join(__dirname, `images/IMG_0688/pyramid/${z}/${y}/${x}.jpg`))
+app.get('/foto/:id/:z/:x/:y', (req, res) => {
+  const { id, x, y, z } = req.params
+  res.sendFile(path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`))
 })
 
 const formidableMiddleware = require('express-formidable')
