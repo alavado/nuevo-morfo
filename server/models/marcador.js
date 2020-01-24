@@ -5,6 +5,10 @@ const marcadorSchema = new Schema({
   titulo: {
     type: String,
     required: true
+  },
+  posicion: {
+    type: String,
+    required: true
   }
 })
 

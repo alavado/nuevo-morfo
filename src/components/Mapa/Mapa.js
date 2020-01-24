@@ -1,12 +1,11 @@
-import React, { useState, useMemo } from 'react'
-import ReactMapGL, { Marker, FullscreenControl, NavigationControl } from 'react-map-gl'
-import { isDev } from '../../helpers/dev';
+import React, { useState, useMemo, useCallback } from 'react'
+import ReactMapGL, { FullscreenControl, NavigationControl, Marker } from 'react-map-gl'
 import InfoContenido from '../InfoContenido';
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa';
 
-const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
-
 const Mapa = () => {
+
+  const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -16,8 +15,40 @@ const Mapa = () => {
     zoom: minZoom,
   })
 
+  const marcadores = [
+    {
+      lat: 79.61614103319404,
+      lng: -109.68750000000037
+    },
+    {
+      lat: 79.61614103319404,
+      lng: -65.68750000000037,
+    }
+  ]
+
   const idImagen = 'IMG_0688'
   const mapStyle = useMemo(() => construirMapStyle(idImagen), [idImagen])
+
+  const crearMarcador = useCallback(
+    (lat, lng) => (
+      <Marker latitude={lat} longitude={lng}>
+        <svg
+          height={tamañoMarcador}
+          viewBox="0 0 24 24"
+          style={{
+            cursor: 'pointer',
+            fill: '#D6001C',
+            stroke: 'none',
+            transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
+          }}
+        >
+          <path d={parametrosMapa.marcador} />
+        </svg>
+      </Marker>
+    ),
+    [marcador],
+  )
+  
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)
@@ -51,20 +82,7 @@ const Mapa = () => {
       {/* <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
         <InfoContenido />
       </div> */}
-      <Marker latitude={79.61614103319404} longitude={-109.68750000000037}>
-        <svg
-          height={tamañoMarcador}
-          viewBox="0 0 24 24"
-          style={{
-            cursor: 'pointer',
-            fill: '#D6001C',
-            stroke: 'none',
-            transform: `translate(${-tamañoMarcador / 2}px,${-tamañoMarcador}px)`
-          }}
-        >
-          <path d={marcador} />
-        </svg>
-      </Marker>
+      {marcadores.map(({ lat, lng }) => crearMarcador(lat, lng))}
     </ReactMapGL>
   )
 }

@@ -1,6 +1,5 @@
 import { isDev } from "./dev";
 
-
 export const parametrosMapa = {
   minZoom: 1.7,
   maxZoom: 4,
