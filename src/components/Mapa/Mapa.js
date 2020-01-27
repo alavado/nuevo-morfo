@@ -4,8 +4,9 @@ import InfoContenido from '../InfoContenido';
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa';
 import { useSelector, useDispatch } from 'react-redux';
 import query from '../../queries/contenido'
-import { useQuery } from '@apollo/react-hooks';
-import { fijarContenido } from '../../redux/actions';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { fijarContenido, agregarMarcadorAImagenActual } from '../../redux/actions';
+import agregarMarcadorMutation from '../../mutations/agregarMarcador'
 
 const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 
@@ -19,6 +20,7 @@ const Mapa = ({ match }) => {
     },
     onCompleted: data => dispatch(fijarContenido(data.contenido))
   })
+  const [agregarMarcador, { dataNuevoMarcador }] = useMutation(agregarMarcadorMutation);
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -62,6 +64,21 @@ const Mapa = ({ match }) => {
       onViewportChange={actualizarVP}
       mapStyle={mapStyle}
       dragRotate={false}
+      onContextMenu={e => {
+        e.preventDefault()
+        const [lng, lat] = e.lngLat
+        agregarMarcador({
+          variables: {
+            imagen: contenido.imagenes[0].id,
+            titulo: 'prueba',
+            posicion: `${lat},${lng}`
+          }
+        })
+        .then(data => {
+          const { id, titulo, posicion } = data.data.agregarMarcador
+          dispatch(agregarMarcadorAImagenActual({ id, titulo, posicion }))
+        })
+      }}
     >
       <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
         <div style={{ marginBottom: 8 }}>
