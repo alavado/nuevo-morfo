@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react'
-import ReactMapGL, { FullscreenControl, NavigationControl, Marker } from 'react-map-gl'
+import ReactMapGL, { FullscreenControl, NavigationControl, Marker, Popup } from 'react-map-gl'
 import InfoContenido from '../InfoContenido'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,6 +14,12 @@ const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 const Mapa = ({ match }) => {
 
   const dispatch = useDispatch()
+  const [popup, setPopup] = useState({
+    activo: false,
+    lat: 0,
+    lng: 0,
+    titulo: ''
+  })
   const contenido = useSelector(state => state.contenido.contenido)
   const { loading, error, data } = useQuery(query, {
     variables: {
@@ -33,7 +39,7 @@ const Mapa = ({ match }) => {
   })
   const mapStyle = useMemo(() => contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : '', [contenido])
 
-  const crearMarcador = useCallback((id, lat, lng) => (
+  const crearMarcador = useCallback((id, lat, lng, titulo) => (
     <Marker key={id} latitude={lat} longitude={lng}>
       <svg
         height={tamañoMarcador}
@@ -44,10 +50,18 @@ const Mapa = ({ match }) => {
           stroke: 'none',
           transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
         }}
-        onClick={() => {
+        onContextMenu={e => {
+          e.preventDefault()
           dispatch(eliminarMarcadorDeImagenActual(id))
           eliminarMarcador({ variables: { id } })
         }}
+        onClick={() => setPopup({
+          ...popup,
+          activo: true,
+          titulo,
+          lat,
+          lng
+        })}
       >
         <path d={parametrosMapa.marcador} />
       </svg>
@@ -74,8 +88,8 @@ const Mapa = ({ match }) => {
         posicion: `${lat},${lng}`
       }
     })
-    .then(data => {
-      const { id, titulo, posicion } = data.data.agregarMarcador
+    .then(({ data }) => {
+      const { id, titulo, posicion } = data.agregarMarcador
       dispatch(agregarMarcadorAImagenActual({ id, titulo, posicion }))
     })
   }
@@ -106,9 +120,22 @@ const Mapa = ({ match }) => {
       {contenido && contenido.imagenes &&
         contenido.imagenes[0].marcadores.map(({ id, titulo, posicion }) => {
           const [lat, lng] = posicion.split(',').map(Number)
-          return crearMarcador(id, lat, lng)
+          return crearMarcador(id, lat, lng, titulo)
         })
       }
+      
+      {popup.activo && <Popup
+        tipSize={5}
+        anchor="top"
+        longitude={popup.lng}
+        latitude={popup.lat}
+        closeOnClick={false}
+        onClose={() => setPopup({ ...popup, activo: false })}
+      >
+        <div>
+          {popup.titulo}
+        </div>
+      </Popup>}
     </ReactMapGL>
   )
 }
