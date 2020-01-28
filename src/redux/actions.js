@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR } from "./actionTypes";
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR } from "./actionTypes";
 
 export const fijarSeccion = datos => ({
   type: FIJAR_SECCION,
@@ -18,4 +18,9 @@ export const fijarContenido = datos => ({
 export const agregarMarcadorAImagenActual = marcador => ({
   type: AGREGAR_MARCADOR,
   payload: marcador
+})
+
+export const eliminarMarcadorDeImagenActual = id => ({
+  type: ELIMINAR_MARCADOR,
+  payload: id
 })

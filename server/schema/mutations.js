@@ -65,6 +65,13 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, args) {
         return (new Marcador(args)).save()
       }
+    },
+    eliminarMarcador: {
+      type: MarcadorType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Marcador.findOneAndDelete({ _id: id })
+      }
     }
   }
 })
