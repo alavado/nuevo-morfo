@@ -20,7 +20,7 @@ export const construirMapStyle = idImagen => ({
       tileSize: 128,
       attribution:
         `
-          ® Imágenes propiedad del
+          ®
           <a target="_blank" rel="noopener" href="http://www.medicina.uchile.cl/facultad/campus-y-departamentos/campus-norte/anatomia-y-medicina-legal">
             Departamento de Anatomía y Medicina Legal
           </a>

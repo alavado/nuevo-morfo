@@ -120,7 +120,7 @@ const Mapa = ({ match }) => {
       {contenido && contenido.imagenes &&
         contenido.imagenes[0].marcadores.map(({ id, titulo, posicion }) => {
           const [lat, lng] = posicion.split(',').map(Number)
-          return crearMarcador(id, lat, lng, titulo)
+          return crearMarcador(id, lat, lng, `${titulo}-${id}`)
         })
       }
       
