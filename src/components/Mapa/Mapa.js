@@ -13,7 +13,7 @@ const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 
 const Mapa = ({ match }) => {
 
-  const imagen = useSelector(state => state.contenido.imagen)
+  const {contenido, imagen} = useSelector(state => state.contenido)
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
   const [popup, setPopup] = useState({
@@ -40,7 +40,7 @@ const Mapa = ({ match }) => {
     zoom: minZoom,
   })
 
-  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [imagen])
+  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [contenido, imagen])
 
   const crearMarcador = useCallback((id, lat, lng, titulo) => (
     <Marker key={id} latitude={lat} longitude={lng}>
@@ -49,7 +49,7 @@ const Mapa = ({ match }) => {
         viewBox="0 0 24 24"
         className={marcadorDestacado && marcadorDestacado.id === id ? 'marcador-seleccionado' : 'marcador'}
         style={{
-          fill: marcadorDestacado && marcadorDestacado.id !== id && 'transparent', 
+          opacity: marcadorDestacado && marcadorDestacado.id !== id ? 0.4 : 1, 
           transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
         }}
         onContextMenu={e => {
@@ -133,9 +133,6 @@ const Mapa = ({ match }) => {
           style={{ padding: '119px' }}
         />
       </div>
-      {/* <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
-        <InfoContenido />
-      </div> */}
       {imagen && imagen.marcadores.map(({ id, titulo, posicion }) => {
           const [lat, lng] = posicion.split(',').map(Number)
           return crearMarcador(id, lat, lng, `${titulo}-${id}`)
@@ -143,7 +140,8 @@ const Mapa = ({ match }) => {
       }
       {popup.activo && <Popup
         tipSize={5}
-        anchor="top"
+        anchor="bottom"
+        offsetTop={-tamañoMarcador}
         longitude={popup.lng}
         latitude={popup.lat}
         closeOnClick={false}

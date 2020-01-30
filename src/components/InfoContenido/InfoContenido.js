@@ -29,7 +29,7 @@ const InfoContenido = () => {
             onMouseEnter={() => dispatch(destacarMarcador(marcador))}
             onMouseLeave={() => dispatch(dejarDeDestacarMarcador())}
           >
-            <a>{marcador.titulo}</a>
+            <a>{marcador.titulo} - {marcador.id}</a>
           </li>
         ))}
       </ul>

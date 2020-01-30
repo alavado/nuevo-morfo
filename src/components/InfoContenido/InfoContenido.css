@@ -45,11 +45,15 @@
   animation: aparece-contenido .25s ease-in-out both;
 }
 
+.info-contenido ul.lista-marcadores li {
+  margin-bottom: 8px;
+}
+
 .info-contenido ul.lista-marcadores li a {
   text-transform: capitalize;
   cursor: pointer;
   font-size: 11px;
-  line-height: 2;
+  line-height: 1.5;
   animation: aparece-contenido .25s ease-in-out both;
 }
 

@@ -28,7 +28,8 @@ export default function(state = initialState, action) {
             ...state.contenido.imagenes.splice(state.indiceImagenActual, 1),
             imagen
           ]
-        }
+        },
+        imagen
       }
     }
     case ELIMINAR_MARCADOR: {
