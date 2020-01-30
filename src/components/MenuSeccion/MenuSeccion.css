@@ -1,7 +1,6 @@
 .lista-subsecciones {
   padding-top: 4px;
   overflow-y: auto;
-  box-sizing: border-box;
 }
 
 .lista-subsecciones li {

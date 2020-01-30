@@ -37,7 +37,9 @@ const Mapa = ({ match }) => {
     longitude: -65.68750000000037,
     zoom: minZoom,
   })
-  const mapStyle = useMemo(() => contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : '', [contenido])
+  const mapStyle = useMemo(() => {
+    return contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : ''
+  }, [contenido])
 
   const crearMarcador = useCallback((id, lat, lng, titulo) => (
     <Marker key={id} latitude={lat} longitude={lng}>
