@@ -20,7 +20,7 @@ const Mapa = ({ match }) => {
     lng: 0,
     titulo: ''
   })
-  const contenido = useSelector(state => state.contenido.contenido)
+  const imagen = useSelector(state => state.contenido.imagen)
   const { loading, error, data } = useQuery(query, {
     variables: {
       id: match.params.id
@@ -37,9 +37,8 @@ const Mapa = ({ match }) => {
     longitude: -65.68750000000037,
     zoom: minZoom,
   })
-  const mapStyle = useMemo(() => {
-    return contenido && contenido.imagenes ? construirMapStyle(contenido.imagenes[0].id) : ''
-  }, [contenido])
+
+  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [imagen])
 
   const crearMarcador = useCallback((id, lat, lng, titulo) => (
     <Marker key={id} latitude={lat} longitude={lng}>
@@ -85,7 +84,7 @@ const Mapa = ({ match }) => {
     const [lng, lat] = e.lngLat
     agregarMarcador({
       variables: {
-        imagen: contenido.imagenes[0].id,
+        imagen: imagen.id,
         titulo: 'prueba',
         posicion: `${lat},${lng}`
       }
@@ -119,8 +118,7 @@ const Mapa = ({ match }) => {
       {/* <div style={{ position: 'absolute', right: 0, top: 0, zIndex: 2 }}>
         <InfoContenido />
       </div> */}
-      {contenido && contenido.imagenes &&
-        contenido.imagenes[0].marcadores.map(({ id, titulo, posicion }) => {
+      {imagen && imagen.marcadores.map(({ id, titulo, posicion }) => {
           const [lat, lng] = posicion.split(',').map(Number)
           return crearMarcador(id, lat, lng, `${titulo}-${id}`)
         })

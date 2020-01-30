@@ -2,15 +2,18 @@ import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR } from "../actionT
 
 const initialState = {
   contenido: null,
+  imagen: null,
   indiceImagenActual: 0
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case FIJAR_CONTENIDO: {
+      const contenido = action.payload
       return {
         ...state,
-        contenido: action.payload
+        contenido,
+        imagen: contenido.imagenes[0]
       }
     }
     case AGREGAR_MARCADOR: {
@@ -28,7 +31,6 @@ export default function(state = initialState, action) {
       }
     }
     case ELIMINAR_MARCADOR: {
-      console.log(action.payload)
       let imagen = state.contenido.imagenes[state.indiceImagenActual]
       imagen.marcadores = imagen.marcadores.filter(({ id }) => id !== action.payload)
       return {
