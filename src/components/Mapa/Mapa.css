@@ -1,0 +1,9 @@
+svg[class^="marcador"] {
+  cursor: pointer;
+  fill: #D4001C;
+  transition: all .1s ease-in-out;
+}
+
+.marcador-seleccionado {
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .5));
+}

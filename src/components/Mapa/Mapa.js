@@ -1,6 +1,5 @@
-import React, { useState, useMemo, useCallback } from 'react'
+import React, { useState, useMemo, useCallback, useEffect } from 'react'
 import ReactMapGL, { FullscreenControl, NavigationControl, Marker, Popup } from 'react-map-gl'
-import InfoContenido from '../InfoContenido'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
 import query from '../../queries/contenido'
@@ -8,11 +7,14 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { fijarContenido, agregarMarcadorAImagenActual, eliminarMarcadorDeImagenActual } from '../../redux/actions'
 import agregarMarcadorMutation from '../../mutations/agregarMarcador'
 import eliminarMarcadorMutation from '../../mutations/eliminarMarcador'
+import './Mapa.css'
 
 const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
 
 const Mapa = ({ match }) => {
 
+  const imagen = useSelector(state => state.contenido.imagen)
+  const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
   const [popup, setPopup] = useState({
     activo: false,
@@ -20,7 +22,7 @@ const Mapa = ({ match }) => {
     lng: 0,
     titulo: ''
   })
-  const imagen = useSelector(state => state.contenido.imagen)
+
   const { loading, error, data } = useQuery(query, {
     variables: {
       id: match.params.id
@@ -45,10 +47,9 @@ const Mapa = ({ match }) => {
       <svg
         height={tamañoMarcador}
         viewBox="0 0 24 24"
+        className={marcadorDestacado && marcadorDestacado.id === id ? 'marcador-seleccionado' : 'marcador'}
         style={{
-          cursor: 'pointer',
-          fill: '#d6001c',
-          stroke: 'none',
+          fill: marcadorDestacado && marcadorDestacado.id !== id && 'transparent', 
           transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
         }}
         onContextMenu={e => {
@@ -67,7 +68,24 @@ const Mapa = ({ match }) => {
         <path d={parametrosMapa.marcador} />
       </svg>
     </Marker>
-  ), [marcador])
+  ), [marcador, marcadorDestacado])
+
+  useEffect(() => {
+    if (marcadorDestacado) {
+      const { titulo, posicion } = marcadorDestacado
+      const [lat, lng] = posicion.split(',').map(Number)
+      setPopup({
+        ...popup,
+        titulo,
+        lat,
+        lng,
+        activo: true
+      })
+    }
+    else {
+      setPopup({ ...popup, activo: false })
+    }
+  }, [marcadorDestacado])
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)

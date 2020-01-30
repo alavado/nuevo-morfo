@@ -1,10 +1,12 @@
 import React from 'react'
 import './InfoContenido.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { destacarMarcador, dejarDeDestacarMarcador } from '../../redux/actions'
 
 const InfoContenido = () => {
 
   const { contenido, imagen } = useSelector(state => state.contenido)
+  const dispatch = useDispatch()
 
   if (!contenido || !imagen) {
     return 'cargando...'
@@ -21,7 +23,15 @@ const InfoContenido = () => {
       </div>
       <h4>Estructuras</h4>
       <ul className="lista-marcadores">
-        {imagen.marcadores.map(({ id, titulo }) => <li key={id}>{titulo}</li>)}
+        {imagen.marcadores.map(marcador => (
+          <li
+            key={marcador.id}
+            onMouseEnter={() => dispatch(destacarMarcador(marcador))}
+            onMouseLeave={() => dispatch(dejarDeDestacarMarcador())}
+          >
+            <a>{marcador.titulo}</a>
+          </li>
+        ))}
       </ul>
     </div>
   )
