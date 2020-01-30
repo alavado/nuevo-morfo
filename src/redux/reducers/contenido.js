@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         contenido,
-        imagen: contenido.imagenes[0]
+        imagen: contenido.imagenes ? contenido.imagenes[0] : null
       }
     }
     case AGREGAR_MARCADOR: {

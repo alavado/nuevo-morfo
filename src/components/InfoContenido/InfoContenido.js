@@ -6,7 +6,7 @@ const InfoContenido = () => {
 
   const { contenido, imagen } = useSelector(state => state.contenido)
 
-  if (!contenido) {
+  if (!contenido || !imagen) {
     return 'cargando...'
   }
 

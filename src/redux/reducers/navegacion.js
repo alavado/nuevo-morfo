@@ -22,6 +22,9 @@ export default function(state = initialState, action) {
     }
     case FIJAR_CONTENIDO: {
       const contenido = action.payload
+      if (!contenido.subseccion) {
+        return state
+      }
       return {
         ...state,
         seccion: contenido.subseccion.seccion,
