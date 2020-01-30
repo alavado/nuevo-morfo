@@ -123,7 +123,6 @@ const Mapa = ({ match }) => {
           return crearMarcador(id, lat, lng, `${titulo}-${id}`)
         })
       }
-      
       {popup.activo && <Popup
         tipSize={5}
         anchor="top"

@@ -14,6 +14,12 @@ const ContenidoType = new GraphQLObjectType({
       resolve(parentValue) {
         return Contenido.findImagenes(parentValue.id)
       }
+    },
+    subseccion: {
+      type: require('./subseccion_type'),
+      resolve(parentValue) {
+        return Contenido.findSubseccion(parentValue.id)
+      }
     }
   })
 })

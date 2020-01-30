@@ -4,14 +4,20 @@ import { useSelector } from 'react-redux'
 
 const InfoContenido = () => {
 
-  const imagen = useSelector(state => state.contenido.imagen)
+  const { contenido, imagen } = useSelector(state => state.contenido)
+
+  if (!contenido) {
+    return 'cargando...'
+  }
 
   return (
     <div className="info-contenido">
-      <h3>Abdomen abierto</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint fugit quaerat esse consequuntur repellendus eveniet exercitationem voluptate, reiciendis corrupti.</p>
-      {imagen && imagen.marcadores.map(m => <p>{m.titulo}</p>)}
-
+      <h3>{contenido.titulo}</h3>
+      <p>{contenido.descripcion}</p>
+      <h4>Estructuras</h4>
+      <ul className="lista-marcadores">
+        {imagen.marcadores.map(({ id, titulo }) => <li key={id}>{titulo}</li>)}
+      </ul>
     </div>
   )
 }

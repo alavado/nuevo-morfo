@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION } from "../actionTypes"
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO } from "../actionTypes"
 
 const initialState = {
   seccion: null,
@@ -18,6 +18,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         subseccion: action.payload
+      }
+    }
+    case FIJAR_CONTENIDO: {
+      const contenido = action.payload
+      return {
+        ...state,
+        seccion: contenido.subseccion.seccion,
+        subseccion: contenido.subseccion
       }
     }
     default:

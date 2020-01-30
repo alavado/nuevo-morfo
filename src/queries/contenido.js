@@ -15,6 +15,14 @@ export default gql`
           posicion
         }
       }
+      subseccion {
+        id
+        nombre
+        seccion {
+          id
+          nombre
+        }
+      }
     }
   }
 `
