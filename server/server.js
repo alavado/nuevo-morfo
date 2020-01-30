@@ -27,6 +27,11 @@ app.get('/foto/:id/:z/:x/:y', (req, res) => {
   res.sendFile(path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`))
 })
 
+app.get('/thumbnail/:id', (req, res) => {
+  const { id } = req.params
+  res.sendFile(path.join(__dirname, `images/${id}/tn_original.jpg`))
+})
+
 const formidableMiddleware = require('express-formidable')
 app.use(formidableMiddleware())
 app.use(require('./services/auth'))
