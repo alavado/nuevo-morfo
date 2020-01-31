@@ -8,7 +8,7 @@
 }
 
 .lista-estructuras ul li {
-  margin-bottom: 8px;
+  padding-bottom: 8px;
   cursor: pointer;
   animation: aparece-contenido .25s ease-in-out both;
 }
