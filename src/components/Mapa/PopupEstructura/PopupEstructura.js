@@ -26,7 +26,7 @@ const PopupEstructura = () => {
       closeOnClick={false}
       onClose={() => dispatch(esconderPopup())}
     >
-      <div>
+      <div className="contenido-popup">
         {popup.titulo}
       </div>
     </Popup>
