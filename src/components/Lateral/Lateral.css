@@ -6,3 +6,11 @@ aside {
   height: calc(100vh - 64px);
   overflow-x: auto;
 }
+
+@media (max-width: 600px) {
+  aside {
+    width: 100%;
+    height: auto;
+    padding-bottom: 16px;
+  }
+}

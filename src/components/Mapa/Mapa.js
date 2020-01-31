@@ -63,19 +63,16 @@ const Mapa = ({ match }) => {
     })
   }
 
-  const viajar = (lat, lng) => {
-    setViewport(v => ({
-      ...v,
-      latitude: Number(lat),
-      longitude: Number(lng),
-      transitionInterpolator: new FlyToInterpolator({ speed: 1.5 }),
-      transitionDuration: 'auto'
-    }))
-  }
-
   useEffect(() => {
-    if (destino)
-    viajar(destino.lat, destino.lng)
+    if (destino) {
+      setViewport(v => ({
+        ...v,
+        latitude: Number(destino.lat),
+        longitude: Number(destino.lng),
+        transitionInterpolator: new FlyToInterpolator({ speed: 1.5 }),
+        transitionDuration: 'auto'
+      }))
+    }
   }, [destino])
 
   return (
