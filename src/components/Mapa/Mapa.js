@@ -57,13 +57,13 @@ const Mapa = ({ match }) => {
           dispatch(eliminarMarcadorDeImagenActual(id))
           eliminarMarcador({ variables: { id } })
         }}
-        onClick={() => setPopup({
-          ...popup,
+        onClick={() => setPopup(p => ({
+          ...p,
           activo: true,
           titulo,
           lat,
           lng
-        })}
+        }))}
       >
         <path d={parametrosMapa.marcador} />
       </svg>
@@ -74,16 +74,16 @@ const Mapa = ({ match }) => {
     if (marcadorDestacado) {
       const { titulo, posicion } = marcadorDestacado
       const [lat, lng] = posicion.split(',').map(Number)
-      setPopup({
-        ...popup,
+      setPopup(p => ({
+        ...p,
         titulo,
         lat,
         lng,
         activo: true
-      })
+      }))
     }
     else {
-      setPopup({ ...popup, activo: false })
+      setPopup(p => ({ ...p, activo: false }))
     }
   }, [marcadorDestacado])
 

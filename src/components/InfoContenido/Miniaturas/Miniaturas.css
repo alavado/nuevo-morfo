@@ -1,0 +1,12 @@
+.miniaturas img {
+  width: 48px;
+  height: 48px;
+  margin-top: 12px;
+  margin-right: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.miniaturas img:not(:first-child) {
+  filter: saturate(0);
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Mapa from '../Mapa'
 import Header from '../Header'
 import Lateral from '../Lateral'
 import Principal from '../Principal/Principal'

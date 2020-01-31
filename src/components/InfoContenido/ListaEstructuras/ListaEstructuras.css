@@ -1,0 +1,20 @@
+.lista-estructuras h4 {
+  text-transform: uppercase;
+  font-size: 11px;
+  margin: 16px 0 12px 0;
+  letter-spacing: 2px;
+  font-weight: bold;
+  animation: aparece-contenido .25s ease-in-out both;
+}
+
+.lista-estructuras ul li {
+  margin-bottom: 8px;
+}
+
+.lista-estructuras ul li a {
+  text-transform: capitalize;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.5;
+  animation: aparece-contenido .25s ease-in-out both;
+}
