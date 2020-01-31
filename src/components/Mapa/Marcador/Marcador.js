@@ -11,13 +11,17 @@ const { tamañoMarcador } = parametrosMapa
 
 const Marcador = props => {
 
-  const { id, lat, lng, titulo, setPopup } = props
+  const { id, lat, lng, titulo } = props
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
   const [eliminarMarcador, { idMarcadorEliminado }] = useMutation(eliminarMarcadorMutation)
 
   return (
-    <Marker key={id} latitude={lat} longitude={lng}>
+    <Marker
+      key={id}
+      latitude={Number(lat)}
+      longitude={Number(lng)}
+    >
       <svg
         height={tamañoMarcador}
         viewBox="0 0 24 24"

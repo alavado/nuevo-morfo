@@ -21,8 +21,8 @@ const PopupEstructura = () => {
       tipSize={5}
       anchor="bottom"
       offsetTop={-tamañoMarcador}
-      longitude={popup.lng}
-      latitude={popup.lat}
+      longitude={Number(popup.lng)}
+      latitude={Number(popup.lat)}
       closeOnClick={false}
       onClose={() => dispatch(esconderPopup())}
     >

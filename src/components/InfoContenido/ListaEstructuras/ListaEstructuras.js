@@ -18,7 +18,10 @@ const ListaEstructuras = () => {
             style={{ animationDelay: `${i * .15}s` }}
             onMouseEnter={() => {
               dispatch(destacarMarcador(marcador))
-              dispatch(mostrarPopup(marcador))
+              dispatch(mostrarPopup({
+                ...marcador,
+                titulo: `${marcador.titulo}-${marcador.id}`
+              }))
             }}
             onMouseLeave={() => {
               dispatch(dejarDeDestacarMarcador())

@@ -93,10 +93,8 @@ const Mapa = ({ match }) => {
         />
       </div>
       {imagen && imagen.marcadores.map(({ id, titulo, lat, lng }) => {
-        console.log(imagen.marcadores)
-          return <Marcador key={id} id={id} lat={Number(lat)} lng={Number(lng)} titulo={`${titulo}-${id}`} />
-        })
-      }
+        return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={`${titulo}-${id}`} />
+      })}
       <PopupEstructura />
     </ReactMapGL>
   )
