@@ -6,8 +6,12 @@ const marcadorSchema = new Schema({
     type: String,
     required: true
   },
-  posicion: {
-    type: String,
+  lat: {
+    type: Number,
+    required: true
+  },
+  lng: {
+    type: Number,
     required: true
   },
   imagen: {

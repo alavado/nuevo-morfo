@@ -7,7 +7,8 @@ const MarcadorType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     titulo: { type: GraphQLString },
-    posicion: { type: GraphQLString }
+    lat: { type: GraphQLString },
+    lng: { type: GraphQLString }
   })
 })
 

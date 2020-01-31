@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLFloat } = graphql
 const mongoose = require('mongoose')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
@@ -59,7 +59,8 @@ const mutation = new GraphQLObjectType({
       type: MarcadorType,
       args: {
         titulo: { type: GraphQLString },
-        posicion: { type: GraphQLString },
+        lat: { type: GraphQLFloat },
+        lng: { type: GraphQLFloat },
         imagen: { type: GraphQLID }
       },
       resolve(parentValue, args) {

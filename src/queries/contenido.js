@@ -12,7 +12,8 @@ export default gql`
         marcadores {
           id
           titulo
-          posicion
+          lat
+          lng
         }
       }
       subseccion {

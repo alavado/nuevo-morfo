@@ -1,11 +1,12 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  mutation AgregarMarcador($imagen: ID!, $titulo: String!, $posicion: String!) {
-    agregarMarcador(imagen: $imagen, titulo: $titulo, posicion: $posicion) {
+  mutation AgregarMarcador($imagen: ID!, $titulo: String!, $lat: Float!, $lng: Float!) {
+    agregarMarcador(imagen: $imagen, titulo: $titulo, lat: $lat, lng: $lng) {
       id,
       titulo,
-      posicion
+      lat,
+      lng
     }
   }
 `

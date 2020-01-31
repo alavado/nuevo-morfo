@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { destacarMarcador, dejarDeDestacarMarcador } from '../../../redux/actions'
+import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup } from '../../../redux/actions'
 import './ListaEstructuras.css'
 
 const ListaEstructuras = () => {
@@ -16,8 +16,14 @@ const ListaEstructuras = () => {
           <li
             key={marcador.id}
             style={{ animationDelay: `${i * .15}s` }}
-            onMouseEnter={() => dispatch(destacarMarcador(marcador))}
-            onMouseLeave={() => dispatch(dejarDeDestacarMarcador())}
+            onMouseEnter={() => {
+              dispatch(destacarMarcador(marcador))
+              dispatch(mostrarPopup(marcador))
+            }}
+            onMouseLeave={() => {
+              dispatch(dejarDeDestacarMarcador())
+              dispatch(esconderPopup())
+            }}
           >
             <a className="nombre-estructura">{marcador.titulo} - {marcador.id}</a>
           </li>

@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import ReactMapGL, { FullscreenControl, NavigationControl, Popup } from 'react-map-gl'
+import React, { useState, useMemo } from 'react'
+import ReactMapGL, { FullscreenControl, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
 import { fijarContenido, agregarMarcadorAImagenActual } from '../../redux/actions'
@@ -7,21 +7,15 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../queries/contenido'
 import agregarMarcadorMutation from '../../mutations/agregarMarcador'
 import Marcador from './Marcador'
+import PopupEstructura from './PopupEstructura'
 import './Mapa.css'
 
-const { minZoom, maxZoom, tamañoMarcador } = parametrosMapa
+const { minZoom, maxZoom } = parametrosMapa
 
 const Mapa = ({ match }) => {
 
   const {contenido, imagen} = useSelector(state => state.contenido)
-  const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
-  const [popup, setPopup] = useState({
-    activo: false,
-    lat: 0,
-    lng: 0,
-    titulo: ''
-  })
 
   const { loading, error, data } = useQuery(query, {
     variables: {
@@ -36,27 +30,10 @@ const Mapa = ({ match }) => {
     height: 'calc(100vh - 64px)',
     latitude: 79.61614103319404,
     longitude: -65.68750000000037,
-    zoom: minZoom,
+    zoom: minZoom
   })
 
   const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [contenido, imagen])
-
-  useEffect(() => {
-    if (marcadorDestacado) {
-      const { titulo, posicion } = marcadorDestacado
-      const [lat, lng] = posicion.split(',').map(Number)
-      setPopup(p => ({
-        ...p,
-        titulo,
-        lat,
-        lng,
-        activo: true
-      }))
-    }
-    else {
-      setPopup(p => ({ ...p, activo: false }))
-    }
-  }, [marcadorDestacado])
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)
@@ -75,13 +52,24 @@ const Mapa = ({ match }) => {
       variables: {
         imagen: imagen.id,
         titulo: 'prueba',
-        posicion: `${lat},${lng}`
+        lat,
+        lng
       }
     })
     .then(({ data }) => {
-      const { id, titulo, posicion } = data.agregarMarcador
-      dispatch(agregarMarcadorAImagenActual({ id, titulo, posicion }))
+      const { id, titulo, lat, lng } = data.agregarMarcador
+      dispatch(agregarMarcadorAImagenActual({ id, titulo, lat, lng }))
     })
+  }
+
+  const viajar = (lat, lng) => {
+    setViewport(v => ({
+      ...v,
+      latitude: lat,
+      longitude: lng,
+      transitionInterpolator: new FlyToInterpolator({speed: 1.5}),
+      transitionDuration: 'auto'
+    }))
   }
 
   return (
@@ -104,24 +92,12 @@ const Mapa = ({ match }) => {
           style={{ padding: '119px' }}
         />
       </div>
-      {imagen && imagen.marcadores.map(({ id, titulo, posicion }) => {
-          const [lat, lng] = posicion.split(',').map(Number)
-          return <Marcador id={id} lat={lat} lng={lng} titulo={`${titulo}-${id}`} setPopup={setPopup} />
+      {imagen && imagen.marcadores.map(({ id, titulo, lat, lng }) => {
+        console.log(imagen.marcadores)
+          return <Marcador key={id} id={id} lat={Number(lat)} lng={Number(lng)} titulo={`${titulo}-${id}`} />
         })
       }
-      {popup.activo && <Popup
-        tipSize={5}
-        anchor="bottom"
-        offsetTop={-tamañoMarcador}
-        longitude={popup.lng}
-        latitude={popup.lat}
-        closeOnClick={false}
-        onClose={() => setPopup({ ...popup, activo: false })}
-      >
-        <div>
-          {popup.titulo}
-        </div>
-      </Popup>}
+      <PopupEstructura />
     </ReactMapGL>
   )
 }

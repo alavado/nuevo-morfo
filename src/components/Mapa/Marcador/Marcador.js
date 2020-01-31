@@ -1,7 +1,7 @@
 import React from 'react'
 import { Marker } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
-import { eliminarMarcadorDeImagenActual } from '../../../redux/actions'
+import { eliminarMarcadorDeImagenActual, mostrarPopup } from '../../../redux/actions'
 import { useMutation } from '@apollo/react-hooks'
 import eliminarMarcadorMutation from '../../../mutations/eliminarMarcador'
 import { parametrosMapa } from '../../../helpers/mapa'
@@ -31,13 +31,7 @@ const Marcador = props => {
           dispatch(eliminarMarcadorDeImagenActual(id))
           eliminarMarcador({ variables: { id } })
         }}
-        onClick={() => setPopup(p => ({
-          ...p,
-          activo: true,
-          titulo,
-          lat,
-          lng
-        }))}
+        onClick={() => dispatch(mostrarPopup({ titulo, lat, lng }))}
       >
         <path d={parametrosMapa.marcador} />
       </svg>
