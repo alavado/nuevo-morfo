@@ -19,10 +19,6 @@
   animation: aparece-contenido .25s ease-in-out both;
 }
 
-.nombre-estructura-seleccionada {
-  color: red;
-}
-
 @keyframes aparece-contenido {
   0% {
     transform: translateX(-12px);

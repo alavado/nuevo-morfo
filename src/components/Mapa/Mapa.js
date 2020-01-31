@@ -1,15 +1,15 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react'
-import ReactMapGL, { FullscreenControl, NavigationControl, Marker, Popup } from 'react-map-gl'
+import React, { useState, useMemo, useEffect } from 'react'
+import ReactMapGL, { FullscreenControl, NavigationControl, Popup } from 'react-map-gl'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
-import query from '../../queries/contenido'
+import { fijarContenido, agregarMarcadorAImagenActual } from '../../redux/actions'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { fijarContenido, agregarMarcadorAImagenActual, eliminarMarcadorDeImagenActual } from '../../redux/actions'
+import query from '../../queries/contenido'
 import agregarMarcadorMutation from '../../mutations/agregarMarcador'
-import eliminarMarcadorMutation from '../../mutations/eliminarMarcador'
+import Marcador from './Marcador'
 import './Mapa.css'
 
-const { minZoom, maxZoom, marcador, tamañoMarcador } = parametrosMapa
+const { minZoom, maxZoom, tamañoMarcador } = parametrosMapa
 
 const Mapa = ({ match }) => {
 
@@ -30,7 +30,6 @@ const Mapa = ({ match }) => {
     onCompleted: data => dispatch(fijarContenido(data.contenido))
   })
   const [agregarMarcador, { dataNuevoMarcador }] = useMutation(agregarMarcadorMutation)
-  const [eliminarMarcador, { idMarcadorEliminado }] = useMutation(eliminarMarcadorMutation)
 
   const [viewport, setViewport] = useState({
     width: '100%',
@@ -41,34 +40,6 @@ const Mapa = ({ match }) => {
   })
 
   const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [contenido, imagen])
-
-  const crearMarcador = useCallback((id, lat, lng, titulo) => (
-    <Marker key={id} latitude={lat} longitude={lng}>
-      <svg
-        height={tamañoMarcador}
-        viewBox="0 0 24 24"
-        className={marcadorDestacado && marcadorDestacado.id === id ? 'marcador-seleccionado' : 'marcador'}
-        style={{
-          opacity: marcadorDestacado && marcadorDestacado.id !== id ? 0.4 : 1, 
-          transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
-        }}
-        onContextMenu={e => {
-          e.preventDefault()
-          dispatch(eliminarMarcadorDeImagenActual(id))
-          eliminarMarcador({ variables: { id } })
-        }}
-        onClick={() => setPopup(p => ({
-          ...p,
-          activo: true,
-          titulo,
-          lat,
-          lng
-        }))}
-      >
-        <path d={parametrosMapa.marcador} />
-      </svg>
-    </Marker>
-  ), [marcador, marcadorDestacado])
 
   useEffect(() => {
     if (marcadorDestacado) {
@@ -135,7 +106,7 @@ const Mapa = ({ match }) => {
       </div>
       {imagen && imagen.marcadores.map(({ id, titulo, posicion }) => {
           const [lat, lng] = posicion.split(',').map(Number)
-          return crearMarcador(id, lat, lng, `${titulo}-${id}`)
+          return <Marcador id={id} lat={lat} lng={lng} titulo={`${titulo}-${id}`} setPopup={setPopup} />
         })
       }
       {popup.activo && <Popup

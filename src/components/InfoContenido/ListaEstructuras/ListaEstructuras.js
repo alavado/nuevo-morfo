@@ -5,20 +5,21 @@ import './ListaEstructuras.css'
 
 const ListaEstructuras = () => {
 
-  const { imagen, marcadorDestacado } = useSelector(state => state.contenido)
+  const { imagen } = useSelector(state => state.contenido)
   const dispatch = useDispatch()
 
   return (
     <div className="lista-estructuras">
       <h4>Estructuras</h4>
       <ul>
-        {imagen.marcadores.map(marcador => (
+        {imagen.marcadores.map((marcador, i) => (
           <li
             key={marcador.id}
+            style={{ animationDelay: `${i * .15}s` }}
             onMouseEnter={() => dispatch(destacarMarcador(marcador))}
             onMouseLeave={() => dispatch(dejarDeDestacarMarcador())}
           >
-            <a className={marcadorDestacado && marcadorDestacado.id === marcador.id ? 'nombre-estructura-seleccionada' : ''}>{marcador.titulo} - {marcador.id}</a>
+            <a className="nombre-estructura">{marcador.titulo} - {marcador.id}</a>
           </li>
         ))}
       </ul>
