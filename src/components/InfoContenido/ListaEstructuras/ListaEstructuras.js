@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup } from '../../../redux/actions'
+import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup, fijarDestino } from '../../../redux/actions'
 import './ListaEstructuras.css'
 
 const ListaEstructuras = () => {
@@ -27,6 +27,7 @@ const ListaEstructuras = () => {
               dispatch(dejarDeDestacarMarcador())
               dispatch(esconderPopup())
             }}
+            onClick={() => dispatch(fijarDestino({ lat: marcador.lat, lng: marcador.lng }))}
           >
             <a className="nombre-estructura">{marcador.titulo} - {marcador.id}</a>
           </li>

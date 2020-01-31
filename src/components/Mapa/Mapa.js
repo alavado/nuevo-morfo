@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import ReactMapGL, { FullscreenControl, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
@@ -14,7 +14,8 @@ const { minZoom, maxZoom } = parametrosMapa
 
 const Mapa = ({ match }) => {
 
-  const {contenido, imagen} = useSelector(state => state.contenido)
+  const { contenido, imagen } = useSelector(state => state.contenido)
+  const destino = useSelector(state => state.mapa.destino)
   const dispatch = useDispatch()
 
   const { loading, error, data } = useQuery(query, {
@@ -65,12 +66,17 @@ const Mapa = ({ match }) => {
   const viajar = (lat, lng) => {
     setViewport(v => ({
       ...v,
-      latitude: lat,
-      longitude: lng,
-      transitionInterpolator: new FlyToInterpolator({speed: 1.5}),
+      latitude: Number(lat),
+      longitude: Number(lng),
+      transitionInterpolator: new FlyToInterpolator({ speed: 1.5 }),
       transitionDuration: 'auto'
     }))
   }
+
+  useEffect(() => {
+    if (destino)
+    viajar(destino.lat, destino.lng)
+  }, [destino])
 
   return (
     <ReactMapGL
