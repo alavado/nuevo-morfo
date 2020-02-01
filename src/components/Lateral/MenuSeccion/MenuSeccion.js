@@ -21,7 +21,7 @@ const MenuSeccion = ({ match }) => {
   }, [])
 
   const listaSubsecciones = loading ? null :
-    <ul className="lista-subsecciones">
+    <ul className="lista-items">
       {data.seccion.subsecciones
         .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
         .map((subseccion, i) => (

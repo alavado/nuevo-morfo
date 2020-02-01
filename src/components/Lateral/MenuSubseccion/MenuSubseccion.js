@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
-import query from '../../queries/subseccion'
+import query from '../../../queries/subseccion'
 import { useDispatch } from 'react-redux'
-import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../redux/actions'
+import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
 import './MenuSubseccion.css'
 
 const MenuSubseccion = ({ match }) => {
@@ -20,7 +20,7 @@ const MenuSubseccion = ({ match }) => {
   })
 
   const listaContenidos = loading ? null :
-    <ul className="lista-contenidos">
+    <ul className="lista-items">
       {data.subseccion.contenidos
         .sort((s1, s2) => s1.titulo > s2.titulo ? 1 : -1)
         .map((contenido, i) => (
