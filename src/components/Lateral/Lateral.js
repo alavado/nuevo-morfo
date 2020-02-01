@@ -5,7 +5,7 @@ import MenuSeccion from './MenuSeccion'
 import MenuSubseccion from './MenuSubseccion'
 import Breadcrumb from './Breadcrumb'
 import InfoContenido from '../InfoContenido'
-import MenuAdmin from '../MenuAdmin'
+import MenuAdmin from './MenuAdmin'
 
 const Lateral = () => {
 
