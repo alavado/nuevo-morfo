@@ -5,12 +5,14 @@ import MenuSeccion from './MenuSeccion'
 import MenuSubseccion from './MenuSubseccion'
 import Breadcrumb from './Breadcrumb'
 import InfoContenido from '../InfoContenido'
+import MenuAdmin from '../MenuAdmin'
 
 const Lateral = () => {
 
   return (
     <aside>
       <Breadcrumb />
+      <Route path="/admin" component={MenuAdmin} />
       <Route path="/seccion/:id" component={MenuSeccion} />
       <Route path="/subseccion/:id" component={MenuSubseccion} />
       <Route path="/contenido/:id" component={InfoContenido} />

@@ -8,7 +8,9 @@ const Principal = () => {
     <section className="contenedor-principal">
       <Switch>
         <Route path="/contenido/:id" component={Mapa} />
-        <Route path="/" component={Mapa} />
+        <Route path="/subseccion/:id" component={() => "selecciona un contenido"} />
+        <Route path="/seccion/:id" component={() => "selecciona un contenido"} />
+        <Route path="/" component={() => "bienvenido"} />
       </Switch>
     </section>
   )
