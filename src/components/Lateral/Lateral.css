@@ -22,7 +22,7 @@ aside ul.lista-items li {
   animation: aparece-item .25s ease-in-out both;
 }
 
-aside li:hover {
+aside ul.lista-items li:hover {
   color: #AB989D;
 }
 
