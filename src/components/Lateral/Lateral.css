@@ -7,7 +7,37 @@ aside {
   overflow-x: auto;
 }
 
-@media (max-width: 600px) {
+aside ul {
+  padding-top: 4px;
+  overflow-y: auto;
+}
+
+aside li {
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 24px 0 8px 24px;
+  letter-spacing: 2px;
+  color: #212322;
+  font-weight: bold;
+  animation: aparece-item .25s ease-in-out both;
+}
+
+aside li:hover {
+  color: #AB989D;
+}
+
+@keyframes aparece-item {
+  0% {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 760px) {
   aside {
     width: 100%;
     height: auto;
