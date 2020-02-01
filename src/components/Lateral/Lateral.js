@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import './Lateral.css'
-import MenuSeccion from '../MenuSeccion'
+import MenuSeccion from './MenuSeccion'
 import MenuSubseccion from '../MenuSubseccion'
-import Breadcrumb from '../Breadcrumb'
+import Breadcrumb from './Breadcrumb'
 import InfoContenido from '../InfoContenido'
 
 const Lateral = () => {

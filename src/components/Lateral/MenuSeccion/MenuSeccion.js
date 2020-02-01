@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './MenuSeccion.css'
 import { useQuery } from '@apollo/react-hooks'
-import query from '../../queries/seccion'
+import query from '../../../queries/seccion'
 import { useDispatch } from 'react-redux'
-import { fijarSeccion, fijarSubseccion } from '../../redux/actions'
+import { fijarSeccion, fijarSubseccion } from '../../../redux/actions'
 
 const MenuSeccion = ({ match }) => {
 
