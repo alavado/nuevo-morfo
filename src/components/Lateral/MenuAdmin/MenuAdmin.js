@@ -15,6 +15,11 @@ const MenuAdmin = () => {
           Contenidos
         </li>
       </Link>
+      <Link>
+        <li>
+          Grupos
+        </li>
+      </Link>
     </ul>
   )
 }

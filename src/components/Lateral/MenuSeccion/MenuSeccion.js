@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import './MenuSeccion.css'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../../queries/seccion'
 import { useDispatch } from 'react-redux'
 import { fijarSeccion, fijarSubseccion } from '../../../redux/actions'
 
-const MenuSeccion = ({ match }) => {
+const MenuSeccion = () => {
 
   const dispatch = useDispatch()
+  const { id } = useParams()
   const { loading, error, data } = useQuery(query, {
-    variables: {
-      id: match.params.id
-    },
+    variables: { id },
     onCompleted: data => dispatch(fijarSeccion(data.seccion))
   })
 

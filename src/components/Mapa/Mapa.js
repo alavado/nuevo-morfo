@@ -9,19 +9,19 @@ import agregarMarcadorMutation from '../../mutations/agregarMarcador'
 import Marcador from './Marcador'
 import PopupEstructura from './PopupEstructura'
 import './Mapa.css'
+import { useParams } from 'react-router-dom'
 
 const { minZoom, maxZoom } = parametrosMapa
 
-const Mapa = ({ match }) => {
+const Mapa = () => {
 
   const { contenido, imagen } = useSelector(state => state.contenido)
   const destino = useSelector(state => state.mapa.destino)
   const dispatch = useDispatch()
+  const { id } = useParams()
 
   const { loading, error, data } = useQuery(query, {
-    variables: {
-      id: match.params.id
-    },
+    variables: { id },
     onCompleted: data => dispatch(fijarContenido(data.contenido))
   })
   const [agregarMarcador, { dataNuevoMarcador }] = useMutation(agregarMarcadorMutation)
