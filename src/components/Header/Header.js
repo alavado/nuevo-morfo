@@ -5,19 +5,13 @@ import { useQuery } from '@apollo/react-hooks'
 import { isDev } from '../../helpers/dev'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fijarSeccion } from '../../redux/actions'
+import { fijarSeccion, mostrarLogin } from '../../redux/actions'
 
 const Header = () => {
 
   const dispatch = useDispatch()
   const seccionSeleccionada = useSelector(state => state.navegacion.seccion)
   const { loading, error, data } = useQuery(query)
-
-  const autenticarConUCampus = () => {
-    if (isDev) {
-      window.location.href = 'https://www.u-cursos.cl/upasaporte/login?servicio=morfo'
-    }
-  }
 
   return (
     <header>
@@ -26,7 +20,7 @@ const Header = () => {
         <Link to="/admin">cp</Link>
       </div>
       <nav>
-        {!loading && data.secciones.map((seccion, i) => (
+        {!loading && data && data.secciones.map((seccion, i) => (
           <Link
             key={seccion.id}
             to={`/seccion/${seccion.id}`}
@@ -41,7 +35,7 @@ const Header = () => {
             {seccion.nombre}
           </Link>
         ))}
-        <a href="#" onClick={autenticarConUCampus}>Acceder</a>
+        <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
       </nav>
     </header>
   )

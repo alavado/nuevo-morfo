@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP, FIJAR_DESTINO } from "./actionTypes";
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP, FIJAR_DESTINO, MOSTRAR_LOGIN } from "./actionTypes";
 
 export const fijarSeccion = datos => ({
   type: FIJAR_SECCION,
@@ -48,4 +48,14 @@ export const esconderPopup = () => ({
 export const fijarDestino = destino => ({
   type: FIJAR_DESTINO,
   payload: destino
+})
+
+export const mostrarLogin = () => ({
+  type: MOSTRAR_LOGIN,
+  payload: true
+})
+
+export const esconderLogin = () => ({
+  type: MOSTRAR_LOGIN,
+  payload: false
 })
