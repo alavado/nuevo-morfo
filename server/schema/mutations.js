@@ -86,6 +86,16 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, args) {
         return Usuario.agregar(args)
       }
+    },
+    login: {
+      type: UsuarioType,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parentValue, args) {
+        return Usuario.login(args)
+      }
     }
   }
 })
