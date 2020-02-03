@@ -8,6 +8,7 @@ div[class^="fondo-oscuro"] {
   justify-content: center;
   align-items: center;
   transition: opacity .25s ease-in-out;
+  filter: none;
 }
 
 .fondo-oscuro-oculto {

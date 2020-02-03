@@ -8,6 +8,7 @@
   user-select: none;
   background-color: white;
   margin-top: 8px;
+  margin-left: 6px;
 }
 
 .breadcrumb a {
@@ -16,12 +17,6 @@
   animation: aparece-breadcrumb .25s ease-out both;
   padding-top: 2px;
   padding-bottom: 2px;
-}
-
-.breadcrumb a:first-child {
-  border-left: 2px solid red;
-  padding-left: 6px;
-  margin-left: 6px;
 }
 
 .breadcrumb a:not(:first-child)::before {

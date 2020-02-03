@@ -5,16 +5,34 @@ import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 import { BrowserRouter } from 'react-router-dom'
-
-import { ApolloProvider } from '@apollo/react-hooks'
-import ApolloClient from 'apollo-boost'
-import { isDev } from './helpers/dev'
-
 import { Provider } from 'react-redux'
 import store from './redux/store'
 
-const client = new ApolloClient({
+import { ApolloProvider } from '@apollo/react-hooks'
+import ApolloClient from 'apollo-boost'
+import { createHttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { isDev } from './helpers/dev'
+
+const httpLink = createHttpLink({
   uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  }
+})
+
+const client = new ApolloClient({
+  uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`,
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
 })
 
 ReactDOM.render(
