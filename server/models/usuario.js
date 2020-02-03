@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 const _ = require('lodash')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const { jwtSecret } = require('../secret')
 
 const usuarioSchema = new Schema({
   email: {
@@ -41,7 +42,7 @@ usuarioSchema.statics.login = function(args) {
       if (bcrypt.compareSync(password, usuarioDB.password)) {
         return jwt.sign(
           _.pick(usuarioDB, ['id', 'nombre', 'email']),
-          'arcadia quest',
+          jwtSecret,
           { expiresIn: '1d' }
         )
       }
