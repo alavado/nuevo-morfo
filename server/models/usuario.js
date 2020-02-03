@@ -39,7 +39,11 @@ usuarioSchema.statics.login = function(args) {
         return err
       }
       if (bcrypt.compareSync(password, usuarioDB.password)) {
-        return jwt.sign(_.pick(usuarioDB, ['id', 'nombre', 'email']), 'arcadia quest')
+        return jwt.sign(
+          _.pick(usuarioDB, ['id', 'nombre', 'email']),
+          'arcadia quest',
+          { expiresIn: '1d' }
+        )
       }
       else {
         throw new Error('Usuario o contraseña incorrectos')

@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { esconderLogin, fijarUsuario } from '../../redux/actions'
 import loginMutation from '../../mutations/login'
 import { useMutation } from '@apollo/react-hooks'
-import { decode } from 'jsonwebtoken'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt as iconoEnlaceExterno } from '@fortawesome/free-solid-svg-icons'
 
@@ -28,7 +27,8 @@ const Login = () => {
     e.preventDefault()
     login({ variables })
       .then(res => {
-        dispatch(fijarUsuario(decode(res.data.login.token)))
+        const { token } = res.data.login
+        dispatch(fijarUsuario(token))
       })
       .catch(err => console.log(err))
   }
@@ -54,16 +54,17 @@ const Login = () => {
           <h3>Acceder a Morfo</h3>
           <form onSubmit={acceder}>
             <div>
-              <label for="login-email">E-mail</label>
+              <label htmlFor="login-email">E-mail</label>
               <input
                 id="login-email"
-                type="text"
+                type="email"
                 ref={inputEmail}
+                spellCheck={false}
                 onChange={e => setVariables({...variables, email: e.target.value})}
               />
             </div>
             <div>
-              <label for="login-password">Contraseña</label>
+              <label htmlFor="login-password">Contraseña</label>
               <input
                 id="login-password"
                 type="password"
