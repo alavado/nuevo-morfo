@@ -1,4 +1,4 @@
-.fondo-oscuro {
+div[class^="fondo-oscuro"] {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -7,6 +7,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: opacity .25s ease-in-out;
+}
+
+.fondo-oscuro-oculto {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .contenedor-formulario {

@@ -1,43 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Login.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { esconderLogin, fijarUsuario } from '../../redux/actions'
-import { isDev } from '../../helpers/dev'
 import loginMutation from '../../mutations/login'
 import { useMutation } from '@apollo/react-hooks'
 import { decode } from 'jsonwebtoken'
 
 const Login = () => {
 
-  const [datosLogin, setDatosLogin] = useState({
+  const [variables, setVariables] = useState({
     email: '',
     password: ''
   })
+  const fondo = useRef()
   const { mostrandoLogin } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-  const [login, { data }] = useMutation(loginMutation)
-
-  if (!mostrandoLogin) {
-    return null
-  }
+  const [login] = useMutation(loginMutation)
 
   const autenticarConUCampus = () => {
-    if (isDev) {
-      window.location.href = 'https://www.u-cursos.cl/upasaporte/login?servicio=morfo'
-    }
+    window.location.href = 'https://www.u-cursos.cl/upasaporte/login?servicio=morfo'
   }
 
   const acceder = e => {
     e.preventDefault()
-    login({ variables: datosLogin })
-    .then(res => {
-      dispatch(fijarUsuario(decode(res.data.login.token)))
-    })
-    .catch(err => console.log(err))
+    login({ variables })
+      .then(res => {
+        dispatch(fijarUsuario(decode(res.data.login.token)))
+      })
+      .catch(err => console.log(err))
   }
 
+  useEffect(() => {
+    if (!mostrandoLogin) {
+      fondo.current.classList.add('fondo-oscuro-oculto')
+    }
+    else {
+      fondo.current.classList.remove('fondo-oscuro-oculto')
+    }
+  }, [mostrandoLogin])
+
   return (
-    <div className="fondo-oscuro" onClick={() => dispatch(esconderLogin())}>
+    <div
+      className="fondo-oscuro fondo-oscuro-oculto"
+      ref={fondo}
+      onClick={() => dispatch(esconderLogin())}
+    >
       <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
         <h3>Acceder a Morfo</h3>
         <form onSubmit={acceder}>
@@ -45,13 +52,13 @@ const Login = () => {
           <input
             id="login-email"
             type="text"
-            onChange={e => setDatosLogin({...datosLogin, email: e.target.value})}
+            onChange={e => setVariables({...variables, email: e.target.value})}
           />
           <label for="login-password">Password</label>
           <input
             id="login-password"
             type="password"
-            onChange={e => setDatosLogin({...datosLogin, password: e.target.value})}
+            onChange={e => setVariables({...variables, password: e.target.value})}
           />
           <input type="submit" value="Acceder" />
         </form>

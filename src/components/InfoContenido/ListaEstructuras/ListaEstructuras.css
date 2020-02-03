@@ -21,6 +21,7 @@
 
 .lista-estructuras ul:hover li:not(:hover) .nombre-estructura {
   color: #999998;
+  cursor: pointer;
 }
 
 @media (max-width: 760px) {

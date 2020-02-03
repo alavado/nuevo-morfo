@@ -24,6 +24,10 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: inherit;
+}
+
 @media (max-width: 600px) {
   main {
     flex-direction: column;

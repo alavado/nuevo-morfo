@@ -31,7 +31,7 @@ const ListaEstructuras = () => {
           >
             <a className="nombre-estructura">{marcador.titulo} - {marcador.id}</a>
           </li>
-        ))}
+        ))} 
       </ul>
     </div>
   )
