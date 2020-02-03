@@ -5,6 +5,8 @@ import { esconderLogin, fijarUsuario } from '../../redux/actions'
 import loginMutation from '../../mutations/login'
 import { useMutation } from '@apollo/react-hooks'
 import { decode } from 'jsonwebtoken'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt as iconoEnlaceExterno } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
@@ -13,6 +15,7 @@ const Login = () => {
     password: ''
   })
   const fondo = useRef()
+  const inputEmail = useRef()
   const { mostrandoLogin } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const [login] = useMutation(loginMutation)
@@ -36,6 +39,7 @@ const Login = () => {
     }
     else {
       fondo.current.classList.remove('fondo-oscuro-oculto')
+      inputEmail.current.focus()
     }
   }, [mostrandoLogin])
 
@@ -45,25 +49,34 @@ const Login = () => {
       ref={fondo}
       onClick={() => dispatch(esconderLogin())}
     >
-      <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
-        <h3>Acceder a Morfo</h3>
-        <form onSubmit={acceder}>
-          <label for="login-email">E-mail</label>
-          <input
-            id="login-email"
-            type="text"
-            onChange={e => setVariables({...variables, email: e.target.value})}
-          />
-          <label for="login-password">Password</label>
-          <input
-            id="login-password"
-            type="password"
-            onChange={e => setVariables({...variables, password: e.target.value})}
-          />
-          <input type="submit" value="Acceder" />
-        </form>
-        <button onClick={autenticarConUCampus}>Acceder con U-Campus</button>
-      </div>
+      {mostrandoLogin &&
+        <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
+          <h3>Acceder a Morfo</h3>
+          <form onSubmit={acceder}>
+            <div>
+              <label for="login-email">E-mail</label>
+              <input
+                id="login-email"
+                type="text"
+                ref={inputEmail}
+                onChange={e => setVariables({...variables, email: e.target.value})}
+              />
+            </div>
+            <div>
+              <label for="login-password">Contraseña</label>
+              <input
+                id="login-password"
+                type="password"
+                onChange={e => setVariables({...variables, password: e.target.value})}
+              />
+            </div>
+            <input type="submit" value="Acceder" />
+          </form>
+          <button id="boton-ucampus" onClick={autenticarConUCampus}>
+            Acceder con U-Pasaporte <FontAwesomeIcon icon={iconoEnlaceExterno} />
+          </button>
+        </div>
+      }
     </div>
   )
 }

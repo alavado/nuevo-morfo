@@ -28,6 +28,10 @@ a:visited {
   color: inherit;
 }
 
+button:focus, input:focus {
+  outline: none;
+}
+
 @media (max-width: 600px) {
   main {
     flex-direction: column;
