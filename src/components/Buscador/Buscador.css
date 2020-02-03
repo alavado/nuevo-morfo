@@ -1,0 +1,10 @@
+.contenedor-buscador {
+  height: 100%;
+  width: 100vw;
+  transition: all .35s ease-in-out;
+  padding: 16px;
+}
+
+.contenedor-buscador.compacto {
+  width: calc(100vw - 240px);
+}
