@@ -41,10 +41,18 @@ const Login = () => {
       <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
         <h3>Acceder a Morfo</h3>
         <form onSubmit={acceder}>
-          <label>E-mail</label>
-          <input type="text" onChange={e => setDatosLogin({...datosLogin, email: e.target.value})} />
-          <label>Password</label>
-          <input type="password" onChange={e => setDatosLogin({...datosLogin, password: e.target.value})} />
+          <label for="login-email">E-mail</label>
+          <input
+            id="login-email"
+            type="text"
+            onChange={e => setDatosLogin({...datosLogin, email: e.target.value})}
+          />
+          <label for="login-password">Password</label>
+          <input
+            id="login-password"
+            type="password"
+            onChange={e => setDatosLogin({...datosLogin, password: e.target.value})}
+          />
           <input type="submit" value="Acceder" />
         </form>
         <button onClick={autenticarConUCampus}>Acceder con U-Campus</button>
