@@ -6,11 +6,13 @@ const Subseccion = mongoose.model('Subseccion')
 const Contenido = mongoose.model('Contenido')
 const Imagen = mongoose.model('Imagen')
 const Marcador = mongoose.model('Marcador')
+const Usuario = mongoose.model('Usuario')
 const SeccionType = require('./types/seccion_type')
 const SubseccionType = require('./types/subseccion_type')
 const ContenidoType = require('./types/contenido_type')
 const ImagenType = require('./types/imagen_type')
 const MarcadorType = require('./types/marcador_type')
+const UsuarioType = require('./types/usuario_type')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -72,6 +74,17 @@ const mutation = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parentValue, { id }) {
         return Marcador.findOneAndDelete({ _id: id })
+      }
+    },
+    agregarUsuario: {
+      type: UsuarioType,
+      args: {
+        nombre: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+      },
+      resolve(parentValue, args) {
+        return Usuario.agregar(args)
       }
     }
   }

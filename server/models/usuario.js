@@ -1,14 +1,9 @@
 const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
-const roles = [
-  'ROL_INVITADO',
-  'ROL_ADMIN',
-  'ROL_ESTUDIANTE'
-]
-
-const usuarioSchema = new mongoose.Schema({
+const usuarioSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -20,18 +15,17 @@ const usuarioSchema = new mongoose.Schema({
   },
   nombre: {
     type: String,
-    default: ''
-  },
-  carrera: {
-    type: Schema.Types.ObjectId,
-    ref: 'Carrera'
-  },
-  roles: [{
-    type: String,
-    enum: roles
-  }]
+    default: 'Usuario misterioso'
+  }
 })
 
-usuarioSchema.plugin(uniqueValidator)
+usuarioSchema.statics.agregar = function(args) {
+  const { nombre, email, password } = args
+  return (new this({
+    nombre,
+    email,
+    password: bcrypt.hashSync(password, saltRounds)
+  })).save()
+}
 
 module.exports = mongoose.model('Usuario', usuarioSchema)

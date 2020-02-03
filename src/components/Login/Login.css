@@ -13,3 +13,8 @@
   padding: 24px;
   background-color: white;
 }
+
+.contenedor-formulario form {
+  display: flex;
+  flex-direction: column;
+}

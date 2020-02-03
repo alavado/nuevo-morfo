@@ -21,11 +21,16 @@ const Login = () => {
 
   return (
     <div className="fondo-oscuro" onClick={() => dispatch(esconderLogin())}>
-      <div className="contenedor-formulario">
+      <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
+        <h3>Acceder a Morfo</h3>
         <form>
-          <input />
-          <input type="submit" />
+          <label>E-mail</label>
+          <input type="text" />
+          <label>Password</label>
+          <input type="password" />
+          <input type="submit" value="Acceder" />
         </form>
+        <button>Acceder con U-Campus</button>
       </div>
     </div>
   )
