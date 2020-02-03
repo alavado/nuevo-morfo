@@ -94,7 +94,7 @@ const mutation = new GraphQLObjectType({
         password: { type: GraphQLString }
       },
       resolve(parentValue, args) {
-        return Usuario.login(args)
+        return { token: Usuario.login(args) }
       }
     }
   }

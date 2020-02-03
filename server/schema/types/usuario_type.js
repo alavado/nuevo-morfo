@@ -8,7 +8,8 @@ const UsuarioType = new GraphQLObjectType({
     id: { type: GraphQLID },
     nombre: { type: GraphQLString },
     email: { type: GraphQLString },
-    password: { type: GraphQLString }
+    password: { type: GraphQLString },
+    token: { type:GraphQLString }
   })
 })
 

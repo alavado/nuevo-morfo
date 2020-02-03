@@ -10,7 +10,8 @@ import { fijarSeccion, mostrarLogin } from '../../redux/actions'
 const Header = () => {
 
   const dispatch = useDispatch()
-  const seccionSeleccionada = useSelector(state => state.navegacion.seccion)
+  const { seccion: seccionSeleccionada } = useSelector(state => state.navegacion)
+  const { usuario } = useSelector(state => state.auth)
   const { loading, error, data } = useQuery(query)
 
   return (
@@ -35,7 +36,10 @@ const Header = () => {
             {seccion.nombre}
           </Link>
         ))}
-        <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
+        {usuario !== null ?
+          <a>{usuario.nombre}</a> :
+          <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
+        }
       </nav>
     </header>
   )

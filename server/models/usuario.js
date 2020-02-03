@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 const _ = require('lodash')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
+const jwt = require('jsonwebtoken');
 
 const usuarioSchema = new Schema({
   email: {
@@ -37,11 +38,11 @@ usuarioSchema.statics.login = function(args) {
       if (err) {
         return err
       }
-      if (bcrypt.compareSync(password, usuarioDB.password)) { 
-        return _.pick(usuarioDB, ['id', 'nombre', 'email'])
+      if (bcrypt.compareSync(password, usuarioDB.password)) {
+        return jwt.sign(_.pick(usuarioDB, ['id', 'nombre', 'email']), 'arcadia quest')
       }
       else {
-        throw new Error('usuario o contraseña incorrectos')
+        throw new Error('Usuario o contraseña incorrectos')
       }
   })
 }

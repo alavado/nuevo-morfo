@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP, FIJAR_DESTINO, MOSTRAR_LOGIN } from "./actionTypes";
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP, FIJAR_DESTINO, MOSTRAR_LOGIN, FIJAR_USUARIO } from "./actionTypes";
 
 export const fijarSeccion = datos => ({
   type: FIJAR_SECCION,
@@ -58,4 +58,9 @@ export const mostrarLogin = () => ({
 export const esconderLogin = () => ({
   type: MOSTRAR_LOGIN,
   payload: false
+})
+
+export const fijarUsuario = usuario => ({
+  type: FIJAR_USUARIO,
+  payload: usuario
 })
