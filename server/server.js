@@ -14,8 +14,8 @@ mongoose.connect(require('./secret').mongoURI, {
   useUnifiedTopology: true
 })
 mongoose.connection
-  .once('open', () => console.log('Connected to MongoLab instance.'))
-  .on('error', error => console.log('Error connecting to MongoLab:', error))
+  .once('open', () => console.log('Conectado a MongoDB Atlas.'))
+  .on('error', error => console.log('Error conectando a MongoDB Atlas:', error))
 
 app.use('/graphql', expressGraphQL({
   schema,
