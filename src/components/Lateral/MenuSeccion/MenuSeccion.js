@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion, agregarSubseccion } from '../../../redux/actions'
 import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
 import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 
 const MenuSeccion = () => {
 
@@ -19,7 +21,7 @@ const MenuSeccion = () => {
   })
   const [mutation] = useMutation(agregarSubseccionMutation)
   const [eliminarMutation] = useMutation(eliminarSubseccionMutation)
-  const tituloNuevaSeccion = useRef()
+  const tituloNuevaSubseccion = useRef()
 
   useEffect(() => {
     dispatch(fijarSubseccion(null))
@@ -28,14 +30,14 @@ const MenuSeccion = () => {
 
   useEffect(() => {
     if (mostrandoFormulario) {
-      tituloNuevaSeccion.current.focus()
+      tituloNuevaSubseccion.current.focus()
     }
   }, [mostrandoFormulario])
 
   const ListaSubsecciones = useCallback(() => loading ? null :
     <ul className="lista-items">
       {data.seccion.subsecciones
-        .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
+        .sort((s1, s2) => s1.nombre.toLocaleUpperCase() > s2.nombre.toLocaleUpperCase() ? 1 : -1)
         .map((subseccion, i) => (
           <li style={{ animationDelay: `${i * .05}s` }}>
             <Link
@@ -46,7 +48,13 @@ const MenuSeccion = () => {
               {subseccion.nombre}
             </Link>
             {subseccion.contenidos.length === 0 &&
-              <button onClick={() => eliminar(subseccion.id)}>X</button>
+              <button
+                className="boton-eliminar-subseccion"
+                onClick={() => eliminar(subseccion.id)}
+                title={`Eliminar subsección "${subseccion.nombre}"`}
+              >
+                <FontAwesomeIcon icon={iconoEliminar} />
+              </button>
             }
           </li>
       ))}
@@ -61,7 +69,7 @@ const MenuSeccion = () => {
 
   const agregar = e => {
     e.preventDefault()
-    const nombre = tituloNuevaSeccion.current.value
+    const nombre = tituloNuevaSubseccion.current.value
     if (nombre.length >= 3) {
       dispatch(esconderFormularioNuevaSeccion())
       mutation({
@@ -75,8 +83,8 @@ const MenuSeccion = () => {
     <div className="contenedor-lista">
       <ListaSubsecciones />
       {mostrandoFormulario &&
-        <form onSubmit={agregar}>
-          <input ref={tituloNuevaSeccion} type="text" />
+        <form className="formulario-agregar-subseccion" onSubmit={agregar}>
+          <input ref={tituloNuevaSubseccion} type="text" />
           <input type="submit" value="Agregar" />
         </form>
       }

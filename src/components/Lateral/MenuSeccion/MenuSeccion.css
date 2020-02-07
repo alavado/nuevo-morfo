@@ -1,0 +1,10 @@
+.boton-eliminar-subseccion {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #212322;
+}
+
+.boton-eliminar-subseccion:hover {
+  color: #AB989D;
+}
