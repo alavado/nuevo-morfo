@@ -24,15 +24,15 @@ const MenuSeccion = () => {
       {data.seccion.subsecciones
         .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
         .map((subseccion, i) => (
-          <Link
-            key={subseccion.id}
-            to={`/subseccion/${subseccion.id}`} key={subseccion.id}
-            onClick={e => dispatch(fijarSubseccion(subseccion))}
-          >
-            <li style={{ animationDelay: `${i * .05}s` }}>
+          <li style={{ animationDelay: `${i * .05}s` }}>
+            <Link
+              key={subseccion.id}
+              to={`/subseccion/${subseccion.id}`} key={subseccion.id}
+              onClick={e => dispatch(fijarSubseccion(subseccion))}
+            >
               {subseccion.nombre}
-            </li>
-          </Link>
+            </Link>
+          </li>
       ))}
     </ul>
   
