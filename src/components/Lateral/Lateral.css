@@ -7,6 +7,7 @@ aside {
   overflow-x: auto;
   transform: translateX(-240px);
   transition: all .5s ease-in-out;
+  overflow: hidden;
 }
 
 aside.visible {
@@ -37,6 +38,28 @@ aside ul.lista-items a {
   flex-direction: row;
 }
 
+aside .boton-agregar {
+  background-color: white;
+  padding: 8px 12px;
+  border: 1px dashed #AB989D;
+  color: #AB989D;
+  border-radius: 12px;
+  margin-left: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  position: absolute;
+  bottom: 28px;
+  animation: aparece-boton-agregar .25s ease-in-out both;
+}
+
+aside .boton-agregar:hover {
+  color: #212322;
+  border-color: #212322;
+}
+
 @keyframes aparece-item {
   0% {
     transform: translateX(-12px);
@@ -44,6 +67,17 @@ aside ul.lista-items a {
   }
   100% {
     transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes aparece-boton-agregar {
+  0% {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
     opacity: 1;
   }
 }

@@ -18,7 +18,7 @@ const MenuSubseccion = () => {
     }
   })
 
-  const listaContenidos = loading ? null :
+  const ListaContenidos = () => loading ? null :
     <ul className="lista-items">
       {data.subseccion.contenidos
         .sort((s1, s2) => s1.titulo > s2.titulo ? 1 : -1)
@@ -38,7 +38,12 @@ const MenuSubseccion = () => {
       ))}
     </ul>
   
-  return listaContenidos
+  return (
+    <>
+      <ListaContenidos />
+      <button className="boton-agregar">Agregar contenido</button>
+    </>
+  )
 }
 
 export default MenuSubseccion

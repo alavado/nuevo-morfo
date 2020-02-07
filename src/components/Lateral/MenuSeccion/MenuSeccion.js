@@ -19,7 +19,7 @@ const MenuSeccion = () => {
     dispatch(fijarSubseccion(null))
   }, [])
 
-  const listaSubsecciones = loading ? null :
+  const ListaSubsecciones = () => loading ? null :
     <ul className="lista-items">
       {data.seccion.subsecciones
         .sort((s1, s2) => s1.nombre > s2.nombre ? 1 : -1)
@@ -36,7 +36,12 @@ const MenuSeccion = () => {
       ))}
     </ul>
   
-  return listaSubsecciones
+  return (
+    <>
+      <ListaSubsecciones />
+      <button className="boton-agregar">Agregar subsección</button>
+    </>
+  )
 }
 
 export default MenuSeccion
