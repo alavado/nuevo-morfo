@@ -18,6 +18,7 @@ const InfoContenido = () => {
       <p>{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />
+      <button>Eliminar</button>
     </div>
   )
 }

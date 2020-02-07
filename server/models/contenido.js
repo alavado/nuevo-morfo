@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const mongooseDelete = require('mongoose-delete')
 
 const contenidoSchema = new Schema({
   titulo: {
@@ -16,6 +17,8 @@ const contenidoSchema = new Schema({
     ref: 'Imagen'
   }]
 })
+
+contenidoSchema.plugin(mongooseDelete)
 
 contenidoSchema.statics.findSubseccion = function(id) {
   return this

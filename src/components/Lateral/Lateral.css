@@ -32,6 +32,11 @@ aside ul.lista-items li:hover {
   color: #AB989D;
 }
 
+aside ul.lista-items a {
+  display: flex;
+  flex-direction: row;
+}
+
 @keyframes aparece-item {
   0% {
     transform: translateX(-12px);

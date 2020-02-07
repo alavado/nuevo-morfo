@@ -47,6 +47,20 @@ const mutation = new GraphQLObjectType({
         return (new Contenido(args)).save()
       }
     },
+    eliminarContenido: {
+      type: ContenidoType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Contenido.deleteById(id)
+      }
+    },
+    restaurarContenido: {
+      type: ContenidoType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Contenido.restore({ _id: id })
+      }
+    },
     agregarImagen: {
       type: ImagenType,
       args: {
