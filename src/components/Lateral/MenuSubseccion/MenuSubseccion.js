@@ -39,10 +39,10 @@ const MenuSubseccion = () => {
     </ul>
   
   return (
-    <>
+    <div className="contenedor-lista">
       <ListaContenidos />
-      <button className="boton-agregar">Agregar contenido</button>
-    </>
+      {!loading && <button className="boton-agregar">Agregar contenido</button>}
+    </div>
   )
 }
 

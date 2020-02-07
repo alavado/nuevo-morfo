@@ -37,10 +37,10 @@ const MenuSeccion = () => {
     </ul>
   
   return (
-    <>
+    <div className="contenedor-lista">
       <ListaSubsecciones />
-      <button className="boton-agregar">Agregar subsección</button>
-    </>
+      {!loading && <button className="boton-agregar">Agregar subsección</button>}
+    </div>
   )
 }
 
