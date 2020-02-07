@@ -45,7 +45,7 @@ const MenuSeccion = () => {
             </Link>
           </li>
       ))}
-    </ul>, [data])
+    </ul>, [data, dispatch, loading])
 
   const agregar = e => {
     e.preventDefault()

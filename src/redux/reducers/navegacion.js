@@ -31,18 +31,6 @@ export default function(state = initialState, action) {
         subseccion: contenido.subseccion
       }
     }
-    case AGREGAR_SUBSECCION: {
-      return {
-        ...state,
-        seccion: {
-          ...state.seccion,
-          subsecciones: [
-            ...state.seccion.subsecciones,
-            action.payload
-          ]
-        }
-      }
-    }
     default:
       return state;
   }
