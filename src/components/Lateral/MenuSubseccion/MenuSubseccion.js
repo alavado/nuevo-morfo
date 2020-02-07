@@ -30,7 +30,7 @@ const MenuSubseccion = () => {
           >
             <li
               key={contenido.id}
-              style={{ animationDelay: `${i * .05}s` }}
+              style={{ animationDelay: `${i * .05}s`, textDecoration: contenido.deleted ? 'line-through' : 'none' }}
             >
               {contenido.titulo}
             </li>

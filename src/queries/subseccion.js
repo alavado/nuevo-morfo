@@ -8,6 +8,7 @@ export default gql`
       contenidos {
         id
         titulo
+        deleted
       }
       seccion {
         id

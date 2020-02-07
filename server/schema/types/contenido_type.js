@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLBoolean } = graphql
 const mongoose = require('mongoose')
 const Contenido = mongoose.model('Contenido')
 
@@ -20,7 +20,8 @@ const ContenidoType = new GraphQLObjectType({
       resolve(parentValue) {
         return Contenido.findSubseccion(parentValue.id)
       }
-    }
+    },
+    deleted: { type: GraphQLBoolean }
   })
 })
 

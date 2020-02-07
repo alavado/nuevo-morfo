@@ -6,6 +6,7 @@ export default gql`
       id
       titulo
       descripcion
+      deleted
       imagenes {
         id
         descripcion
