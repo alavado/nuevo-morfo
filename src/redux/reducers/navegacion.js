@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO } from "../actionTypes"
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_SUBSECCION } from "../actionTypes"
 
 const initialState = {
   seccion: null,
@@ -29,6 +29,18 @@ export default function(state = initialState, action) {
         ...state,
         seccion: contenido.subseccion.seccion,
         subseccion: contenido.subseccion
+      }
+    }
+    case AGREGAR_SUBSECCION: {
+      return {
+        ...state,
+        seccion: {
+          ...state.seccion,
+          subsecciones: [
+            ...state.seccion.subsecciones,
+            action.payload
+          ]
+        }
       }
     }
     default:

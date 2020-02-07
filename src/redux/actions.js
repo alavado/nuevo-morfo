@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP, FIJAR_DESTINO, MOSTRAR_LOGIN, FIJAR_USUARIO } from "./actionTypes";
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR, FIJAR_DESTINO, MOSTRAR_LOGIN, FIJAR_USUARIO, MOSTRAR_FORMULARIO_NUEVA_SUBSECCION, AGREGAR_SUBSECCION } from "./actionTypes";
 import { decode } from 'jsonwebtoken'
 
 export const fijarSeccion = datos => ({
@@ -37,12 +37,12 @@ export const dejarDeDestacarMarcador = () => ({
 })
 
 export const mostrarPopup = datos => ({
-  type: MOSTRAR_POPUP,
+  type: MOSTRAR_POPUP_MARCADOR,
   payload: datos
 })
 
 export const esconderPopup = () => ({
-  type: MOSTRAR_POPUP,
+  type: MOSTRAR_POPUP_MARCADOR,
   payload: null
 })
 
@@ -68,3 +68,18 @@ export const fijarUsuario = token => {
     payload: {...decode(token), token}
   }
 }
+
+export const mostrarFormularioNuevaSeccion = () => ({
+  type: MOSTRAR_FORMULARIO_NUEVA_SUBSECCION,
+  payload: true
+})
+
+export const esconderFormularioNuevaSeccion = () => ({
+  type: MOSTRAR_FORMULARIO_NUEVA_SUBSECCION,
+  payload: false
+})
+
+export const agregarSubseccion = subseccion => ({
+  type: AGREGAR_SUBSECCION,
+  payload: subseccion
+})

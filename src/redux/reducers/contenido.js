@@ -1,4 +1,4 @@
-import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP } from "../actionTypes"
+import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR } from "../actionTypes"
 
 const initialState = {
   contenido: null,
@@ -53,7 +53,7 @@ export default function(state = initialState, action) {
         marcadorDestacado: action.payload
       }
     }
-    case MOSTRAR_POPUP: {
+    case MOSTRAR_POPUP_MARCADOR: {
       return {
         ...state,
         popup: action.payload

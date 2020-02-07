@@ -3,10 +3,12 @@ import navegacion from './navegacion'
 import contenido from './contenido'
 import mapa from './mapa'
 import auth from './auth'
+import seccion from './seccion'
 
 export default combineReducers({
   navegacion,
   contenido,
   mapa,
-  auth
+  auth,
+  seccion
 })
