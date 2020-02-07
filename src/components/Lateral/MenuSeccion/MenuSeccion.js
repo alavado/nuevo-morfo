@@ -24,6 +24,12 @@ const MenuSeccion = () => {
     dispatch(esconderFormularioNuevaSeccion())
   }, [])
 
+  useEffect(() => {
+    if (mostrandoFormulario) {
+      tituloNuevaSeccion.current.focus()
+    }
+  }, [mostrandoFormulario])
+
   const ListaSubsecciones = useCallback(() => loading ? null :
     <ul className="lista-items">
       {data.seccion.subsecciones
@@ -46,9 +52,9 @@ const MenuSeccion = () => {
     const nombre = tituloNuevaSeccion.current.value
     if (nombre.length >= 3) {
       dispatch(esconderFormularioNuevaSeccion())
-      dispatch(agregarSubseccion({ id, nombre }))
       mutation({
-        variables: { seccion: id, nombre }
+        variables: { seccion: id, nombre },
+        refetchQueries: [{ query, variables: { id } }]
       })
     }
   }
