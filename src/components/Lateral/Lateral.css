@@ -25,6 +25,8 @@ aside ul.lista-items li {
   color: #212322;
   font-weight: bold;
   animation: aparece-item .25s ease-in-out both;
+  display: flex;
+  justify-content: space-between;
 }
 
 aside ul.lista-items li:hover {

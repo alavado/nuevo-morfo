@@ -8,6 +8,9 @@ export default gql`
       subsecciones {
         id
         nombre
+        contenidos {
+          id
+        }
       }
     }
   }

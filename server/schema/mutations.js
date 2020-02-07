@@ -36,6 +36,13 @@ const mutation = new GraphQLObjectType({
         return (new Subseccion(args)).save()
       }
     },
+    eliminarSubseccion: {
+      type: SubseccionType,
+      args: { id: { type: GraphQLID } },
+      resolve(parentValue, { id }) {
+        return Subseccion.findOneAndDelete({ _id: id })
+      }
+    },
     agregarContenido: {
       type: ContenidoType,
       args: {

@@ -6,6 +6,7 @@ import query from '../../../queries/seccion'
 import { useDispatch, useSelector } from 'react-redux'
 import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion, agregarSubseccion } from '../../../redux/actions'
 import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
+import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
 
 const MenuSeccion = () => {
 
@@ -17,6 +18,7 @@ const MenuSeccion = () => {
     onCompleted: data => dispatch(fijarSeccion(data.seccion))
   })
   const [mutation] = useMutation(agregarSubseccionMutation)
+  const [eliminarMutation] = useMutation(eliminarSubseccionMutation)
   const tituloNuevaSeccion = useRef()
 
   useEffect(() => {
@@ -43,9 +45,19 @@ const MenuSeccion = () => {
             >
               {subseccion.nombre}
             </Link>
+            {subseccion.contenidos.length === 0 &&
+              <button onClick={() => eliminar(subseccion.id)}>X</button>
+            }
           </li>
       ))}
     </ul>, [data, dispatch, loading])
+
+  const eliminar = idSubseccion => {
+    eliminarMutation({
+      variables: { id: idSubseccion },
+      refetchQueries: [{ query, variables: { id } }]
+    })
+  }
 
   const agregar = e => {
     e.preventDefault()
