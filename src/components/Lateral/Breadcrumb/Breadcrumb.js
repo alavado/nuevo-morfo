@@ -2,7 +2,7 @@ import React from 'react'
 import './Breadcrumb.css'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { fijarSeccion } from '../../../redux/actions'
+import { fijarSeccion, esconderNavegacion } from '../../../redux/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,7 +20,10 @@ const Breadcrumb = () => {
       className="breadcrumb"
       style={!seccion ? { backgroundColor: 'white' } : {}}
     >
-      <Link to="/" onClick={e => dispatch(fijarSeccion(null))}>
+      <Link to="/" onClick={e => {
+        dispatch(esconderNavegacion())
+        dispatch(fijarSeccion(null))
+      }}>
         <FontAwesomeIcon icon={faHome} />
       </Link>
       {linkSeccion}

@@ -4,7 +4,7 @@ import './MenuSeccion.css'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../../queries/seccion'
 import { useDispatch, useSelector } from 'react-redux'
-import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion, agregarSubseccion } from '../../../redux/actions'
+import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion, agregarSubseccion, mostrarNavegacion } from '../../../redux/actions'
 import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
 import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,6 +25,7 @@ const MenuSeccion = () => {
   const tituloNuevaSubseccion = useRef()
 
   useEffect(() => {
+    dispatch(mostrarNavegacion())
     dispatch(fijarSubseccion(null))
     dispatch(esconderFormularioNuevaSeccion())
   }, [])

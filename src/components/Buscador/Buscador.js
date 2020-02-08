@@ -18,7 +18,7 @@ const Buscador = () => {
 
   return (
     <div ref={contenedor} className="contenedor-buscador">
-      xx
+      Esto es morfo
     </div>
   )
 }

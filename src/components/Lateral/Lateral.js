@@ -10,17 +10,17 @@ import { useSelector } from 'react-redux'
 
 const Lateral = () => {
 
-  const { seccion } = useSelector(state => state.navegacion)
+  const { activa } = useSelector(state => state.navegacion)
   const lateral = useRef()
 
   useEffect(() => {
-    if (seccion) {
+    if (activa) {
       lateral.current.classList.add('visible')
     }
     else {
       lateral.current.classList.remove('visible')
     }
-  }, [seccion])
+  }, [activa])
 
   return (
     <aside ref={lateral}>

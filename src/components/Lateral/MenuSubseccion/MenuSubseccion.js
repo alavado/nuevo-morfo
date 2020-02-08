@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../../queries/subseccion'
 import { useDispatch } from 'react-redux'
-import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
+import { fijarSeccion, fijarSubseccion, fijarContenido, mostrarNavegacion } from '../../../redux/actions'
 import './MenuSubseccion.css'
 import Loader from '../../Loader'
 
@@ -18,6 +18,10 @@ const MenuSubseccion = () => {
       dispatch(fijarSubseccion(data.subseccion))
     }
   })
+
+  useEffect(() => {
+    dispatch(mostrarNavegacion())
+  }, [])
 
   const ListaContenidos = () => loading ? null :
     <ul className="lista-items">

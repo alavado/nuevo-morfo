@@ -3,7 +3,7 @@ import query from '../../../queries/secciones'
 import { useQuery } from '@apollo/react-hooks'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { fijarSeccion } from '../../../redux/actions'
+import { fijarSeccion, mostrarNavegacion } from '../../../redux/actions'
 import './Secciones.css'
 
 const Secciones = () => {
