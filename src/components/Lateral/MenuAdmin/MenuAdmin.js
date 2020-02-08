@@ -10,23 +10,13 @@ const MenuAdmin = () => {
 
   useEffect(() => {
     dispatch(mostrarNavegacion())
-  }, [])
+  }, [dispatch])
 
   return (
     <ul className="lista-items">
       <Link to="/usuarios">
         <li>
           Usuarios
-        </li>
-      </Link>
-      <Link>
-        <li>
-          Contenidos
-        </li>
-      </Link>
-      <Link>
-        <li>
-          Grupos
         </li>
       </Link>
     </ul>

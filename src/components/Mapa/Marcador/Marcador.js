@@ -14,7 +14,7 @@ const Marcador = props => {
   const { id, lat, lng, titulo } = props
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
-  const [eliminarMarcador, { idMarcadorEliminado }] = useMutation(eliminarMarcadorMutation)
+  const [eliminarMarcador] = useMutation(eliminarMarcadorMutation)
 
   return (
     <Marker

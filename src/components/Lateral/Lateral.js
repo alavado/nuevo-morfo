@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import './Lateral.css'
 import MenuSeccion from './MenuSeccion'
 import MenuSubseccion from './MenuSubseccion'
@@ -25,10 +25,12 @@ const Lateral = () => {
   return (
     <aside ref={lateral}>
       <Breadcrumb />
-      <Route path="/admin" component={MenuAdmin} />
-      <Route path="/seccion/:id" component={MenuSeccion} />
-      <Route path="/subseccion/:id" component={MenuSubseccion} />
-      <Route path="/contenido/:id" component={InfoContenido} />
+      <Switch>
+        <Route path="/admin" component={MenuAdmin} />
+        <Route path="/seccion/:id" component={MenuSeccion} />
+        <Route path="/subseccion/:id" component={MenuSubseccion} />
+        <Route path="/contenido/:id" component={InfoContenido} />
+      </Switch>
     </aside>
   )
 }

@@ -8,9 +8,9 @@ const Miniaturas = () => {
 
   return (
     <div className="miniaturas">
-      <img src={`http://localhost:1027/thumbnail/${imagen.id}`} />
-      <img src={`http://localhost:1027/thumbnail/${imagen.id}`} />
-      <img src={`http://localhost:1027/thumbnail/${imagen.id}`} />
+      <img alt="imagen 1" src={`http://localhost:1027/thumbnail/${imagen.id}`} />
+      <img alt="imagen 2" src={`http://localhost:1027/thumbnail/${imagen.id}`} />
+      <img alt="imagen 3" src={`http://localhost:1027/thumbnail/${imagen.id}`} />
     </div>
   )
 }

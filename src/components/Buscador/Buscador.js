@@ -4,17 +4,17 @@ import { useSelector } from 'react-redux'
 
 const Buscador = () => {
 
-  const { seccion } = useSelector(state => state.navegacion)
+  const { activa } = useSelector(state => state.navegacion)
   const contenedor = useRef()
 
   useEffect(() => {
-    if (seccion) {
+    if (activa) {
       contenedor.current.classList.add('compacto')
     }
     else {
       contenedor.current.classList.remove('compacto')
     }
-  }, [seccion])
+  }, [activa])
 
   return (
     <div ref={contenedor} className="contenedor-buscador">

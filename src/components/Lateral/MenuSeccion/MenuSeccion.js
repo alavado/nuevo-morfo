@@ -41,9 +41,11 @@ const MenuSeccion = () => {
       {data.seccion.subsecciones
         .sort((s1, s2) => s1.nombre.toLocaleUpperCase() > s2.nombre.toLocaleUpperCase() ? 1 : -1)
         .map((subseccion, i) => (
-          <li style={{ animationDelay: `${i * .05}s` }}>
+          <li
+            key={subseccion.id}
+            style={{ animationDelay: `${i * .05}s` }}
+          >
             <Link
-              key={subseccion.id}
               to={`/subseccion/${subseccion.id}`} key={subseccion.id}
               onClick={e => dispatch(fijarSubseccion(subseccion))}
             >
