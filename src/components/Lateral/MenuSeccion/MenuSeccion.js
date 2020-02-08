@@ -9,7 +9,7 @@ import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
 import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
-import Loader from 'react-loader-spinner'
+import Loader from '../../Loader'
 
 const MenuSeccion = () => {
 
@@ -81,16 +81,7 @@ const MenuSeccion = () => {
   }
 
   if (loading) {
-    return (
-      <div className="contenedor-loader">
-        <Loader
-          type="TailSpin"
-          color="#D5001C"
-          height={64}
-          width={64}
-        />
-      </div>
-    )
+    return <Loader />
   }
   
   return (

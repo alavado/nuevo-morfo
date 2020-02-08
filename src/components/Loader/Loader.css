@@ -1,0 +1,6 @@
+.contenedor-loader {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

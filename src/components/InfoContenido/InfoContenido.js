@@ -8,7 +8,7 @@ import query from '../../queries/contenido'
 import eliminarMutation from '../../mutations/eliminarContenido'
 import restaurarMutation from '../../mutations/restaurarContenido'
 import { useHistory } from 'react-router-dom'
-import Loader from 'react-loader-spinner'
+import Loader from '../Loader'
 
 const InfoContenido = () => {
 
@@ -18,16 +18,7 @@ const InfoContenido = () => {
   const history = useHistory()
 
   if (!contenido || !imagen) {
-    return (
-      <div className="contenedor-loader">
-        <Loader
-          type="TailSpin"
-          color="#D5001C"
-          height={64}
-          width={64}
-        />
-      </div>
-    )
+    return <Loader />
   }
 
   const BotonCambiarEstado = () => {
