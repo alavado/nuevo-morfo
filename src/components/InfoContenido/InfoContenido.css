@@ -1,3 +1,5 @@
+@import '~loaders.css/loaders.css';
+
 .info-contenido {
   overflow-y: auto;
   color: #212322;
@@ -28,4 +30,11 @@
     transform: translateX(0px);
     opacity: 1;
   }
+}
+
+.contenedor-loader {
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

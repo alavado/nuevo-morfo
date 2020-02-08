@@ -5,6 +5,7 @@ import query from '../../../queries/subseccion'
 import { useDispatch } from 'react-redux'
 import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
 import './MenuSubseccion.css'
+import Loader from 'react-loader-spinner'
 
 const MenuSubseccion = () => {
 
@@ -40,6 +41,19 @@ const MenuSubseccion = () => {
           </li>
       ))}
     </ul>
+
+  if (loading) {
+    return (
+      <div className="contenedor-loader">
+        <Loader
+          type="TailSpin"
+          color="#D5001C"
+          height={64}
+          width={64}
+        />
+      </div>
+    )
+  }
   
   return (
     <div className="contenedor-lista">
