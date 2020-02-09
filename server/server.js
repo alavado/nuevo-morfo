@@ -8,7 +8,7 @@ const app = express()
 const multer  = require('multer')
 const upload = multer({ dest: 'server/uploads/' })
 const fs = require('fs')
-const { crearThumbnail } = require('./tiles')
+const { crearThumbnail, crearPiramide } = require('./tiles')
 
 const cors = require('cors')
 app.use(cors())
@@ -36,6 +36,7 @@ app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
   fs.mkdirSync(`server/images/${filename}`)
   fs.rename(req.file.path, `server/images/${filename}/original.jpg`, err => {
     crearThumbnail(filename)
+    crearPiramide(filename)
     if (err) {
       res.status(500).send('Error')
       return

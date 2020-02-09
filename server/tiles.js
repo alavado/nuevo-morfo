@@ -18,6 +18,14 @@ const crearThumbnail = archivo => {
   childProcess.execSync(`${path.resolve('server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe')} ${path.resolve(`server\\images\\${archivo}\\original.jpg --smartcrop centre -s 128`)}`)
 }
 
+const crearPiramide = archivo => {
+  const pathVips = path.resolve(`.\\server\\tools\\vips-dev-8.9\\bin\\vips.exe`)
+  const destino = path.resolve(`.\\server\\images\\${archivo}\\pyramid`)
+  const original = path.resolve(`.\\server\\images\\${archivo}\\original.jpg`)
+  childProcess.execSync(`mkdir ${destino} && ${pathVips} dzsave ${original} ${destino} --layout google`)
+}
+
 module.exports = {
-  crearThumbnail
+  crearThumbnail,
+  crearPiramide
 }
