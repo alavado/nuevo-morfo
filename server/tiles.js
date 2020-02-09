@@ -15,7 +15,9 @@ const childProcess = require('child_process')
 const path = require('path')
 
 const crearThumbnail = archivo => {
-  childProcess.execSync(`${path.resolve('server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe')} ${path.resolve(`server\\images\\${archivo}\\original.jpg --smartcrop centre -s 128`)}`)
+  const pathVipsThumbnail = path.resolve('server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe')
+  const original = path.resolve(`server\\images\\${archivo}\\original.jpg`)
+  childProcess.execSync(`${pathVipsThumbnail} ${original} --smartcrop centre -s 128`)
 }
 
 const crearPiramide = archivo => {

@@ -41,7 +41,7 @@ app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
       res.status(500).send('Error')
       return
     }
-    res.status(200).send(req.file.filename)
+    res.status(200).send(filename)
   })
 })
 
