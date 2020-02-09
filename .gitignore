@@ -8,6 +8,10 @@
 # secret
 /server/secret.js
 
+# images
+/server/images
+/src/data
+
 # testing
 /coverage
 

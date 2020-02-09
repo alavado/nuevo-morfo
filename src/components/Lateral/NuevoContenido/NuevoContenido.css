@@ -1,6 +1,6 @@
 .contenedor-formulario-lateral {
   display: grid;
-  padding: 16px 16px 16px 24px;
+  padding: 16px 24px;
   gap: 16px;
 }
 
