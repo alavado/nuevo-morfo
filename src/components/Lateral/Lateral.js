@@ -6,6 +6,7 @@ import MenuSubseccion from './MenuSubseccion'
 import Breadcrumb from './Breadcrumb'
 import InfoContenido from '../InfoContenido'
 import MenuAdmin from './MenuAdmin'
+import NuevoContenido from './NuevoContenido'
 import { useSelector } from 'react-redux'
 
 const Lateral = () => {
@@ -29,6 +30,7 @@ const Lateral = () => {
         <Route path="/admin" component={MenuAdmin} />
         <Route path="/seccion/:id" component={MenuSeccion} />
         <Route path="/subseccion/:id" component={MenuSubseccion} />
+        <Route path="/contenido/nuevo" exact component={NuevoContenido} />
         <Route path="/contenido/:id" component={InfoContenido} />
       </Switch>
     </aside>

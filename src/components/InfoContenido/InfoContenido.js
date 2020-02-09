@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './InfoContenido.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import ListaEstructuras from './ListaEstructuras/ListaEstructuras'
 import Miniaturas from './Miniaturas'
 import { useMutation } from '@apollo/react-hooks'
@@ -9,13 +9,19 @@ import eliminarMutation from '../../mutations/eliminarContenido'
 import restaurarMutation from '../../mutations/restaurarContenido'
 import { useHistory } from 'react-router-dom'
 import Loader from '../Loader'
+import { mostrarNavegacion } from '../../redux/actions'
 
 const InfoContenido = () => {
 
   const { contenido, imagen } = useSelector(state => state.contenido)
+  const dispatch = useDispatch()
   const [eliminar] = useMutation(eliminarMutation)
   const [restaurar] = useMutation(restaurarMutation)
   const history = useHistory()
+
+  useEffect(() => {
+    dispatch(mostrarNavegacion())
+  }, [])
 
   if (!contenido || !imagen) {
     return <Loader />

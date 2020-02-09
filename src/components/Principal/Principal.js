@@ -9,6 +9,7 @@ const Principal = () => {
   return (
     <section className="contenedor-principal">
       <Switch>
+        <Route path="/contenido/nuevo" component={() => <p>x</p>} />
         <Route path="/contenido/:id" component={Mapa} />
         <Route path="/subseccion/:id" component={Buscador} />
         <Route path="/seccion/:id" component={Buscador} />

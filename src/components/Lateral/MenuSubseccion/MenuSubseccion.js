@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../../queries/subseccion'
 import { useDispatch } from 'react-redux'
-import { fijarSeccion, fijarSubseccion, fijarContenido, mostrarNavegacion } from '../../../redux/actions'
+import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
 import './MenuSubseccion.css'
 import Loader from '../../Loader'
 import _ from 'lodash'
+import useLateral from '../../../hooks/useLateral'
 
 const MenuSubseccion = () => {
 
@@ -19,10 +20,7 @@ const MenuSubseccion = () => {
       dispatch(fijarSubseccion(data.subseccion))
     }
   })
-
-  useEffect(() => {
-    dispatch(mostrarNavegacion())
-  }, [])
+  useLateral()
 
   const ListaContenidos = () => loading ? <Loader /> :
     (_.isEmpty(data.subseccion.contenidos) ?
@@ -52,7 +50,7 @@ const MenuSubseccion = () => {
   return (
     <div className="contenedor-lista">
       <ListaContenidos />
-      {!loading && <button className="boton-agregar">Agregar contenido</button>}
+      {!loading && <Link to="/contenido/nuevo" className="boton-agregar">Agregar contenido</Link>}
     </div>
   )
 }

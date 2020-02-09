@@ -62,6 +62,7 @@ aside .boton-agregar {
   cursor: pointer;
   transition: all .15s ease-in-out;
   animation: aparece-boton-agregar .25s ease-in-out both;
+  text-align: center;
 }
 
 aside .boton-agregar:hover {

@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './MenuAdmin.css'
-import { useDispatch } from 'react-redux'
-import { mostrarNavegacion } from '../../../redux/actions'
+import useLateral from '../../../hooks/useLateral'
 
 const MenuAdmin = () => {
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(mostrarNavegacion())
-  }, [dispatch])
+  useLateral()
 
   return (
     <ul className="lista-items">
