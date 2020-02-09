@@ -1,2 +1,19 @@
-div {
+.contenedor-formulario-lateral {
+  display: grid;
+  padding: 16px 16px 16px 24px;
+  gap: 16px;
+}
+
+.contenedor-formulario-lateral > form {
+  display: grid;
+  gap: 4px;
+}
+
+.contenedor-formulario-lateral input {
+  width: 100%;
+}
+
+.contenedor-formulario-lateral input.boton-agregar {
+  margin: 0;
+  margin-top: 16px;
 }

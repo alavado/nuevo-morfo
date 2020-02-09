@@ -40,6 +40,12 @@ button:focus, input:focus {
 
 input {
   border: 1px solid #BAC5B9;
+  font-family: "Uber Move Text", sans-serif;
+}
+
+textarea {
+  font-family: "Uber Move Text", sans-serif;
+  padding: 8px;
 }
 
 input:-webkit-autofill {

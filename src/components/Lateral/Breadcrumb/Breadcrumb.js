@@ -8,8 +8,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 const Breadcrumb = () => {
 
-  const seccion = useSelector(({ navegacion }) => navegacion.seccion)
-  const subseccion = useSelector(({ navegacion }) => navegacion.subseccion)
+  const { seccion, subseccion } = useSelector(state => state.navegacion)
   const dispatch = useDispatch()
 
   const linkSeccion = seccion ? <Link to={`/seccion/${seccion.id}`}>{seccion.nombre}</Link> : ''
