@@ -10,3 +10,14 @@
 
 // para hacer thumbnails
 //./server/tools/vips-dev-8.9/bin/vipsthumbnail.exe ./server/images/5e2afdf0d5860c5154afb22d/original.jpg --smartcrop centre -s 128
+
+const childProcess = require('child_process')
+const path = require('path')
+
+const crearThumbnail = archivo => {
+  childProcess.execSync(`${path.resolve('server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe')} ${path.resolve(`server\\images\\${archivo}\\original.jpg --smartcrop centre -s 128`)}`)
+}
+
+module.exports = {
+  crearThumbnail
+}
