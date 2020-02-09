@@ -31,15 +31,15 @@ app.get('/thumbnail/:id', (req, res) => {
 })
 
 app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
-  fs.rename(req.file.path, 'server/images/tmp.jpg', err => {
+  const { filename } = req.file
+  fs.mkdirSync(`server/images/${filename}`)
+  fs.rename(req.file.path, `server/images/${filename}/original.jpg`, err => {
     if (err) {
-      console.log(err)
       res.status(500).send('Error')
       return
     }
-    res.status(200).send('Ok')
+    res.status(200).send(req.file.filename)
   })
-  // false.save(req.files.imagen)
 })
 
 app.use(require('./services/auth'))
