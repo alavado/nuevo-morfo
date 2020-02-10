@@ -6,18 +6,17 @@ import { isDev } from '../../../helpers/dev'
 import { useMutation } from '@apollo/react-hooks'
 import agregarContenidoMutation from '../../../mutations/agregarContenido'
 import agregarImagenMutation from '../../../mutations/agregarImagen'
-import { useSelector } from 'react-redux'
 import query from '../../../queries/subseccion'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const NuevoContenido = () => {
 
   const titulo = useRef()
   const descripcion = useRef()
   const imagen = useRef()
-  const { subseccion } = useSelector(state => state.navegacion)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
+  const { subseccion } = useParams()
   const history = useHistory()
 
   useLateral()
@@ -31,7 +30,7 @@ const NuevoContenido = () => {
       variables: {
         titulo: titulo.current.value,
         descripcion: descripcion.current.value,
-        subseccion: subseccion.id
+        subseccion
       }
     })
     .then(({ data }) => {
@@ -46,10 +45,10 @@ const NuevoContenido = () => {
     })
     .then(({ data: archivo }) => agregarImagen({
       variables: { contenido, archivo, descripcion: '' },
-      refetchQueries: [{ query, variables: { id: subseccion.id } }],
+      refetchQueries: [{ query, variables: { id: subseccion } }],
       awaitRefetchQueries: true
     }))
-    .then(() => history.push(`/subseccion/${subseccion.id}`))
+    .then(() => history.push(`/contenido/${contenido}`))
     .catch(err => console.log('FAILURE!!', err))
   }
 

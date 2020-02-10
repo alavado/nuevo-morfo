@@ -50,7 +50,11 @@ const MenuSubseccion = () => {
   return (
     <div className="contenedor-lista">
       <ListaContenidos />
-      {!loading && <Link to="/contenido/nuevo" className="boton-agregar">Agregar contenido</Link>}
+      {!loading &&
+        <Link to={`/contenido/nuevo/${id}`} className="boton-agregar">
+          Agregar contenido
+        </Link>
+      }
     </div>
   )
 }
