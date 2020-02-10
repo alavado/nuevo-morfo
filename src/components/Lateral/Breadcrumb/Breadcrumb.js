@@ -10,10 +10,7 @@ const Breadcrumb = () => {
 
   const { seccion, subseccion } = useSelector(state => state.navegacion)
   const dispatch = useDispatch()
-
-  const linkSeccion = seccion ? <Link to={`/seccion/${seccion.id}`}>{seccion.nombre}</Link> : ''
-  const likSubseccion = subseccion ? <Link to={`/subseccion/${subseccion.id}`}>{subseccion.nombre}</Link> : ''
-
+  
   return (
     <div
       className="breadcrumb"
@@ -25,8 +22,8 @@ const Breadcrumb = () => {
       }}>
         <FontAwesomeIcon icon={faHome} />
       </Link>
-      {linkSeccion}
-      {likSubseccion}
+      {seccion && <Link to={`/seccion/${seccion.id}`}>{seccion.nombre}</Link>}
+      {subseccion && <Link to={`/subseccion/${subseccion.id}`}>{subseccion.nombre}</Link>}
     </div>
   )
 }

@@ -10,6 +10,7 @@ export default gql`
         nombre
         contenidos {
           id
+          deleted
         }
       }
     }

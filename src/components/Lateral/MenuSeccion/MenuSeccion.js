@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../../Loader'
 import useLateral from '../../../hooks/useLateral'
+import _ from 'lodash'
 
 const MenuSeccion = () => {
 
@@ -53,7 +54,7 @@ const MenuSeccion = () => {
             >
               {subseccion.nombre}
             </Link>
-            {subseccion.contenidos.length === 0 &&
+            {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
               <button
                 className="boton-eliminar-subseccion"
                 onClick={() => eliminar(subseccion.id)}
