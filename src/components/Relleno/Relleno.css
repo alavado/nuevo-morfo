@@ -1,0 +1,34 @@
+.relleno-stripes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: calc(100vh - 65px);
+  background: repeating-linear-gradient(
+    45deg,
+    #F5F5F5,
+    #F5F5F5 10px,
+    #EEEEEE 10px,
+    #EEEEEE 20px
+  );
+  animation: aparecen-stripes .25s ease-in-out both;
+}
+
+.relleno-stripes .mensaje {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 64px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+}
+
+@keyframes aparecen-stripes {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

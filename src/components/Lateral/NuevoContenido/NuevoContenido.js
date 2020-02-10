@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import './NuevoContenido.css'
 import useLateral from '../../../hooks/useLateral'
@@ -11,9 +11,9 @@ import { useHistory, useParams } from 'react-router-dom'
 
 const NuevoContenido = () => {
 
-  const titulo = useRef()
-  const descripcion = useRef()
-  const imagen = useRef()
+  const [titulo, setTitulo] = useState('')
+  const [descripcion, setDescripcion] = useState('')
+  const [imagen, setImagen] = useState(null)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
   const { subseccion } = useParams()
@@ -23,33 +23,25 @@ const NuevoContenido = () => {
 
   const enviarFormulario = e => {
     e.preventDefault()
-
-    //HAY QUE BLOQUEAR EL BOTON
     let contenido = ''
-    agregarContenido({
-      variables: {
-        titulo: titulo.current.value,
-        descripcion: descripcion.current.value,
-        subseccion
-      }
-    })
-    .then(({ data }) => {
-      contenido = data.agregarContenido.id
-      let formData = new FormData()
-      formData.append('imagen', imagen.current.files[0])
-      return axios.post(
-        `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      )
-    })
-    .then(({ data: archivo }) => agregarImagen({
-      variables: { contenido, archivo, descripcion: '' },
-      refetchQueries: [{ query, variables: { id: subseccion } }],
-      awaitRefetchQueries: true
-    }))
-    .then(() => history.push(`/contenido/${contenido}`))
-    .catch(err => console.log('FAILURE!!', err))
+    agregarContenido({ variables: { titulo, descripcion, subseccion } })
+      .then(({ data }) => {
+        contenido = data.agregarContenido.id
+        let formData = new FormData()
+        formData.append('imagen', imagen)
+        return axios.post(
+          `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
+          formData,
+          { headers: { 'Content-Type': 'multipart/form-data' } }
+        )
+      })
+      .then(({ data: archivo }) => agregarImagen({
+        variables: { contenido, archivo },
+        refetchQueries: [{ query, variables: { id: subseccion } }],
+        awaitRefetchQueries: true
+      }))
+      .then(() => history.push(`/contenido/${contenido}`))
+      .catch(err => console.error('Error subiendo imagen', err))
   }
 
   return (
@@ -58,17 +50,17 @@ const NuevoContenido = () => {
       <form onSubmit={enviarFormulario}>
         <div>
           <label htmlFor="titulo">Título</label>
-          <input ref={titulo} id="titulo" type="text" />
+          <input onChange={e => setTitulo(e.target.value)} id="titulo" type="text" />
         </div>
         <div>
           <label htmlFor="descripcion">Descripción</label>
-          <textarea ref={descripcion} id="descripcion"></textarea>
+          <textarea onChange={e => setDescripcion(e.target.value)} id="descripcion"></textarea>
         </div>
         <div>
           <label htmlFor="imagen">Imagen</label>
-          <input id="imagen" ref={imagen} type="file" />
+          <input onChange={e => setImagen(e.target.files[0])} id="imagen" type="file" />
         </div>
-        <input type="submit" value="Agregar" className="boton-agregar" />
+        <input type="submit" value="Agregar" className="boton-agregar" disabled={titulo.length < 3 || !imagen} />
       </form>
     </div>
   )

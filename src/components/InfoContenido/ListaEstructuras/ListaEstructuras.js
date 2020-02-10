@@ -13,8 +13,10 @@ const ListaEstructuras = () => {
     <div className="lista-estructuras">
       <h4>Estructuras</h4>
       {_.isEmpty(contenido.imagenes[indiceImagenActual].marcadores) ?
-        <><p className="mensaje-lista-vacia">No hay estructuras en esta imagen.</p>
-        <p className="mensaje-lista-vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p></> : 
+        <>
+          <p className="mensaje-lista-vacia">No hay estructuras en esta imagen.</p>
+          <p className="mensaje-lista-vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>
+        </> : 
         <ul>
             {contenido.imagenes[indiceImagenActual].marcadores.map((marcador, i) => (
               <li
