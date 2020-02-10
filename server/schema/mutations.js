@@ -50,10 +50,8 @@ const mutation = new GraphQLObjectType({
         descripcion: { type: GraphQLString },
         subseccion: { type: GraphQLID }
       },
-      resolve(parentValue, args, req) {
-        console.log(req.file)
-        // return (new Contenido(args)).save()
-        //return (new Contenido(args)).save()
+      resolve(parentValue, args) {
+        return (new Contenido(args)).save()
       }
     },
     eliminarContenido: {
@@ -74,7 +72,8 @@ const mutation = new GraphQLObjectType({
       type: ImagenType,
       args: {
         descripcion: { type: GraphQLString },
-        contenido: { type: GraphQLID }
+        contenido: { type: GraphQLID },
+        archivo: { type: GraphQLString }
       },
       resolve(parentValue, args) {
         return (new Imagen(args)).save()

@@ -2,9 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const imagenSchema = new Schema({
-  descripcion: {
+  archivo: {
     type: String,
     required: true
+  },
+  descripcion: {
+    type: String,
+    required: false
   },
   marcadores: [{
     type: Schema.Types.ObjectId,

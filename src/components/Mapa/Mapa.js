@@ -34,7 +34,7 @@ const Mapa = () => {
     zoom: minZoom
   })
 
-  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.id) : '', [contenido, imagen])
+  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.archivo) : '', [contenido, imagen])
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)

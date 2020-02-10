@@ -7,6 +7,7 @@ const ImagenType = new GraphQLObjectType({
   name: 'ImagenType',
   fields: () => ({
     id: { type: GraphQLID },
+    archivo: { type: GraphQLString },
     descripcion: { type: GraphQLString },
     marcadores: {
       type: new GraphQLList(require('./marcador_type')),
