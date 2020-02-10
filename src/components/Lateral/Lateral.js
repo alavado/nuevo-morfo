@@ -12,19 +12,9 @@ import { useSelector } from 'react-redux'
 const Lateral = () => {
 
   const { activa } = useSelector(state => state.navegacion)
-  const lateral = useRef()
-
-  useEffect(() => {
-    if (activa) {
-      lateral.current.classList.add('visible')
-    }
-    else {
-      lateral.current.classList.remove('visible')
-    }
-  }, [activa])
 
   return (
-    <aside ref={lateral}>
+    <aside className={activa ? 'visible' : ''}>
       <Breadcrumb />
       <Switch>
         <Route path="/admin" component={MenuAdmin} />

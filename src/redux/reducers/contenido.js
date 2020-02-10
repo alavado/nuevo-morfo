@@ -19,17 +19,16 @@ export default function(state = initialState, action) {
     case AGREGAR_MARCADOR: {
       let imagen = state.contenido.imagenes[state.indiceImagenActual]
       imagen.marcadores = [...imagen.marcadores, action.payload]
+      let imagenes = [...state.contenido.imagenes]
+      imagenes[state.indiceImagenActual] = imagen
       return {
         ...state,
         contenido: {
           ...state.contenido,
-          imagenes: [
-            ...state.contenido.imagenes.splice(state.indiceImagenActual, 1),
-            imagen
-          ]
+          imagenes
         }
       }
-    }
+    } 
     case ELIMINAR_MARCADOR: {
       let imagen = state.contenido.imagenes[state.indiceImagenActual]
       imagen.marcadores = imagen.marcadores.filter(({ id }) => id !== action.payload)

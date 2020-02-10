@@ -8,8 +8,12 @@ const Miniaturas = () => {
 
   return (
     <div className="miniaturas">
-      {contenido.imagenes.map(({ archivo }) => (
-        <img alt="imagen contenido" src={`http://localhost:1027/thumbnail/${archivo}`} />
+      {contenido.imagenes.map(({ archivo }, i) => (
+        <img
+          key={`miniatura-${i}`}
+          src={`http://localhost:1027/thumbnail/${archivo}`}
+          alt="imagen contenido"
+        />
       ))}
     </div>
   )
