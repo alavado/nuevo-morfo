@@ -24,6 +24,8 @@ const NuevoContenido = () => {
 
   const enviarFormulario = e => {
     e.preventDefault()
+
+    //HAY QUE BLOQUEAR EL BOTON
     let contenido = ''
     agregarContenido({
       variables: {
