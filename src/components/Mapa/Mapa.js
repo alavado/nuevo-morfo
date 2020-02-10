@@ -15,7 +15,7 @@ const { minZoom, maxZoom } = parametrosMapa
 
 const Mapa = () => {
 
-  const { contenido, imagen } = useSelector(state => state.contenido)
+  const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
   const destino = useSelector(state => state.mapa.destino)
   const dispatch = useDispatch()
   const { id } = useParams()
@@ -34,7 +34,12 @@ const Mapa = () => {
     zoom: minZoom
   })
 
-  const mapStyle = useMemo(() => imagen ? construirMapStyle(imagen.archivo) : '', [contenido, imagen])
+  const mapStyle = useMemo(() => {
+    if (!contenido || !contenido.imagenes) {
+      return ''
+    }
+    return construirMapStyle(contenido.imagenes[indiceImagenActual].archivo)
+  }, [contenido, indiceImagenActual])
 
   const actualizarVP = vp => {
     vp.zoom = Math.max(minZoom, vp.zoom)
@@ -51,7 +56,7 @@ const Mapa = () => {
     const [lng, lat] = e.lngLat
     agregarMarcador({
       variables: {
-        imagen: imagen.id,
+        imagen: contenido.imagenes[indiceImagenActual].id,
         titulo: 'prueba',
         lat,
         lng
@@ -95,7 +100,7 @@ const Mapa = () => {
           style={{ padding: '119px' }}
         />
       </div>
-      {imagen && imagen.marcadores.map(({ id, titulo, lat, lng }) => {
+      {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
         return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={`${titulo}-${id}`} />
       })}
       <PopupEstructura />

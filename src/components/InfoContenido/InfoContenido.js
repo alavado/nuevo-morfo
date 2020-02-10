@@ -13,7 +13,7 @@ import { mostrarNavegacion } from '../../redux/actions'
 
 const InfoContenido = () => {
 
-  const { contenido, imagen } = useSelector(state => state.contenido)
+  const { contenido } = useSelector(state => state.contenido)
   const dispatch = useDispatch()
   const [eliminar] = useMutation(eliminarMutation)
   const [restaurar] = useMutation(restaurarMutation)
@@ -23,7 +23,7 @@ const InfoContenido = () => {
     dispatch(mostrarNavegacion())
   }, [])
 
-  if (!contenido || !imagen) {
+  if (!contenido || !contenido.imagenes) {
     return <Loader />
   }
 

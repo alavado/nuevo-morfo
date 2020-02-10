@@ -2,7 +2,6 @@ import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR
 
 const initialState = {
   contenido: null,
-  imagen: null,
   indiceImagenActual: 0,
   marcadorDestacado: null,
   popup: null
@@ -14,8 +13,7 @@ export default function(state = initialState, action) {
       const contenido = action.payload
       return {
         ...state,
-        contenido,
-        imagen: contenido.imagenes ? contenido.imagenes[0] : null
+        contenido
       }
     }
     case AGREGAR_MARCADOR: {
@@ -29,8 +27,7 @@ export default function(state = initialState, action) {
             ...state.contenido.imagenes.splice(state.indiceImagenActual, 1),
             imagen
           ]
-        },
-        imagen
+        }
       }
     }
     case ELIMINAR_MARCADOR: {

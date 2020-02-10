@@ -10,6 +10,7 @@ import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../../Loader'
+import useLateral from '../../../hooks/useLateral'
 
 const MenuSeccion = () => {
 
@@ -24,8 +25,9 @@ const MenuSeccion = () => {
   const [eliminarMutation] = useMutation(eliminarSubseccionMutation)
   const tituloNuevaSubseccion = useRef()
 
+  useLateral()
+
   useEffect(() => {
-    dispatch(mostrarNavegacion())
     dispatch(fijarSubseccion(null))
     dispatch(esconderFormularioNuevaSeccion())
   }, [])
