@@ -7,6 +7,8 @@ import { useMutation } from '@apollo/react-hooks'
 import agregarContenidoMutation from '../../../mutations/agregarContenido'
 import agregarImagenMutation from '../../../mutations/agregarImagen'
 import { useSelector } from 'react-redux'
+import query from '../../../queries/subseccion'
+import { useHistory } from 'react-router-dom'
 
 const NuevoContenido = () => {
 
@@ -16,12 +18,13 @@ const NuevoContenido = () => {
   const { subseccion } = useSelector(state => state.navegacion)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
+  const history = useHistory()
 
   useLateral()
 
   const enviarFormulario = e => {
     e.preventDefault()
-    let idContenido = ''
+    let contenido = ''
     agregarContenido({
       variables: {
         titulo: titulo.current.value,
@@ -29,8 +32,8 @@ const NuevoContenido = () => {
         subseccion: subseccion.id
       }
     })
-    .then(data => {
-      idContenido = data.data.agregarContenido.id
+    .then(({ data }) => {
+      contenido = data.agregarContenido.id
       let formData = new FormData()
       formData.append('imagen', imagen.current.files[0])
       return axios.post(
@@ -39,16 +42,12 @@ const NuevoContenido = () => {
         { headers: { 'Content-Type': 'multipart/form-data' } }
       )
     })
-    .then(data => {
-      const archivo = data.data
-      agregarImagen({
-        variables: {
-          contenido: idContenido,
-          descripcion: '',
-          archivo
-        }
-      })
-    })
+    .then(({ data: archivo }) => agregarImagen({
+      variables: { contenido, archivo, descripcion: '' },
+      refetchQueries: [{ query, variables: { id: subseccion.id } }],
+      awaitRefetchQueries: true
+    }))
+    .then(() => history.push(`/subseccion/${subseccion.id}`))
     .catch(err => console.log('FAILURE!!', err))
   }
 
