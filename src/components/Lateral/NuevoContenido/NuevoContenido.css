@@ -4,13 +4,37 @@
   gap: 16px;
 }
 
-.contenedor-formulario-lateral > form {
-  display: grid;
-  gap: 4px;
+.contenedor-formulario-lateral h2 {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.contenedor-formulario-lateral input {
+.contenedor-formulario-lateral > form {
+  display: grid;
+  gap: 12px;
+}
+
+.contenedor-formulario-lateral input, .contenedor-formulario-lateral textarea {
   width: 100%;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.contenedor-formulario-lateral textarea {
+  height: 80px;
+  line-height: 1.5;
+}
+
+.contenedor-formulario-lateral label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contenedor-formulario-lateral input[type="text"] {
+  padding: 8px;
 }
 
 .contenedor-formulario-lateral input.boton-agregar {

@@ -56,12 +56,18 @@ const NuevoContenido = () => {
     <div className="contenedor-formulario-lateral">
       <h2>Nuevo contenido</h2>
       <form onSubmit={enviarFormulario}>
-        <label htmlFor="titulo">Título</label>
-        <input ref={titulo} id="titulo" type="text" />
-        <label htmlFor="descripcion">Descripción</label>
-        <textarea ref={descripcion} id="descripcion"></textarea>
-        <label htmlFor="imagen">Imagen</label>
-        <input id="imagen" ref={imagen} type="file" />
+        <div>
+          <label htmlFor="titulo">Título</label>
+          <input ref={titulo} id="titulo" type="text" />
+        </div>
+        <div>
+          <label htmlFor="descripcion">Descripción</label>
+          <textarea ref={descripcion} id="descripcion"></textarea>
+        </div>
+        <div>
+          <label htmlFor="imagen">Imagen</label>
+          <input id="imagen" ref={imagen} type="file" />
+        </div>
         <input type="submit" value="Agregar" className="boton-agregar" />
       </form>
     </div>
