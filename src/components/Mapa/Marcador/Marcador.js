@@ -2,8 +2,6 @@ import React from 'react'
 import { Marker } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
 import { eliminarMarcadorDeImagenActual, mostrarPopup } from '../../../redux/actions'
-import { useMutation } from '@apollo/react-hooks'
-import eliminarMarcadorMutation from '../../../mutations/eliminarMarcador'
 import { parametrosMapa } from '../../../helpers/mapa'
 import './Marcador.css'
 
@@ -14,7 +12,6 @@ const Marcador = props => {
   const { id, lat, lng, titulo } = props
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
-  const [eliminarMarcador] = useMutation(eliminarMarcadorMutation)
 
   return (
     <Marker
@@ -30,12 +27,7 @@ const Marcador = props => {
           opacity: marcadorDestacado && marcadorDestacado.id !== id ? 0.4 : 1, 
           transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
         }}
-        onContextMenu={e => {
-          e.preventDefault()
-          dispatch(eliminarMarcadorDeImagenActual(id))
-          eliminarMarcador({ variables: { id } })
-        }}
-        onClick={() => dispatch(mostrarPopup({ titulo, lat, lng }))}
+        onClick={() => dispatch(mostrarPopup({ id, titulo, lat, lng }))}
       >
         <path d={parametrosMapa.marcador} />
       </svg>
