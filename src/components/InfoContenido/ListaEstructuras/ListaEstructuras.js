@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup, fijarDestino } from '../../../redux/actions'
 import './ListaEstructuras.css'
@@ -7,6 +7,7 @@ import _ from 'lodash'
 const ListaEstructuras = () => {
 
   const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
+  const [estructuraClickeada, setEstructuraClickeada] = useState(false)
   const dispatch = useDispatch()
 
   return (
@@ -18,26 +19,29 @@ const ListaEstructuras = () => {
           <p className="mensaje-lista-vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>
         </> : 
         <ul>
-            {contenido.imagenes[indiceImagenActual].marcadores.map((marcador, i) => (
-              <li
-                key={marcador.id}
-                style={{ animationDelay: `${i * .15}s` }}
-                onMouseEnter={() => {
-                  dispatch(destacarMarcador(marcador))
-                  dispatch(mostrarPopup({
-                    ...marcador,
-                    titulo: `${marcador.titulo}-${marcador.id}`
-                  }))
-                }}
-                onMouseLeave={() => {
-                  dispatch(dejarDeDestacarMarcador())
+          {contenido.imagenes[indiceImagenActual].marcadores.map((marcador, i) => (
+            <li
+              key={marcador.id}
+              style={{ animationDelay: `${i * .15}s` }}
+              onMouseEnter={() => {
+                dispatch(destacarMarcador(marcador))
+                dispatch(mostrarPopup(marcador))
+              }}
+              onClick={() => {
+                setEstructuraClickeada(true)
+                dispatch(fijarDestino({ lat: marcador.lat, lng: marcador.lng }))
+              }}
+              onMouseLeave={() => {
+                dispatch(dejarDeDestacarMarcador())
+                if (!estructuraClickeada) {
                   dispatch(esconderPopup())
-                }}
-                onClick={() => dispatch(fijarDestino({ lat: marcador.lat, lng: marcador.lng }))}
-              >
-                <a className="nombre-estructura">{marcador.titulo} - {marcador.id}</a>
-              </li>
-            ))}
+                }
+                setEstructuraClickeada(false)
+              }}
+            >
+              <a className="nombre-estructura">{marcador.titulo}</a>
+            </li>
+          ))}
         </ul>
       } 
     </div>
