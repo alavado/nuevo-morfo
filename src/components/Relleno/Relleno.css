@@ -19,9 +19,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 32px 64px;
   border-radius: 8px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  animation: aparece-mensaje .25s ease-in-out both;
+}
+
+.barra-progreso {
+  min-width: 300px;
+  height: 16px;
+  background-color: #EEEEEE;
+  margin-top: 12px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .15);
+}
+
+.barra-progreso .progreso {
+  background: repeating-linear-gradient(
+    45deg,
+    #F93822,
+    #F93822 10px,
+    #EB3300 10px,
+    #EB3300 20px
+  );
+  height: 16px;
+  border-radius: 4px;
+  transition: all .15s ease-in-out;
 }
 
 @keyframes aparecen-stripes {
@@ -30,5 +57,16 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes aparece-mensaje {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

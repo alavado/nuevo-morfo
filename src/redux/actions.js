@@ -101,5 +101,5 @@ export const terminarSubidaNuevoContenido = () => ({
 
 export const fijarProgresoSubidaNuevoContenido = progreso => ({
   type: FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO,
-  payload: progreso
+  payload: Math.min(100, Math.max(0, progreso))
 })

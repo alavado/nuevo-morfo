@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './NuevoContenido.css'
 import useLateral from '../../../hooks/useLateral'
@@ -9,12 +9,13 @@ import agregarImagenMutation from '../../../mutations/agregarImagen'
 import query from '../../../queries/subseccion'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido } from '../../../redux/actions'
+import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido, fijarProgresoSubidaNuevoContenido } from '../../../redux/actions'
 
 const NuevoContenido = () => {
 
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
+  const [bloqueada, setBloqueada] = useState(false)
   const [imagen, setImagen] = useState(null)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
@@ -24,8 +25,13 @@ const NuevoContenido = () => {
 
   useLateral()
 
+  useEffect(() => {
+    dispatch(fijarProgresoSubidaNuevoContenido(0))
+  }, [])
+
   const enviarFormulario = e => {
     e.preventDefault()
+    setBloqueada(true)
     let contenido = ''
     agregarContenido({ variables: { titulo, descripcion, subseccion } })
       .then(({ data }) => {
@@ -36,7 +42,10 @@ const NuevoContenido = () => {
         return axios.post(
           `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
           formData,
-          { headers: { 'Content-Type': 'multipart/form-data' }, onUploadProgress: p => console.log(100 * p.loaded / imagen.size) }
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+            onUploadProgress: p => dispatch(fijarProgresoSubidaNuevoContenido(100 * p.loaded / imagen.size))
+          }
         )
       })
       .then(({ data: archivo }) => {
@@ -48,7 +57,10 @@ const NuevoContenido = () => {
         })
       })
       .then(() => history.push(`/contenido/${contenido}`))
-      .catch(err => console.error('Error subiendo imagen', err))
+      .catch(err => {
+        setBloqueada(false)
+        console.error('Error subiendo imagen', err)
+      })
   }
 
   return (
@@ -67,7 +79,12 @@ const NuevoContenido = () => {
           <label htmlFor="imagen">Imagen</label>
           <input onChange={e => setImagen(e.target.files[0])} id="imagen" type="file" />
         </div>
-        <input type="submit" value="Agregar" className="boton-agregar" disabled={titulo.length < 3 || !imagen} />
+        <input
+          type="submit"
+          value="Agregar"
+          className="boton-agregar"
+          disabled={bloqueada || titulo.length < 3 || !imagen}
+        />
       </form>
     </div>
   )

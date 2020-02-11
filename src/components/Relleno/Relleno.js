@@ -8,9 +8,14 @@ const Relleno = () => {
 
   return (
     <div className="relleno-stripes">
-      <div className="mensaje">
-        { nuevoContenido.subiendo && 'subiendo...' }
-      </div>
+      {nuevoContenido.subiendo &&
+        <div className="mensaje">
+          <p>Agregando contenido...</p>
+          <div className="barra-progreso">
+            <div className="progreso" style={{ width: `${nuevoContenido.progreso}%` }}></div>
+          </div>
+        </div>
+      }
     </div>
   )
 }

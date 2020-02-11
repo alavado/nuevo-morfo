@@ -7,7 +7,7 @@ const initialState = {
   popup: null,
   nuevoContenido: {
     subiendo: false,
-    progresoSubida: 0
+    progreso: 0
   }
 }
 
@@ -64,7 +64,7 @@ export default function(state = initialState, action) {
         ...state,
         nuevoContenido: {
           ...state.nuevoContenido,
-          progresoSubida: action.payload
+          progreso: action.payload
         }
       }
     }
