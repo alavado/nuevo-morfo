@@ -27,7 +27,9 @@ const PopupEstructura = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(esconderEdicionMarcador())
+    if (popup) {
+      setTitulo(popup.titulo)
+    }
   }, [popup])
 
   if (!popup) {
@@ -50,7 +52,6 @@ const PopupEstructura = () => {
     e.preventDefault()
     editarMarcadorMutate({ variables: { id, titulo } })
       .then(({ data }) => {
-        console.log(data.editarMarcador)
         dispatch(editarMarcador(data.editarMarcador))
         dispatch(esconderEdicionMarcador())
       })
@@ -78,8 +79,8 @@ const PopupEstructura = () => {
           <form onSubmit={enviarEditarMarcador} onClick={e => e.stopPropagation()}>
             <input
               type="text"
-              defaultValue={popup.titulo}
               autoFocus
+              value={titulo}
               onFocus={e => e.target.select()}
               onChange={e => setTitulo(e.target.value)}
             />
@@ -89,10 +90,10 @@ const PopupEstructura = () => {
             <p>{popup.titulo}</p>
             <div className="botones">
               <button title="Editar marcador" onClick={mostrarFormularioEditarMarcador}>
-                <FontAwesomeIcon icon={iconoEditar} size="xs" />
+                <FontAwesomeIcon icon={iconoEditar} size="m" />
               </button>
               <button title="Eliminar marcador" onClick={eliminarMarcador}>
-                <FontAwesomeIcon icon={iconoEliminar} size="xs" />
+                <FontAwesomeIcon icon={iconoEliminar} size="m" />
               </button>
             </div>
           </>

@@ -30,15 +30,24 @@ const InfoContenido = () => {
   const BotonCambiarEstado = () => {
     const { id } = contenido
     const mutacion = contenido.deleted ? restaurar : eliminar
-    const texto = contenido.deleted ? 'Restaurar' : 'Eliminar'
-    return <button onClick={() => mutacion({
-      variables: { id },
-      refetchQueries: [{
-        query,
-        variables: { id }
-      }],
-      awaitRefetchQueries: true
-    }).then(() => history.push(`/subseccion/${contenido.subseccion.id}`))}>{texto}</button>
+    const texto = contenido.deleted ? 'Restaurar' : 'Deshabilitar'
+    return (
+      <button
+        className="boton-eliminar"
+        onClick={() => (
+          mutacion({
+            variables: { id },
+            refetchQueries: [{
+              query,
+              variables: { id }
+            }],
+            awaitRefetchQueries: true
+          })).then(() => history.push(`/subseccion/${contenido.subseccion.id}`))
+        }
+      >
+        {texto}
+      </button>
+    )
   }
 
   return (

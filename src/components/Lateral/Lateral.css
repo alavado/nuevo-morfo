@@ -50,19 +50,23 @@ aside .contenedor-lista {
   min-height: calc(100vh - 110px);
 }
 
-aside .boton-agregar {
-  background-color: #D4001C;
+aside *[class^="boton"] {
   padding: 8px 12px;
-  color: white;
   border-radius: 12px;
   letter-spacing: 1px;
-  margin: 32px 24px;
   text-transform: uppercase;
   font-size: 11px;
   cursor: pointer;
+  text-align: center;
+}
+
+aside .boton-agregar {
+  background-color: #D4001C;
+  color: white;
+  margin: 32px 24px;
   transition: all .15s ease-in-out;
   animation: aparece-boton-agregar .25s ease-in-out both;
-  text-align: center;
+  border: none;
 }
 
 aside .boton-agregar:disabled {
@@ -75,6 +79,14 @@ aside .boton-agregar:disabled {
 aside .boton-agregar:hover:not(:disabled) {
   background-color: #F9423A;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, .15);
+}
+
+aside .boton-eliminar {
+  background-color: white;
+  color: gray;
+  margin-top: 48px;
+  border: 1px dashed #E0E0E0;
+  width: 100%;
 }
 
 aside .mensaje-lista-vacia {
