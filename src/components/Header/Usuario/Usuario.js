@@ -13,7 +13,7 @@ const Usuario = () => {
   return (
     <>
       {usuario !== null ?
-        <a href="#" className="nombre-usuario">
+        <a href="/usuario" className="nombre-usuario">
           <FontAwesomeIcon icon={iconoUsuario} size="lg" />
           <div>{usuario.nombre}</div>
         </a> :

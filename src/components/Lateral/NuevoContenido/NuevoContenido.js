@@ -8,6 +8,8 @@ import agregarContenidoMutation from '../../../mutations/agregarContenido'
 import agregarImagenMutation from '../../../mutations/agregarImagen'
 import query from '../../../queries/subseccion'
 import { useHistory, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido } from '../../../redux/actions'
 
 const NuevoContenido = () => {
 
@@ -18,6 +20,7 @@ const NuevoContenido = () => {
   const [agregarImagen] = useMutation(agregarImagenMutation)
   const { subseccion } = useParams()
   const history = useHistory()
+  const dispatch = useDispatch()
 
   useLateral()
 
@@ -29,17 +32,21 @@ const NuevoContenido = () => {
         contenido = data.agregarContenido.id
         let formData = new FormData()
         formData.append('imagen', imagen)
+        dispatch(comenzarSubidaNuevoContenido())
         return axios.post(
           `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
           formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
+          { headers: { 'Content-Type': 'multipart/form-data' }, onUploadProgress: p => console.log(100 * p.loaded / imagen.size) }
         )
       })
-      .then(({ data: archivo }) => agregarImagen({
-        variables: { contenido, archivo },
-        refetchQueries: [{ query, variables: { id: subseccion } }],
-        awaitRefetchQueries: true
-      }))
+      .then(({ data: archivo }) => {
+        dispatch(terminarSubidaNuevoContenido())
+        agregarImagen({
+          variables: { contenido, archivo },
+          refetchQueries: [{ query, variables: { id: subseccion } }],
+          awaitRefetchQueries: true
+        })
+      })
       .then(() => history.push(`/contenido/${contenido}`))
       .catch(err => console.error('Error subiendo imagen', err))
   }

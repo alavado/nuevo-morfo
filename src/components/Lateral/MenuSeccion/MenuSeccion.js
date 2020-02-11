@@ -31,6 +31,7 @@ const MenuSeccion = () => {
   useEffect(() => {
     dispatch(fijarSubseccion(null))
     dispatch(esconderFormularioNuevaSeccion())
+    return () => dispatch(esconderFormularioNuevaSeccion())
   }, [])
 
   useEffect(() => {

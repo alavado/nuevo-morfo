@@ -1,10 +1,14 @@
-import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR } from "../actionTypes"
+import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR, FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO } from "../actionTypes"
 
 const initialState = {
   contenido: null,
   indiceImagenActual: 0,
   marcadorDestacado: null,
-  popup: null
+  popup: null,
+  nuevoContenido: {
+    subiendo: false,
+    progresoSubida: 0
+  }
 }
 
 export default function(state = initialState, action) {
@@ -53,6 +57,24 @@ export default function(state = initialState, action) {
       return {
         ...state,
         popup: action.payload
+      }
+    }
+    case FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO: {
+      return {
+        ...state,
+        nuevoContenido: {
+          ...state.nuevoContenido,
+          progresoSubida: action.payload
+        }
+      }
+    }
+    case CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO: {
+      return {
+        ...state,
+        nuevoContenido: {
+          ...state.nuevoContenido,
+          subiendo: action.payload
+        }
       }
     }
     default:

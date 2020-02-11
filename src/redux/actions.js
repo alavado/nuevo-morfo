@@ -1,4 +1,4 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR, FIJAR_DESTINO, MOSTRAR_LOGIN, FIJAR_USUARIO, MOSTRAR_FORMULARIO_NUEVA_SUBSECCION, MOSTRAR_NAVEGACION } from "./actionTypes";
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR, FIJAR_DESTINO, MOSTRAR_LOGIN, FIJAR_USUARIO, MOSTRAR_FORMULARIO_NUEVA_SUBSECCION, MOSTRAR_NAVEGACION, FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO } from "./actionTypes";
 import { decode } from 'jsonwebtoken'
 
 export const fijarSeccion = datos => ({
@@ -87,4 +87,19 @@ export const mostrarNavegacion = () => ({
 export const esconderNavegacion = () => ({
   type: MOSTRAR_NAVEGACION,
   payload: false
+})
+
+export const comenzarSubidaNuevoContenido = () => ({
+  type: CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO,
+  payload: true
+})
+
+export const terminarSubidaNuevoContenido = () => ({
+  type: CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO,
+  payload: false
+})
+
+export const fijarProgresoSubidaNuevoContenido = progreso => ({
+  type: FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO,
+  payload: progreso
 })
