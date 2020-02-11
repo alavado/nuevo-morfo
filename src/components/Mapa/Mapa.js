@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import ReactMapGL, { FullscreenControl, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import { construirMapStyle, parametrosMapa } from '../../helpers/mapa'
 import { useSelector, useDispatch } from 'react-redux'
-import { fijarContenido, agregarMarcadorAImagenActual, fijarDestino } from '../../redux/actions'
+import { fijarContenido, agregarMarcadorAImagenActual, fijarDestino, mostrarPopup, mostrarEdicionMarcador } from '../../redux/actions'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../queries/contenido'
 import agregarMarcadorMutation from '../../mutations/agregarMarcador'
@@ -57,14 +57,16 @@ const Mapa = () => {
     agregarMarcador({
       variables: {
         imagen: contenido.imagenes[indiceImagenActual].id,
-        titulo: 'prueba',
+        titulo: 'Nueva estructura',
         lat,
         lng
       }
     })
     .then(({ data }) => {
-      const { id, titulo, lat, lng } = data.agregarMarcador
-      dispatch(agregarMarcadorAImagenActual({ id, titulo, lat, lng }))
+      const marcador = data.agregarMarcador
+      dispatch(agregarMarcadorAImagenActual(marcador))
+      dispatch(mostrarPopup(marcador))
+      dispatch(mostrarEdicionMarcador())
     })
   }
 
