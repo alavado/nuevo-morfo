@@ -8,6 +8,7 @@ import './MenuSubseccion.css'
 import Loader from '../../Loader'
 import _ from 'lodash'
 import useLateral from '../../../hooks/useLateral'
+import { compararPropiedadString } from '../../../helpers/utiles'
 
 const MenuSubseccion = () => {
 
@@ -27,7 +28,7 @@ const MenuSubseccion = () => {
       <p className="mensaje-lista-vacia">No hay contenidos</p> :
       <ul className="lista-items">
         {data.subseccion.contenidos
-          .sort((s1, s2) => s1.titulo > s2.titulo ? 1 : -1)
+          .sort(compararPropiedadString('titulo'))
           .map((contenido, i) => (
             <li
               key={contenido.id}

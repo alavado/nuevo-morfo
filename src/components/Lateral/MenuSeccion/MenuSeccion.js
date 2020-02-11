@@ -12,6 +12,7 @@ import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../../Loader'
 import useLateral from '../../../hooks/useLateral'
 import _ from 'lodash'
+import { compararPropiedadString } from '../../../helpers/utiles'
 
 const MenuSeccion = () => {
 
@@ -43,7 +44,7 @@ const MenuSeccion = () => {
   const ListaSubsecciones = useCallback(() => loading ? null :
     <ul className="lista-items">
       {data.seccion.subsecciones
-        .sort((s1, s2) => s1.nombre.toLocaleUpperCase() > s2.nombre.toLocaleUpperCase() ? 1 : -1)
+        .sort(compararPropiedadString('nombre'))
         .map((subseccion, i) => (
           <li
             key={subseccion.id}

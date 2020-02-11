@@ -5,6 +5,8 @@ export default gql`
     editarMarcador(id: $id, titulo: $titulo) {
       id
       titulo
+      lat
+      lng
     }
   }
 `

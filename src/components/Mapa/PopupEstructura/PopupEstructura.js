@@ -3,7 +3,7 @@ import { Popup } from 'react-map-gl'
 import './PopupEstructura.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { parametrosMapa } from '../../../helpers/mapa'
-import { esconderPopup, eliminarMarcadorDeImagenActual, fijarDestino, mostrarEdicionMarcador, esconderEdicionMarcador } from '../../../redux/actions'
+import { esconderPopup, eliminarMarcadorDeImagenActual, fijarDestino, mostrarEdicionMarcador, esconderEdicionMarcador, editarMarcador } from '../../../redux/actions'
 import { useMutation } from '@apollo/react-hooks'
 import eliminarMarcadorMutation from '../../../mutations/eliminarMarcador'
 import editarMarcadorMutation from '../../../mutations/editarMarcador'
@@ -46,10 +46,12 @@ const PopupEstructura = () => {
     dispatch(mostrarEdicionMarcador())
   }
 
-  const editarMarcador = e => {
+  const enviarEditarMarcador = e => {
     e.preventDefault()
     editarMarcadorMutate({ variables: { id, titulo } })
-      .then(() => {
+      .then(({ data }) => {
+        console.log(data.editarMarcador)
+        dispatch(editarMarcador(data.editarMarcador))
         dispatch(esconderEdicionMarcador())
       })
   }
@@ -73,7 +75,7 @@ const PopupEstructura = () => {
         onClick={() => dispatch(fijarDestino({ lat: Number(popup.lat), lng: Number(popup.lng) }))}
       >
         {editandoMarcador ?
-          <form onSubmit={editarMarcador} onClick={e => e.stopPropagation()}>
+          <form onSubmit={enviarEditarMarcador} onClick={e => e.stopPropagation()}>
             <input
               type="text"
               defaultValue={popup.titulo}
