@@ -8,11 +8,13 @@
   padding: 4px 2px 0px 2px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .contenido-popup .botones {
   display: grid;
   grid-template-columns: auto auto;
+  gap: 4px;
 }
 
 .contenido-popup button {
@@ -21,6 +23,16 @@
   background-color: transparent;
   padding: 0;
   margin: 0;
+}
+
+.contenido-popup form {
+  display: flex;
+  flex-direction: column;
+  max-width: 120px;
+}
+
+.contenido-popup form input {
+  font-size: 12px;
 }
 
 @keyframes aparece-popup {

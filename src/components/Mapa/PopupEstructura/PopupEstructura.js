@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Popup } from 'react-map-gl'
 import './PopupEstructura.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { parametrosMapa } from '../../../helpers/mapa'
 import { esconderPopup, eliminarMarcadorDeImagenActual, fijarDestino, mostrarEdicionMarcador, esconderEdicionMarcador } from '../../../redux/actions'
 import { useMutation } from '@apollo/react-hooks'
-import mutation from '../../../mutations/eliminarMarcador'
+import eliminarMarcadorMutation from '../../../mutations/eliminarMarcador'
+import editarMarcadorMutation from '../../../mutations/editarMarcador'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as iconoEditar } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +17,9 @@ const PopupEstructura = () => {
 
   const { popup, editandoMarcador } = useSelector(state => state.contenido)
   const dispatch = useDispatch()
-  const [eliminarMarcadorMutation] = useMutation(mutation)
+  const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
+  const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
+  const [titulo, setTitulo] = useState('')
 
   useEffect(() => () => {
     dispatch(esconderPopup())
@@ -31,16 +34,24 @@ const PopupEstructura = () => {
     return null
   }
 
+  const { id } = popup
+
   const eliminarMarcador = () => {
-    const { id } = popup
     dispatch(eliminarMarcadorDeImagenActual(id))
     dispatch(esconderPopup())
-    eliminarMarcadorMutation({ variables: { id } })
+    eliminarMarcadorMutate({ variables: { id } })
   }
 
-  const editarMarcador = () => {
-    const { id } = popup
+  const mostrarFormularioEditarMarcador = () => {
     dispatch(mostrarEdicionMarcador())
+  }
+
+  const editarMarcador = e => {
+    e.preventDefault()
+    editarMarcadorMutate({ variables: { id, titulo } })
+      .then(() => {
+        dispatch(esconderEdicionMarcador())
+      })
   }
 
   return (
@@ -62,14 +73,20 @@ const PopupEstructura = () => {
         onClick={() => dispatch(fijarDestino({ lat: Number(popup.lat), lng: Number(popup.lng) }))}
       >
         {editandoMarcador ?
-          <form>
-            <input type="text" />
+          <form onSubmit={editarMarcador} onClick={e => e.stopPropagation()}>
+            <input
+              type="text"
+              defaultValue={popup.titulo}
+              autoFocus
+              onFocus={e => e.target.select()}
+              onChange={e => setTitulo(e.target.value)}
+            />
             <input type="submit" value="Aceptar" />
           </form> :
           <>
             <p>{popup.titulo}</p>
             <div className="botones">
-              <button title="Editar marcador" onClick={editarMarcador}>
+              <button title="Editar marcador" onClick={mostrarFormularioEditarMarcador}>
                 <FontAwesomeIcon icon={iconoEditar} size="xs" />
               </button>
               <button title="Eliminar marcador" onClick={eliminarMarcador}>
