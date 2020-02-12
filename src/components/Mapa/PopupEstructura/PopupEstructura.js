@@ -19,10 +19,12 @@ const PopupEstructura = () => {
   const dispatch = useDispatch()
   const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
 
-  useEffect(() => () => {
+  const esconderEdicion = () => {
     dispatch(esconderPopup())
     dispatch(esconderEdicionMarcador())
-  }, [])
+  }
+
+  useEffect(() => esconderEdicion, [])
 
   if (!popup) {
     return null
@@ -48,10 +50,7 @@ const PopupEstructura = () => {
       longitude={Number(popup.lng)}
       latitude={Number(popup.lat)}
       closeOnClick={false}
-      onClose={() => {
-        dispatch(esconderPopup())
-        dispatch(esconderEdicionMarcador())
-      }}
+      onClose={esconderEdicion}
       className="popup-estructura"
     >
       <div

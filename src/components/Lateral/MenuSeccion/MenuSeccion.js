@@ -1,18 +1,15 @@
-import React, { useEffect, useCallback, useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import './MenuSeccion.css'
+import React, { useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../../queries/seccion'
 import { useDispatch, useSelector } from 'react-redux'
-import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion, agregarSubseccion, mostrarNavegacion } from '../../../redux/actions'
+import { fijarSeccion, fijarSubseccion, mostrarFormularioNuevaSeccion, esconderFormularioNuevaSeccion } from '../../../redux/actions'
 import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
-import eliminarSubseccionMutation from '../../../mutations/eliminarSubseccion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import Loader from '../../Loader'
 import useLateral from '../../../hooks/useLateral'
+import ListaSubsecciones from './ListaSubsecciones'
 import _ from 'lodash'
-import { compararPropiedadString } from '../../../helpers/utiles'
+import './MenuSeccion.css'
 
 const MenuSeccion = () => {
 
@@ -24,7 +21,6 @@ const MenuSeccion = () => {
     onCompleted: data => dispatch(fijarSeccion(data.seccion))
   })
   const [mutation] = useMutation(agregarSubseccionMutation)
-  const [eliminarMutation] = useMutation(eliminarSubseccionMutation)
   const tituloNuevaSubseccion = useRef()
 
   useLateral()
@@ -40,41 +36,6 @@ const MenuSeccion = () => {
       tituloNuevaSubseccion.current.focus()
     }
   }, [mostrandoFormulario])
-
-  const ListaSubsecciones = useCallback(() => loading ? null :
-    <ul className="lista-items">
-      {data.seccion.subsecciones
-        .sort(compararPropiedadString('nombre'))
-        .map((subseccion, i) => (
-          <li
-            key={subseccion.id}
-            style={{ animationDelay: `${i * .05}s` }}
-          >
-            <Link
-              to={`/subseccion/${subseccion.id}`} key={subseccion.id}
-              onClick={e => dispatch(fijarSubseccion(subseccion))}
-            >
-              {subseccion.nombre}
-            </Link>
-            {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
-              <button
-                className="boton-eliminar-subseccion"
-                onClick={() => eliminar(subseccion.id)}
-                title={`Eliminar subsección "${subseccion.nombre}"`}
-              >
-                <FontAwesomeIcon icon={iconoEliminar} />
-              </button>
-            }
-          </li>
-      ))}
-    </ul>, [data, dispatch, loading])
-
-  const eliminar = idSubseccion => {
-    eliminarMutation({
-      variables: { id: idSubseccion },
-      refetchQueries: [{ query, variables: { id } }]
-    })
-  }
 
   const agregar = e => {
     e.preventDefault()
@@ -94,7 +55,7 @@ const MenuSeccion = () => {
   
   return (
     <div className="contenedor-lista">
-      <ListaSubsecciones />
+      <ListaSubsecciones data={data} />
       {mostrandoFormulario &&
         <form className="formulario-agregar-subseccion" onSubmit={agregar}>
           <input ref={tituloNuevaSubseccion} type="text" />

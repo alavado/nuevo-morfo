@@ -29,7 +29,10 @@ const FormularioEdicionMarcador = () => {
   }
 
   return (
-    <form onSubmit={enviarEditarMarcador} onClick={e => e.stopPropagation()}>
+    <form
+      onSubmit={enviarEditarMarcador}
+      onClick={e => e.stopPropagation()}
+    >
       <input
         type="text"
         autoFocus

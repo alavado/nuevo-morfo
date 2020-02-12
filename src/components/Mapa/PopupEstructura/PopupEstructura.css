@@ -31,30 +31,6 @@
   color: black;
 }
 
-.contenido-popup form {
-  display: flex;
-  flex-direction: column;
-  max-width: 120px;
-}
-
-.contenido-popup form input {
-  font-size: 12px;
-  text-align: center;
-}
-
-.contenido-popup form input[type="submit"] {
-  background-color: #D4001C;
-  padding: 6px 0;
-  color: white;
-  border-radius: 12px;
-  letter-spacing: 1px;
-  margin-top: 4px;
-  text-transform: uppercase;
-  font-size: 10px;
-  cursor: pointer;
-  text-align: center;
-}
-
 @keyframes aparece-popup {
   0% {
     opacity: 0;
