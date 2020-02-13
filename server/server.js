@@ -13,13 +13,10 @@ const { crearThumbnail, crearPiramide } = require('./tiles')
 const cors = require('cors')
 app.use(cors())
 
-mongoose.connect(require('./secret').mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-mongoose.connection
-  .once('open', () => console.log('Conectado a MongoDB Atlas.'))
-  .on('error', error => console.log('Error conectando a MongoDB Atlas:', error))
+const { mongoURI } = require('./secret')
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado a MongoDB Atlas'))
+  .catch(err => console.error('Error conectando a MongoDB Atlas', err))
 
 app.get('/foto/:id/:z/:x/:y', (req, res) => {
   const { id, x, y, z } = req.params
