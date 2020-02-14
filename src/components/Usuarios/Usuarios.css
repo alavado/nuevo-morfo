@@ -1,19 +1,52 @@
 .contenedor-tabla-grande {
   padding: 24px 48px;
-  background: repeating-linear-gradient(
-    45deg,
-    #F5F5F5,
-    #F5F5F5 10px,
-    #EEEEEE 10px,
-    #EEEEEE 20px
-  );
   height: calc(100vh - 64px);
   overflow-y: scroll;
+}
+
+.contenedor-tabla-grande .encabezado-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.contenedor-tabla-grande .encabezado-tabla .busqueda input {
+  border: 1px solid #444444;
+  height: 28px;
+  border-radius: 14px;
+  padding: 0 32px;
+  font-size: 12px;
+  min-width: 160px;
+}
+
+.contenedor-tabla-grande .busqueda svg {
+  position: absolute;
+  color: #444444;
+  margin-top: 7px;
+}
+
+.contenedor-tabla-grande .busqueda .icono-buscar {
+  margin-left: 12px;
+}
+
+.contenedor-tabla-grande .busqueda .icono-limpiar-busqueda {
+  margin-left: -24px;
+  cursor: pointer;
+  animation: aparece-limpieza-busqueda .1s ease-in-out both;
+}
+
+.contenedor-tabla-grande h1 {
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 .contenedor-tabla-grande table {
   background-color: white;
   width: 100%;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
 }
 
 .contenedor-tabla-grande table th, .contenedor-tabla-grande table td {
@@ -30,4 +63,13 @@
 .contenedor-tabla-grande table thead {
   margin-bottom: 14px;
   border-bottom: 2px solid #EEEEEE;
+}
+
+@keyframes aparece-limpieza-busqueda {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
