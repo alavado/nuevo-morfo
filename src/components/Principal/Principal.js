@@ -14,8 +14,8 @@ const Principal = () => {
         <Route path="/contenido/:id" component={Mapa} />
         <Route path="/subseccion/:id" component={Buscador} />
         <Route path="/seccion/:id" component={Buscador} />
-        <Route path="/" component={Buscador} />
         <Route path="/usuarios" component={Usuarios} />
+        <Route path="/" component={Buscador} />
       </Switch>
     </section>
   )

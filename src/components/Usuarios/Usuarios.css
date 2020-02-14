@@ -1,0 +1,33 @@
+.contenedor-tabla-grande {
+  padding: 24px 48px;
+  background: repeating-linear-gradient(
+    45deg,
+    #F5F5F5,
+    #F5F5F5 10px,
+    #EEEEEE 10px,
+    #EEEEEE 20px
+  );
+  height: calc(100vh - 64px);
+  overflow-y: scroll;
+}
+
+.contenedor-tabla-grande table {
+  background-color: white;
+  width: 100%;
+}
+
+.contenedor-tabla-grande table th, .contenedor-tabla-grande table td {
+  font-size: 12px;
+  padding: 24px;
+}
+
+.contenedor-tabla-grande table th {
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: bold;
+}
+
+.contenedor-tabla-grande table thead {
+  margin-bottom: 14px;
+  border-bottom: 2px solid #EEEEEE;
+}
