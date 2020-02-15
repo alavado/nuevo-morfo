@@ -26,6 +26,7 @@ const Usuarios = () => {
       const nuevos = data.usuarios
         .filter(({ id }) => nuevosUsuarios.includes(id))
         .sort(compararPropiedadString('nombre'))
+        .map(u => ({ ...u, nuevo: true }))
       const antiguos = data.usuarios
         .filter(({ id }) => !nuevosUsuarios.includes(id))
         .sort(compararPropiedadString('nombre'))
@@ -85,7 +86,7 @@ const Usuarios = () => {
           <tbody>
             {ordenarUsuarios().map(u => (
               <tr key={u.id}>
-                <td>{u.nombre}</td>
+                <td>{u.nombre} { u.nuevo && <span className="tag-usuario-nuevo">Nuevo</span> }</td>
                 <td>{u.email}</td>
                 <td></td>
               </tr>

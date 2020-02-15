@@ -35,19 +35,17 @@ div[class^="seccion-fondo-oscuro"] {
 }
 
 .contenedor-tabla-grande .busqueda svg {
-  position: absolute;
   color: #444444;
-  margin-top: 7px;
 }
 
 .contenedor-tabla-grande .busqueda .icono-buscar {
-  margin-left: 12px;
+  transform: translateX(24px);
 }
 
 .contenedor-tabla-grande .busqueda .icono-limpiar-busqueda {
-  margin-left: -24px;
   cursor: pointer;
   animation: aparece-limpieza-busqueda .1s ease-in-out both;
+  transform: translateX(-24px);
 }
 
 .contenedor-tabla-grande .titulo {
@@ -89,6 +87,17 @@ div[class^="seccion-fondo-oscuro"] {
 
 .contenedor-tabla-grande tbody tr:not(:last-child) {
   border-bottom: 1px solid #EEEEEE;
+}
+
+.tag-usuario-nuevo {
+  font-size: 8px;
+  background-color: #30B700;
+  color: white;
+  padding: 2px 5px;
+  margin-left: 4px;
+  border-radius: 6px;
+  height: 12px;
+  pointer-events: none;
 }
 
 @keyframes aparece-limpieza-busqueda {
