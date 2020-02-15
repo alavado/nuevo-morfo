@@ -84,11 +84,6 @@ div[class^="seccion-fondo-oscuro"] {
   border-bottom: 2px solid #EEEEEE;
 }
 
-#formulario-nuevo-usuario {
-  padding-bottom: 16px;
-  min-width: 240px;
-}
-
 @keyframes aparece-limpieza-busqueda {
   0% {
     opacity: 0;
