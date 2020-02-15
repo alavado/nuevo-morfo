@@ -5,10 +5,12 @@ const SeccionType = require('./seccion_type')
 const SubseccionType = require('./subseccion_type')
 const ContenidoType = require('./contenido_type')
 const UsuarioType = require('./usuario_type')
+const GrupoType = require('./grupo_type')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
 const Contenido = mongoose.model('Contenido')
 const Usuario = mongoose.model('Usuario')
+const Grupo = mongoose.model('Grupo')
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -44,6 +46,12 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(UsuarioType),
       resolve() {
         return Usuario.find({})
+      }
+    },
+    grupos: {
+      type: new GraphQLList(GrupoType),
+      resolve() {
+        return Grupo.find({})
       }
     }
   }

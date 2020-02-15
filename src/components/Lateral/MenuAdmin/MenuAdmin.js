@@ -14,6 +14,11 @@ const MenuAdmin = () => {
           Usuarios
         </li>
       </Link>
+      <Link to="/grupos">
+        <li>
+          Grupos
+        </li>
+      </Link>
     </ul>
   )
 }

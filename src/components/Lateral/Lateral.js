@@ -19,6 +19,7 @@ const Lateral = () => {
       <Switch>
         <Route path="/admin" component={MenuAdmin} />
         <Route path="/usuarios" component={MenuAdmin} />
+        <Route path="/grupos" component={MenuAdmin} />
         <Route path="/seccion/:id" component={MenuSeccion} />
         <Route path="/subseccion/:id" component={MenuSubseccion} />
         <Route path="/contenido/nuevo/:subseccion" exact component={NuevoContenido} />

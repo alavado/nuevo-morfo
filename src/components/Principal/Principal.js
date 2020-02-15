@@ -4,6 +4,7 @@ import Mapa from '../Mapa'
 import { Switch, Route } from 'react-router-dom'
 import Buscador from '../Buscador'
 import Usuarios from '../Usuarios'
+import Grupos from '../Grupos'
 import Relleno from '../Relleno'
 
 const Principal = () => {
@@ -15,6 +16,7 @@ const Principal = () => {
         <Route path="/subseccion/:id" component={Buscador} />
         <Route path="/seccion/:id" component={Buscador} />
         <Route path="/usuarios" component={Usuarios} />
+        <Route path="/grupos" component={Grupos} />
         <Route path="/" component={Buscador} />
       </Switch>
     </section>
