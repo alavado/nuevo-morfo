@@ -23,6 +23,7 @@ div[class^="seccion-fondo-oscuro"] {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  height: 28px;
 }
 
 .contenedor-tabla-grande .encabezado-tabla .busqueda input {

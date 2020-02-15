@@ -7,6 +7,10 @@ const grupoSchema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+  _ts: {
+    type : Date,
+    default: Date.now
   }
 })
 

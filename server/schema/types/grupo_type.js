@@ -9,6 +9,7 @@ const GrupoType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     nombre: { type: GraphQLString },
+    _ts: { type: GraphQLString }
     // usuarios: {
     //   type: new GraphQLList(SubseccionType),
     //   resolve(parentValue) {
