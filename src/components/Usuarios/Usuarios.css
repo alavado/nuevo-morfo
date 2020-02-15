@@ -68,20 +68,27 @@ div[class^="seccion-fondo-oscuro"] {
   box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
 }
 
-.contenedor-tabla-grande table th, .contenedor-tabla-grande table td {
-  font-size: 12px;
-  padding: 24px;
+.contenedor-tabla-grande thead {
+  margin-bottom: 14px;
+  border-bottom: 2px solid #EEEEEE;
 }
 
-.contenedor-tabla-grande table th {
+.contenedor-tabla-grande th {
+  letter-spacing: 1px;
+  padding: 24px;
+  font-size: 12px;
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;
 }
+ 
+.contenedor-tabla-grande td {
+  font-size: 12px;
+  padding: 18px 24px;
+}
 
-.contenedor-tabla-grande table thead {
-  margin-bottom: 14px;
-  border-bottom: 2px solid #EEEEEE;
+.contenedor-tabla-grande tbody tr:not(:last-child) {
+  border-bottom: 1px solid #EEEEEE;
 }
 
 @keyframes aparece-limpieza-busqueda {

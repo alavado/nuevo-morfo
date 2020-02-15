@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import './FormularioNuevoUsuario.css'
 import { useDispatch } from 'react-redux'
-import { esconderFormularioNuevoUsuario } from '../../../redux/actions'
+import { esconderFormularioNuevoUsuario, agregarNuevoUsuario } from '../../../redux/actions'
 import mutation from '../../../mutations/agregarUsuario'
 import query from '../../../queries/usuarios'
 import { useMutation } from '@apollo/react-hooks'
@@ -21,18 +21,24 @@ const FormularioNuevoUsuario = () => {
     e.preventDefault()
     if (variables.password !== confirmacionPassword.current.value) {
       console.log("los passwordos no coinciden")
+      return
     }
-    else {
-      agregarUsuarioMutate({
-        variables,
-        refetchQueries: [{ query }]
-      })
-      .then(() => dispatch(esconderFormularioNuevoUsuario()))
-    }
+    agregarUsuarioMutate({
+      variables,
+      refetchQueries: [{ query }]
+    })
+    .then(({ data }) => {
+      const { id } = data.agregarUsuario
+      dispatch(agregarNuevoUsuario(id))
+      dispatch(esconderFormularioNuevoUsuario())
+    })
   }
 
   return (
-    <div className="seccion-fondo-oscuro" onClick={() => dispatch(esconderFormularioNuevoUsuario())}>
+    <div
+      className="seccion-fondo-oscuro"
+      onClick={() => dispatch(esconderFormularioNuevoUsuario())}
+    >
       <div
         className="contenedor-formulario"
         id="formulario-nuevo-usuario"

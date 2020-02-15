@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import query from '../../queries/usuarios'
 import './Usuarios.css'
 import { useQuery } from '@apollo/react-hooks'
@@ -11,13 +11,28 @@ import _ from 'lodash'
 import FormularioNuevoUsuario from './FormularioNuevoUsuario'
 import { useDispatch, useSelector } from 'react-redux'
 import { mostrarFormularioNuevoUsuario } from '../../redux/actions'
+import { compararPropiedadString } from '../../helpers/utiles'
 
 const Usuarios = () => {
 
   const [terminoBusqueda, setTerminoBusqueda] = useState('')
   const { mostrandoDialogoNuevoUsuario } = useSelector(state => state.usuarios)
+  const { nuevosUsuarios } = useSelector(state => state.usuarios)
   const dispatch = useDispatch()
   const { loading, error, data } = useQuery(query)
+
+  const ordenarUsuarios = useCallback(
+    () => {
+      const nuevos = data.usuarios
+        .filter(({ id }) => nuevosUsuarios.includes(id))
+        .sort(compararPropiedadString('nombre'))
+      const antiguos = data.usuarios
+        .filter(({ id }) => !nuevosUsuarios.includes(id))
+        .sort(compararPropiedadString('nombre'))
+      return [...nuevos, ...antiguos]
+    },
+    [nuevosUsuarios, data],
+  )
 
   if (loading) {
     return <MiLoader />
@@ -68,7 +83,7 @@ const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {data.usuarios.map(u => (
+            {ordenarUsuarios().map(u => (
               <tr key={u.id}>
                 <td>{u.nombre}</td>
                 <td>{u.email}</td>

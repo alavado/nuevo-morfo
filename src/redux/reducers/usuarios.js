@@ -1,7 +1,8 @@
-import { MOSTRAR_FORMULARIO_NUEVO_USUARIO } from "../actionTypes"
+import { MOSTRAR_FORMULARIO_NUEVO_USUARIO, AGREGAR_USUARIO_NUEVO } from "../actionTypes"
 
 const initialState = {
-  mostrandoDialogoNuevoUsuario: false
+  mostrandoDialogoNuevoUsuario: false,
+  nuevosUsuarios: []
 }
 
 export default function(state = initialState, action) {
@@ -10,6 +11,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         mostrandoDialogoNuevoUsuario: action.payload
+      }
+    }
+    case AGREGAR_USUARIO_NUEVO: {
+      return {
+        ...state,
+        nuevosUsuarios: [
+          action.payload,
+          ...state.nuevosUsuarios
+        ]
       }
     }
     default:
