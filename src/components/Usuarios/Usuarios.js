@@ -30,10 +30,21 @@ const Usuarios = () => {
       const antiguos = data.usuarios
         .filter(({ id }) => !nuevosUsuarios.includes(id))
         .sort(compararPropiedadString('nombre'))
-      return [...nuevos, ...antiguos].filter(({ nombre }) => busqueda(terminoBusqueda, nombre))
+      return [...nuevos, ...antiguos].filter(({ nombre }) => busqueda(terminoBusqueda, nombre) >= 0)
     },
     [nuevosUsuarios, data, terminoBusqueda],
   )
+
+  const destacarBusqueda = palabra => {
+    const indiceBusqueda = busqueda(terminoBusqueda, palabra)
+    if (_.isEmpty(terminoBusqueda) || indiceBusqueda < 0) {
+      return palabra
+    }
+    const antes = palabra.substring(0, indiceBusqueda)
+    const coincidencia = palabra.substring(indiceBusqueda, indiceBusqueda + terminoBusqueda.length)
+    const despues = palabra.substring(indiceBusqueda + terminoBusqueda.length)
+    return <>{antes}<span className="busqueda-destacada">{coincidencia}</span>{despues}</>
+  }
 
   if (loading) {
     return <MiLoader />
@@ -84,9 +95,12 @@ const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {ordenarUsuarios().map(u => (
+            {ordenarUsuarios().map((u, i) => (
               <tr key={u.id}>
-                <td>{u.nombre} { u.nuevo && <span className="tag-usuario-nuevo">Nuevo</span> }</td>
+                <td>
+                  {destacarBusqueda(u.nombre)}
+                  {u.nuevo && <span className="tag-usuario-nuevo">Nuevo</span>}
+                </td>
                 <td>{u.email}</td>
                 <td></td>
               </tr>

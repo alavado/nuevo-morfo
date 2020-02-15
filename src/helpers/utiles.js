@@ -5,5 +5,5 @@ export const compararPropiedadString = prop => {
 }
 
 export const busqueda = (termino, frase) => {
-  return localeIndexOf(frase, termino, 'es', { sensitivity: 'base' }) >= 0
+  return localeIndexOf(frase, termino, 'es', { sensitivity: 'base' })
 }
