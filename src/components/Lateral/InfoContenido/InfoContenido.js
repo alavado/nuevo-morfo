@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import ListaEstructuras from './ListaEstructuras/ListaEstructuras'
 import Miniaturas from './Miniaturas'
 import { useMutation } from '@apollo/react-hooks'
-import query from '../../queries/contenido'
-import eliminarMutation from '../../mutations/eliminarContenido'
-import restaurarMutation from '../../mutations/restaurarContenido'
+import query from '../../../queries/contenido'
+import eliminarMutation from '../../../mutations/eliminarContenido'
+import restaurarMutation from '../../../mutations/restaurarContenido'
 import { useHistory } from 'react-router-dom'
-import Loader from '../Loader'
-import { mostrarNavegacion } from '../../redux/actions'
+import Loader from '../../Loader'
+import { mostrarNavegacion } from '../../../redux/actions'
 
 const InfoContenido = () => {
 

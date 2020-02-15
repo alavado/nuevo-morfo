@@ -7,6 +7,10 @@ const colores = [
 ]
 
 export const obtenerColorGrupo = (grupos, i) => {
-  const grupo = grupos[i]
-  return colores[[...grupos].sort(compararPropiedadString('_ts')).findIndex(({ id }) => id === grupo.id)]
+  const { id: idGrupo } = grupos[i]
+  const indice = [...grupos].sort(compararPropiedadString('_ts')).findIndex(({ id }) => id === idGrupo)
+  if (indice >= colores.length) {
+    return '#232323'
+  }
+  return colores[indice]
 }

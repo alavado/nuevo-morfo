@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup, fijarDestino } from '../../../redux/actions'
+import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup, fijarDestino } from '../../../../redux/actions'
 import './ListaEstructuras.css'
 import _ from 'lodash'
-import { compararPropiedadString } from '../../../helpers/utiles'
+import { compararPropiedadString } from '../../../../helpers/utiles'
 
 const ListaEstructuras = () => {
 

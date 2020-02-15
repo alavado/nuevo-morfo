@@ -21,8 +21,6 @@ const Grupos = () => {
     return <MiLoader />
   }
 
-  console.log(ordenarGrupos())
-
   return (
     <div className="contenedor-tabla-grande">
       <div className="encabezado-tabla">
