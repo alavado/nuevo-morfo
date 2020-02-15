@@ -11,7 +11,7 @@ import _ from 'lodash'
 import FormularioNuevoUsuario from './FormularioNuevoUsuario'
 import { useDispatch, useSelector } from 'react-redux'
 import { mostrarFormularioNuevoUsuario } from '../../redux/actions'
-import { compararPropiedadString } from '../../helpers/utiles'
+import { compararPropiedadString, busqueda } from '../../helpers/utiles'
 
 const Usuarios = () => {
 
@@ -30,9 +30,9 @@ const Usuarios = () => {
       const antiguos = data.usuarios
         .filter(({ id }) => !nuevosUsuarios.includes(id))
         .sort(compararPropiedadString('nombre'))
-      return [...nuevos, ...antiguos]
+      return [...nuevos, ...antiguos].filter(({ nombre }) => busqueda(terminoBusqueda, nombre))
     },
-    [nuevosUsuarios, data],
+    [nuevosUsuarios, data, terminoBusqueda],
   )
 
   if (loading) {

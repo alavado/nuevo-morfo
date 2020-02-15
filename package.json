@@ -21,6 +21,7 @@
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "jsonwebtoken": "^8.5.1",
+    "locale-index-of": "^1.0.7",
     "mongoose": "^5.8.9",
     "mongoose-delete": "^0.5.1",
     "mongoose-unique-validator": "^2.0.3",

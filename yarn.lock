@@ -6722,6 +6722,11 @@ loader-utils@1.2.3, loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.
     emojis-list "^2.0.0"
     json5 "^1.0.1"
 
+locale-index-of@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/locale-index-of/-/locale-index-of-1.0.7.tgz#efb6d637a1630a66f35989e8101732912445038e"
+  integrity sha512-p/RqQ3tbLB3Lyt4wDXf6fi+0YkCiO5qmAZhIyamy/jsQA19VD3+Af22MzWQoT8pgn7wfqlABdlFyatu5AYhwcQ==
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
