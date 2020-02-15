@@ -1,7 +1,21 @@
+div[class^="seccion-fondo-oscuro"] {
+  width: calc(100vw - 240px);
+  height: calc(100vh - 65px);
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .25s ease-in-out;
+  filter: none;
+}
+
 .contenedor-tabla-grande {
   padding: 24px 48px;
   height: calc(100vh - 64px);
-  overflow-y: scroll;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .contenedor-tabla-grande .encabezado-tabla {
@@ -36,11 +50,16 @@
   animation: aparece-limpieza-busqueda .1s ease-in-out both;
 }
 
+.contenedor-tabla-grande .titulo {
+  display: flex;
+}
+
 .contenedor-tabla-grande h1 {
   font-weight: bold;
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 4px;
+  margin-right: 8px;
 }
 
 .contenedor-tabla-grande table {
@@ -63,6 +82,11 @@
 .contenedor-tabla-grande table thead {
   margin-bottom: 14px;
   border-bottom: 2px solid #EEEEEE;
+}
+
+#formulario-nuevo-usuario {
+  padding-bottom: 16px;
+  min-width: 240px;
 }
 
 @keyframes aparece-limpieza-busqueda {
