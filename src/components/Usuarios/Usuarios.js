@@ -9,16 +9,15 @@ import { faTimes as iconoLimpiarBusqueda } from '@fortawesome/free-solid-svg-ico
 import { faUserPlus as iconoAgregar } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
 import FormularioNuevoUsuario from './FormularioNuevoUsuario'
+import { useDispatch, useSelector } from 'react-redux'
+import { mostrarFormularioNuevoUsuario } from '../../redux/actions'
 
 const Usuarios = () => {
 
   const [terminoBusqueda, setTerminoBusqueda] = useState('')
-  const [mostrandoDialogo, setMostrandoDialogo] = useState(false)
+  const { mostrandoDialogoNuevoUsuario } = useSelector(state => state.usuarios)
+  const dispatch = useDispatch()
   const { loading, error, data } = useQuery(query)
-
-  const registrarNuevoUsuario = e => {
-    e.preventDefault()
-  }
 
   if (loading) {
     return <MiLoader />
@@ -26,7 +25,7 @@ const Usuarios = () => {
 
   return (
     <>
-      {mostrandoDialogo &&
+      {mostrandoDialogoNuevoUsuario &&
         <FormularioNuevoUsuario />
       }
       <div className="contenedor-tabla-grande">
@@ -37,7 +36,7 @@ const Usuarios = () => {
               icon={iconoAgregar}
               size="sm"
               title="Agregar usuario"
-              onClick={() => setMostrandoDialogo(true)}
+              onClick={() => dispatch(mostrarFormularioNuevoUsuario())}
             />
           </div>
           <div className="busqueda">

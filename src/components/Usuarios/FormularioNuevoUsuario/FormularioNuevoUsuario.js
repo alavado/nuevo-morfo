@@ -1,9 +1,18 @@
 import React from 'react'
 import './FormularioNuevoUsuario.css'
+import { useDispatch } from 'react-redux'
+import { esconderFormularioNuevoUsuario } from '../../../redux/actions'
 
 const FormularioNuevoUsuario = () => {
+
+  const dispatch = useDispatch()
+
+  const registrarNuevoUsuario = e => {
+    e.preventDefault()
+  }
+
   return (
-    <div className="seccion-fondo-oscuro" onClick={() => setMostrandoDialogo(false)}>
+    <div className="seccion-fondo-oscuro" onClick={() => dispatch(esconderFormularioNuevoUsuario())}>
       <div
         className="contenedor-formulario"
         id="formulario-nuevo-usuario"
