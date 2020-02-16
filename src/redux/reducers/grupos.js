@@ -1,7 +1,7 @@
 import { MOSTRAR_FORMULARIO_NUEVO_GRUPO } from "../actionTypes"
 
 const initialState = {
-  mostrandoDialogoNuevoGrupo: false
+  mostrandoFormularioNuevoGrupo: false
 }
 
 export default function(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
     case MOSTRAR_FORMULARIO_NUEVO_GRUPO: {
       return {
         ...state,
-        mostrandoDialogoNuevoUsuario: action.payload
+        mostrandoFormularioNuevoGrupo: action.payload
       }
     }
     default:

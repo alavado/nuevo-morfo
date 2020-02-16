@@ -47,7 +47,7 @@ const FormularioNuevoUsuario = () => {
         <h3>Nuevo usuario</h3>
         <form onSubmit={registrarNuevoUsuario} autoComplete="new-password">
           <div>
-            <label htmlFor="nuevo-usuario-email">Nombre</label>
+            <label htmlFor="nuevo-usuario-nombre">Nombre</label>
             <input
               id="nuevo-usuario-nombre"
               type="text"
