@@ -1,6 +1,7 @@
 import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR,
   FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO, EDITAR_MARCADOR, EDITANDO_MARCADOR,
-  MOSTRAR_FORMULARIO_NUEVA_IMAGEN } from "../actionTypes"
+  MOSTRAR_FORMULARIO_NUEVA_IMAGEN, 
+  SELECCIONAR_IMAGEN_DE_CONTENIDO} from "../actionTypes"
 
 const initialState = {
   contenido: null,
@@ -105,6 +106,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         mostrandoFormularioNuevaImagen: action.payload
+      }
+    }
+    case SELECCIONAR_IMAGEN_DE_CONTENIDO: {
+      return {
+        ...state,
+        indiceImagenActual: action.payload
       }
     }
     default:

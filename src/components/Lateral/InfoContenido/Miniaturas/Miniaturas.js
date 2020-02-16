@@ -3,7 +3,7 @@ import './Miniaturas.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { mostrarFormularioNuevaImagen } from '../../../../redux/actions'
+import { mostrarFormularioNuevaImagen, mostrarImagenDeContenido } from '../../../../redux/actions'
 
 const Miniaturas = () => {
 
@@ -17,6 +17,7 @@ const Miniaturas = () => {
           key={`miniatura-${i}`}
           src={`http://localhost:1027/thumbnail/${archivo}`}
           alt="imagen contenido"
+          onClick={() => dispatch(mostrarImagenDeContenido(i))}
         />
       ))}
       <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>
