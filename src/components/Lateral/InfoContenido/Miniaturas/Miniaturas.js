@@ -1,12 +1,14 @@
 import React from 'react'
 import './Miniaturas.css'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { mostrarFormularioNuevaImagen } from '../../../../redux/actions'
 
 const Miniaturas = () => {
 
   const { contenido } = useSelector(state => state.contenido)
+  const dispatch = useDispatch()
 
   return (
     <div className="miniaturas">
@@ -17,7 +19,7 @@ const Miniaturas = () => {
           alt="imagen contenido"
         />
       ))}
-      <button title="Agregar imagen">
+      <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
     </div>

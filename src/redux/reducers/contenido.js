@@ -1,5 +1,6 @@
 import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR,
-  FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO, EDITAR_MARCADOR, EDITANDO_MARCADOR } from "../actionTypes"
+  FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO, EDITAR_MARCADOR, EDITANDO_MARCADOR,
+  MOSTRAR_FORMULARIO_NUEVA_IMAGEN } from "../actionTypes"
 
 const initialState = {
   contenido: null,
@@ -10,7 +11,8 @@ const initialState = {
   nuevoContenido: {
     subiendo: false,
     progreso: 0
-  }
+  },
+  mostrandoFormularioNuevaImagen: false
 }
 
 export default function(state = initialState, action) {
@@ -86,8 +88,6 @@ export default function(state = initialState, action) {
     }
     case EDITAR_MARCADOR: {
       const marcador = action.payload
-      console.log({state})
-      console.log({marcador})
       let imagen = state.contenido.imagenes[state.indiceImagenActual]
       imagen.marcadores = [...imagen.marcadores.filter(({ id }) => id !== marcador.id), marcador]
       let imagenes = [...state.contenido.imagenes]
@@ -99,6 +99,12 @@ export default function(state = initialState, action) {
           imagenes
         },
         popup: marcador
+      }
+    }
+    case MOSTRAR_FORMULARIO_NUEVA_IMAGEN: {
+      return {
+        ...state,
+        mostrandoFormularioNuevaImagen: action.payload
       }
     }
     default:

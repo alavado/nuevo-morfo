@@ -15,7 +15,7 @@ const NuevoContenido = () => {
 
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
-  const [bloqueada, setBloqueada] = useState(false)
+  const [envioBloqueado, setEnvioBloqueado] = useState(false)
   const [imagen, setImagen] = useState(null)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
@@ -31,7 +31,7 @@ const NuevoContenido = () => {
 
   const enviarFormulario = e => {
     e.preventDefault()
-    setBloqueada(true)
+    setEnvioBloqueado(true)
     let contenido = ''
     agregarContenido({ variables: { titulo, descripcion, subseccion } })
       .then(({ data }) => {
@@ -58,7 +58,7 @@ const NuevoContenido = () => {
       })
       .then(() => history.push(`/contenido/${contenido}`))
       .catch(err => {
-        setBloqueada(false)
+        setEnvioBloqueado(false)
         console.error('Error subiendo imagen', err)
       })
   }
@@ -83,7 +83,7 @@ const NuevoContenido = () => {
           type="submit"
           value="Agregar"
           className="boton-agregar"
-          disabled={bloqueada || titulo.length < 3 || !imagen}
+          disabled={envioBloqueado || titulo.length < 3 || !imagen}
         />
       </form>
     </div>

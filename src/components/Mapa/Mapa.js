@@ -10,12 +10,13 @@ import Marcador from './Marcador'
 import PopupEstructura from './PopupEstructura'
 import './Mapa.css'
 import { useParams } from 'react-router-dom'
+import FormularioNuevaImagen from './FormularioNuevaImagen'
 
 const { minZoom, maxZoom } = parametrosMapa
 
 const Mapa = () => {
 
-  const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
+  const { contenido, indiceImagenActual, mostrandoFormularioNuevaImagen } = useSelector(state => state.contenido)
   const destino = useSelector(state => state.mapa.destino)
   const dispatch = useDispatch()
   const { id } = useParams()
@@ -84,30 +85,33 @@ const Mapa = () => {
   }, [destino])
 
   return (
-    <ReactMapGL
-      {...viewport}
-      onViewportChange={actualizarVP}
-      mapStyle={mapStyle}
-      dragRotate={false}
-      onContextMenu={onLeftClick}
-    >
-      <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
-        <div style={{ marginBottom: 8 }}>
-          <FullscreenControl />
+    <>
+      {mostrandoFormularioNuevaImagen && <FormularioNuevaImagen />}
+      <ReactMapGL
+        {...viewport}
+        onViewportChange={actualizarVP}
+        mapStyle={mapStyle}
+        dragRotate={false}
+        onContextMenu={onLeftClick}
+      >
+        <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
+          <div style={{ marginBottom: 8 }}>
+            <FullscreenControl />
+          </div>
+          <NavigationControl
+            captureScroll={true}
+            showCompass={false}
+            zoomInLabel="Acercar"
+            zoomOutLabel="Alejar"
+            style={{ padding: '119px' }}
+          />
         </div>
-        <NavigationControl
-          captureScroll={true}
-          showCompass={false}
-          zoomInLabel="Acercar"
-          zoomOutLabel="Alejar"
-          style={{ padding: '119px' }}
-        />
-      </div>
-      {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
-        return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} />
-      })}
-      <PopupEstructura />
-    </ReactMapGL>
+        {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
+          return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} />
+        })}
+        <PopupEstructura />
+      </ReactMapGL>
+    </>
   )
 }
 
