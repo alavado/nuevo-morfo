@@ -1,6 +1,8 @@
 import React from 'react'
 import './Miniaturas.css'
 import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const Miniaturas = () => {
 
@@ -15,6 +17,9 @@ const Miniaturas = () => {
           alt="imagen contenido"
         />
       ))}
+      <button title="Agregar imagen">
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
     </div>
   )
 }

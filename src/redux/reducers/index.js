@@ -12,5 +12,6 @@ export default combineReducers({
   mapa,
   auth,
   seccion,
-  usuarios
+  usuarios,
+  grupos
 })

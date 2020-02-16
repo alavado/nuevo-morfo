@@ -1,13 +1,36 @@
-.miniaturas img {
-  width: 48px;
-  height: 48px;
+.miniaturas {
+  display: flex;
+  align-items: center;
   margin-top: 12px;
-  margin-right: 8px;
+}
+
+.miniaturas > * {
+  animation: aparece-miniatura .25s ease-in-out both;
+  transition: all .25s ease-in-out;
+}
+
+.miniaturas img {
+  width: 42px;
+  height: 42px;
+  margin-right: 6px;
   border-radius: 4px;
   border: 2px solid #D4001C;
   cursor: pointer;
-  animation: aparece-miniatura .25s ease-in-out both;
-  transition: all .25s ease-in-out;
+}
+
+.miniaturas button {
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+  border: 1px dashed #9E9E9E;
+  color: #9E9E9E;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.miniaturas button:hover {
+  border: 1px dashed #222222;
+  color: #222222;
 }
 
 .miniaturas img:not(:first-child) {
