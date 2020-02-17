@@ -139,6 +139,18 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, args) {
         return (new Grupo(args)).save()
       }
+    },
+    agregarUsuarioAGrupo: {
+      type: GrupoType,
+      args: {
+        usuario: { type: GraphQLID },
+        grupo: { type: GraphQLID }
+      },
+      resolve(parentValue, { grupo, usuario }) {
+        return Usuario
+          .findByIdAndUpdate(usuario, { '$addToSet': { 'grupos': grupo } })
+          .then(u => Grupo.agregarUsuario(grupo, usuario))
+      }
     }
   }
 })

@@ -20,10 +20,10 @@ const usuarioSchema = new Schema({
     type: String,
     default: 'Usuario misterioso'
   },
-  grupo: {
+  grupos: [{
     type: Schema.Types.ObjectId,
     ref: 'Grupo'
-  }
+  }]
 })
 
 usuarioSchema.statics.agregar = function(args) {
@@ -47,13 +47,21 @@ usuarioSchema.statics.login = function(args) {
         return jwt.sign(
           _.pick(usuarioDB, ['id', 'nombre', 'email']),
           jwtSecret,
-          { expiresIn: '1d' }
+          { expiresIn: '2d' }
         )
       }
       else {
         throw new Error('Usuario o contraseña incorrectos')
       }
   })
+}
+
+usuarioSchema.statics.findGrupos = function(id) {
+  return this.find({ _id: id })
+}
+
+usuarioSchema.statics.agregarGrupo = function(idUsuario, idGrupo) {
+  return this.findByIdAndUpdate(idUsuario, { '$addToSet': { 'grupos': idGrupo } }, { new: true })
 }
 
 module.exports = mongoose.model('Usuario', usuarioSchema)
