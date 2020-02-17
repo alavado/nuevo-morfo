@@ -28,9 +28,7 @@ const Grupos = () => {
 
   return (
     <>
-      {mostrandoFormularioNuevoGrupo &&
-        <FormularioNuevoGrupo />
-      }
+      {mostrandoFormularioNuevoGrupo && <FormularioNuevoGrupo />}
       <div className="contenedor-tabla-grande">
         <div className="encabezado-tabla">
           <div className="titulo">
@@ -43,10 +41,11 @@ const Grupos = () => {
             />
           </div>
         </div>
-        <table>
+        <table className="tabla-grupos">
           <thead>
             <tr>
               <th>Nombre</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -60,6 +59,7 @@ const Grupos = () => {
                     style={{ backgroundColor: obtenerColorGrupo(data.grupos, i) }}
                   />
                 </td>
+                <td></td>
               </tr>
             ))}
           </tbody>

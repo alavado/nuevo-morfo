@@ -38,4 +38,7 @@ export const construirMapStyle = idImagen => ({
       source: 'raster-tiles'
     }
   ],
+  background: {
+    'background-color': 'red'
+  }
 })

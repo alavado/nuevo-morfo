@@ -11,9 +11,17 @@ const grupoSchema = new Schema({
   _ts: {
     type : Date,
     default: Date.now
-  }
+  },
+  usuarios: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Usuario'
+  }]
 })
 
 grupoSchema.plugin(uniqueValidator)
+
+grupoSchema.statics.findUsuarios = function(id) {
+  return require('./usuario').find({ grupo: id })
+}
 
 module.exports = mongoose.model('Grupo', grupoSchema)

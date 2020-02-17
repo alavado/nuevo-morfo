@@ -19,6 +19,10 @@ const usuarioSchema = new Schema({
   nombre: {
     type: String,
     default: 'Usuario misterioso'
+  },
+  grupo: {
+    type: Schema.Types.ObjectId,
+    ref: 'Grupo'
   }
 })
 

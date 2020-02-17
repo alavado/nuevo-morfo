@@ -52,9 +52,7 @@ const Usuarios = () => {
 
   return (
     <>
-      {mostrandoDialogoNuevoUsuario &&
-        <FormularioNuevoUsuario />
-      }
+      {mostrandoDialogoNuevoUsuario && <FormularioNuevoUsuario />}
       <div className="contenedor-tabla-grande">
         <div className="encabezado-tabla">
           <div className="titulo">

@@ -53,6 +53,13 @@ const RootQueryType = new GraphQLObjectType({
       resolve() {
         return Grupo.find({})
       }
+    },
+    grupo: {
+      type: GrupoType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, { id }) {
+        return Grupo.findById(id)
+      }
     }
   }
 })
