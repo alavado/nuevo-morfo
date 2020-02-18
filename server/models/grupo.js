@@ -21,7 +21,7 @@ const grupoSchema = new Schema({
 grupoSchema.plugin(uniqueValidator)
 
 grupoSchema.statics.findUsuarios = function(id) {
-  return require('./usuario').find({ grupo: id })
+  return this.findById(id).then(res => require('./usuario').find({ _id: { $in: res.usuarios }}))
 }
 
 grupoSchema.statics.agregarUsuario = function(idGrupo, idUsuario) {

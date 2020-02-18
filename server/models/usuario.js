@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 const jwt = require('jsonwebtoken')
 const { jwtSecret } = require('../secret')
+const Grupo = require('./grupo')
 
 const usuarioSchema = new Schema({
   email: {
@@ -57,7 +58,7 @@ usuarioSchema.statics.login = function(args) {
 }
 
 usuarioSchema.statics.findGrupos = function(id) {
-  return this.find({ _id: id })
+  return this.findById(id).then(res => Grupo.find({ _id: { $in: res.grupos }}))
 }
 
 usuarioSchema.statics.agregarGrupo = function(idUsuario, idGrupo) {
