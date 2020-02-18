@@ -2,13 +2,6 @@
   line-height: 1.5;
 }
 
-.contenedor-checkboxes {
-  display: grid;
-  gap: 8px;
-  font-size: 12px;
-  padding: 8px 0;
-}
-
 .contenedor-checkboxes label {
   display: flex;
   align-items: center;

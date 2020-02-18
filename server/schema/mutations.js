@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLFloat } = graphql
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLFloat, GraphQLList } = graphql
 const mongoose = require('mongoose')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
@@ -15,6 +15,7 @@ const ImagenType = require('./types/imagen_type')
 const MarcadorType = require('./types/marcador_type')
 const UsuarioType = require('./types/usuario_type')
 const GrupoType = require('./types/grupo_type')
+const _ = require('lodash')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -121,6 +122,18 @@ const mutation = new GraphQLObjectType({
         return Usuario.agregar(args)
       }
     },
+    editarUsuario: {
+      type: UsuarioType,
+      args: {
+        id: { type: GraphQLID },
+        nombre: { type: GraphQLString },
+        email: { type: GraphQLString },
+        grupos: { type: new GraphQLList(GraphQLID) }
+      },
+      resolve(parentValue, args) {
+        return Usuario.actualizar(args.id, args)
+      }
+    },
     login: {
       type: UsuarioType,
       args: {
@@ -148,8 +161,20 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { grupo, usuario }) {
         return Usuario
-          .findByIdAndUpdate(usuario, { '$addToSet': { 'grupos': grupo } })
+          .findByIdAndUpdate(usuario, { $addToSet: { grupos: grupo } })
           .then(u => Grupo.agregarUsuario(grupo, usuario))
+      }
+    },
+    eliminarUsuarioDeGrupo: {
+      type: GrupoType,
+      args: {
+        usuario: { type: GraphQLID },
+        grupo: { type: GraphQLID }
+      },
+      resolve(parentValue, { grupo, usuario }) {
+        return Usuario
+          .findByIdAndUpdate(usuario, { $pull: { grupos: grupo } })
+          .then(u => Grupo.eliminarUsuario(grupo, usuario))
       }
     }
   }

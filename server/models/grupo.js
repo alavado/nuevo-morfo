@@ -29,7 +29,11 @@ grupoSchema.statics.findUsuarios = function(id) {
 }
 
 grupoSchema.statics.agregarUsuario = function(idGrupo, idUsuario) {
-  return this.findByIdAndUpdate(idGrupo, { '$addToSet': { 'usuarios': idUsuario } }, { new: true })
+  return this.findByIdAndUpdate(idGrupo, { $addToSet: { usuarios: idUsuario } }, { new: true })
+}
+
+grupoSchema.statics.eliminarUsuario = function(idGrupo, idUsuario) {
+  return this.findByIdAndUpdate(idGrupo, { $pull: { usuarios: idUsuario } }, { new: true })
 }
 
 module.exports = mongoose.model('Grupo', grupoSchema)

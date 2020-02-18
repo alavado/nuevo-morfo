@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './FormularioGruposUsuario.css'
 import { useDispatch } from 'react-redux'
 import { esconderFormularioGruposUsuario, agregarNuevoUsuario } from '../../../redux/actions'
-import mutation from '../../../mutations/agregarUsuario'
+import actualizarUsuarioMutation from '../../../mutations/agregarUsuario'
 import query from '../../../queries/grupos'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import MiLoader from '../../Loader'
@@ -11,12 +11,14 @@ import { compararPropiedadString } from '../../../helpers/utiles'
 const FormularioGruposUsuario = ({ usuario }) => {
 
   const dispatch = useDispatch()
-  const [agregarUsuarioMutate] = useMutation(mutation)
+  const [actualizarUsuarioMutate] = useMutation(actualizarUsuarioMutation)
   const { loading, error, data } = useQuery(query)
 
   const actualizarGrupos = e => {
     e.preventDefault()
   }
+
+  useEffect(() => () => dispatch(esconderFormularioGruposUsuario()))
 
   return (
     <div
@@ -29,14 +31,15 @@ const FormularioGruposUsuario = ({ usuario }) => {
       >
         <h3>Grupos a los que pertenece<br />{usuario.nombre}</h3>
         {loading ? <MiLoader /> :
-          <div className="contenedor-checkboxes">
+          <form onSubmit={actualizarGrupos} className="contenedor-checkboxes">
             {data.grupos.sort(compararPropiedadString('nombre')).map(grupo => (
-              <label>
-                <input type="checkbox" />
+              <label key={`label-${grupo.id}`}>
+                <input type="checkbox" onChange={e => actualizarGrupos(e, grupo.id)} />
                 <span style={{ backgroundColor: grupo.color }}>{grupo.nombre}</span>
               </label>
             ))}
-          </div>
+            <input type="submit" value="Actualizar grupos" />
+          </form>
         }
       </div>
     </div>

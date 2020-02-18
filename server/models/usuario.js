@@ -65,4 +65,14 @@ usuarioSchema.statics.agregarGrupo = function(idUsuario, idGrupo) {
   return this.findByIdAndUpdate(idUsuario, { '$addToSet': { 'grupos': idGrupo } }, { new: true })
 }
 
+usuarioSchema.statics.actualizar = function(idUsuario, args) {
+  const { id, nombre, email, grupos } = args
+  return this.findById(id).then(usuario => {
+    nombre && (usuario.nombre = nombre)
+    email && (usuario.email = email)
+    grupos && (usuario.grupos = grupos)
+    return usuario.save()
+  })
+}
+
 module.exports = mongoose.model('Usuario', usuarioSchema)

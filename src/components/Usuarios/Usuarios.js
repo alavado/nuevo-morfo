@@ -106,6 +106,7 @@ const Usuarios = () => {
                 <td>
                   {u.grupos.map(grupo => (
                     <span
+                      key={grupo.id}
                       className="tag-usuario-grupo"
                       style={{ backgroundColor: grupo.color }}
                     >
