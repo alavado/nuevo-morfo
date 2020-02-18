@@ -10,18 +10,19 @@ import { faUserPlus as iconoAgregar } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
 import FormularioNuevoUsuario from './FormularioNuevoUsuario'
 import { useDispatch, useSelector } from 'react-redux'
-import { mostrarFormularioNuevoUsuario } from '../../redux/actions'
+import { mostrarFormularioNuevoUsuario, mostrarFormularioGruposUsuario } from '../../redux/actions'
 import { compararPropiedadString, busqueda } from '../../helpers/utiles'
+import FormularioGruposUsuario from './FormularioGruposUsuario'
 
 const Usuarios = () => {
 
   const [terminoBusqueda, setTerminoBusqueda] = useState('')
-  const { mostrandoDialogoNuevoUsuario } = useSelector(state => state.usuarios)
+  const { mostrandoDialogoNuevoUsuario, mostrandoDialogoGrupos } = useSelector(state => state.usuarios)
   const { nuevosUsuarios } = useSelector(state => state.usuarios)
   const dispatch = useDispatch()
   const { loading, error, data } = useQuery(query)
 
-  const ordenarUsuarios = useCallback(
+  const usuariosOrdenados = useCallback(
     () => {
       const nuevos = data.usuarios
         .filter(({ id }) => nuevosUsuarios.includes(id))
@@ -53,6 +54,7 @@ const Usuarios = () => {
   return (
     <>
       {mostrandoDialogoNuevoUsuario && <FormularioNuevoUsuario />}
+      {mostrandoDialogoGrupos && <FormularioGruposUsuario />}
       <div className="contenedor-tabla-grande">
         <div className="encabezado-tabla">
           <div className="titulo">
@@ -93,7 +95,7 @@ const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {ordenarUsuarios().map((u, i) => (
+            {usuariosOrdenados().map((u, i) => (
               <tr key={u.id}>
                 <td>
                   {destacarBusqueda(u.nombre)}
@@ -109,8 +111,8 @@ const Usuarios = () => {
                       {grupo.nombre}
                     </span>
                   ))}
-                  <button className="boton-agregar-grupo">
-                    <FontAwesomeIcon icon={faEdit} />
+                  <button className="boton-agregar-grupo" onClick={() => dispatch(mostrarFormularioGruposUsuario())}>
+                    <FontAwesomeIcon icon={faEdit} size="lg" />
                   </button>
                 </td>
               </tr>

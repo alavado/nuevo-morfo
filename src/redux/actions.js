@@ -3,7 +3,8 @@ import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO,
   MOSTRAR_LOGIN, FIJAR_USUARIO, MOSTRAR_FORMULARIO_NUEVA_SUBSECCION, MOSTRAR_NAVEGACION,
   FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO,
   EDITAR_MARCADOR, EDITANDO_MARCADOR, MOSTRAR_FORMULARIO_NUEVO_USUARIO, AGREGAR_USUARIO_NUEVO,
-  MOSTRAR_FORMULARIO_NUEVO_GRUPO, MOSTRAR_FORMULARIO_NUEVA_IMAGEN, SELECCIONAR_IMAGEN_DE_CONTENIDO } from "./actionTypes"
+  MOSTRAR_FORMULARIO_NUEVO_GRUPO, MOSTRAR_FORMULARIO_NUEVA_IMAGEN, SELECCIONAR_IMAGEN_DE_CONTENIDO,
+  MOSTRAR_FORMULARIO_GRUPOS_USUARIO } from "./actionTypes"
 import { decode } from 'jsonwebtoken'
 
 export const fijarSeccion = datos => ({
@@ -162,4 +163,14 @@ export const esconderFormularioNuevaImagen = () => ({
 export const mostrarImagenDeContenido = i => ({
   type: SELECCIONAR_IMAGEN_DE_CONTENIDO,
   payload: i
+})
+
+export const mostrarFormularioGruposUsuario = () => ({
+  type: MOSTRAR_FORMULARIO_GRUPOS_USUARIO,
+  payload: true
+})
+
+export const esconderFormularioGruposUsuario = () => ({
+  type: MOSTRAR_FORMULARIO_GRUPOS_USUARIO,
+  payload: false
 })
