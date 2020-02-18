@@ -6,14 +6,10 @@ import mutation from '../../../mutations/agregarUsuario'
 import query from '../../../queries/grupos'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import MiLoader from '../../Loader'
+import { compararPropiedadString } from '../../../helpers/utiles'
 
-const FormularioGruposUsuario = () => {
+const FormularioGruposUsuario = ({ usuario }) => {
 
-  const [variables, setVariables] = useState({
-    nombre: '',
-    email: '',
-    password: ''
-  })
   const dispatch = useDispatch()
   const [agregarUsuarioMutate] = useMutation(mutation)
   const { loading, error, data } = useQuery(query)
@@ -29,14 +25,18 @@ const FormularioGruposUsuario = () => {
     >
       <div
         className="contenedor-formulario"
-        id="formulario-nuevo-usuario"
         onClick={e => e.stopPropagation()}
       >
-        <h3>Nuevo usuario</h3>
+        <h3>Grupos a los que pertenece<br />{usuario.nombre}</h3>
         {loading ? <MiLoader /> :
-          <form onSubmit={actualizarGrupos} autoComplete="new-password">
-            <input type="submit" value="Registrar" />
-          </form>
+          <div className="contenedor-checkboxes">
+            {data.grupos.sort(compararPropiedadString('nombre')).map(grupo => (
+              <label>
+                <input type="checkbox" />
+                <span style={{ backgroundColor: grupo.color }}>{grupo.nombre}</span>
+              </label>
+            ))}
+          </div>
         }
       </div>
     </div>

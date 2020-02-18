@@ -17,6 +17,7 @@ import FormularioGruposUsuario from './FormularioGruposUsuario'
 const Usuarios = () => {
 
   const [terminoBusqueda, setTerminoBusqueda] = useState('')
+  const [usuario, setUsuario] = useState(null)
   const { mostrandoDialogoNuevoUsuario, mostrandoDialogoGrupos } = useSelector(state => state.usuarios)
   const { nuevosUsuarios } = useSelector(state => state.usuarios)
   const dispatch = useDispatch()
@@ -54,7 +55,7 @@ const Usuarios = () => {
   return (
     <>
       {mostrandoDialogoNuevoUsuario && <FormularioNuevoUsuario />}
-      {mostrandoDialogoGrupos && <FormularioGruposUsuario />}
+      {mostrandoDialogoGrupos && <FormularioGruposUsuario usuario={usuario} />}
       <div className="contenedor-tabla-grande">
         <div className="encabezado-tabla">
           <div className="titulo">
@@ -111,7 +112,13 @@ const Usuarios = () => {
                       {grupo.nombre}
                     </span>
                   ))}
-                  <button className="boton-agregar-grupo" onClick={() => dispatch(mostrarFormularioGruposUsuario())}>
+                  <button
+                    className="boton-agregar-grupo"
+                    onClick={() => {
+                      dispatch(mostrarFormularioGruposUsuario())
+                      setUsuario(u)
+                    }}
+                  >
                     <FontAwesomeIcon icon={faEdit} size="lg" />
                   </button>
                 </td>

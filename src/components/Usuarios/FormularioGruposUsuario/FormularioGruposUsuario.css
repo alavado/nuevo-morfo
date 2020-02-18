@@ -1,4 +1,22 @@
-#formulario-nuevo-usuario {
-  padding-bottom: 16px;
-  min-width: 240px;
+.contenedor-formulario h3 {
+  line-height: 1.5;
+}
+
+.contenedor-checkboxes {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  padding: 8px 0;
+}
+
+.contenedor-checkboxes label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.contenedor-checkboxes label span {
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
 }
