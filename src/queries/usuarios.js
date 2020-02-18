@@ -6,6 +6,11 @@ export default gql`
       id
       nombre
       email
+      grupos {
+        id
+        nombre
+        color
+      }
     }
   }
 `

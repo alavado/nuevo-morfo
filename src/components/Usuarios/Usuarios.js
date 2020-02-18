@@ -100,7 +100,16 @@ const Usuarios = () => {
                   {u.nuevo && <span className="tag-usuario-nuevo">Nuevo</span>}
                 </td>
                 <td>{u.email}</td>
-                <td></td>
+                <td>
+                  {u.grupos.map(grupo => (
+                    <div
+                      className="tag-usuario-grupo"
+                      style={{ backgroundColor: grupo.color }}
+                    >
+                      {grupo.nombre}
+                    </div>
+                  ))}
+                </td>
               </tr>
             ))}
           </tbody>

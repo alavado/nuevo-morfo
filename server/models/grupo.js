@@ -12,6 +12,10 @@ const grupoSchema = new Schema({
     type : Date,
     default: Date.now
   },
+  color: {
+    type: String,
+    default: '#000000'
+  },
   usuarios: [{
     type: Schema.Types.ObjectId,
     ref: 'Usuario'

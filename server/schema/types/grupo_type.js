@@ -10,6 +10,7 @@ const GrupoType = new GraphQLObjectType({
     id: { type: GraphQLID },
     nombre: { type: GraphQLString },
     _ts: { type: GraphQLString },
+    color: { type: GraphQLString },
     usuarios: {
       type: new GraphQLList(UsuarioType),
       resolve(parentValue) {

@@ -94,15 +94,18 @@ div[class^="seccion-fondo-oscuro"] {
   border-bottom: 1px solid #EEEEEE;
 }
 
-.tag-usuario-nuevo {
+div[class^="tag-"] {
   font-size: 8px;
-  background-color: #30B700;
   color: white;
   padding: 2px 5px;
   margin-left: 4px;
   border-radius: 6px;
   height: 12px;
   pointer-events: none;
+}
+
+.tag-usuario-nuevo {
+  background-color: #30B700;
 }
 
 .busqueda-destacada {
