@@ -4,7 +4,7 @@ import './Usuarios.css'
 import { useQuery } from '@apollo/react-hooks'
 import MiLoader from '../Loader'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch as iconoBuscar } from '@fortawesome/free-solid-svg-icons'
+import { faSearch as iconoBuscar, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTimes as iconoLimpiarBusqueda } from '@fortawesome/free-solid-svg-icons'
 import { faUserPlus as iconoAgregar } from '@fortawesome/free-solid-svg-icons'
 import _ from 'lodash'
@@ -102,13 +102,16 @@ const Usuarios = () => {
                 <td>{u.email}</td>
                 <td>
                   {u.grupos.map(grupo => (
-                    <div
+                    <span
                       className="tag-usuario-grupo"
                       style={{ backgroundColor: grupo.color }}
                     >
                       {grupo.nombre}
-                    </div>
+                    </span>
                   ))}
+                  <button className="boton-agregar-grupo">
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
                 </td>
               </tr>
             ))}

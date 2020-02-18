@@ -93,8 +93,13 @@ div[class^="seccion-fondo-oscuro"] {
 .contenedor-tabla-grande tbody tr:not(:last-child) {
   border-bottom: 1px solid #EEEEEE;
 }
+ 
+.contenedor-tabla-grande td:last-child {
+  display: flex;
+  align-items: center;
+}
 
-div[class^="tag-"] {
+span[class^="tag-"] {
   font-size: 8px;
   color: white;
   padding: 2px 5px;
@@ -108,9 +113,32 @@ div[class^="tag-"] {
   background-color: #30B700;
 }
 
+.tag-usuario-grupo {
+  margin-right: 8px;
+}
+
 .busqueda-destacada {
   font-weight: bold;
   text-decoration: underline;
+}
+
+.boton-agregar-grupo {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+  height: 13px;
+  width: 13px;
+  border-radius: 100%;
+  font-size: 9px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+}
+
+.contenedor-tabla-grande td:last-child:hover .boton-agregar-grupo {
+  color: #424242;
 }
 
 @keyframes aparece-limpieza-busqueda {
