@@ -39,15 +39,17 @@ const ListaSubsecciones = ({ data }) => {
             >
               {subseccion.nombre}
             </Link>
-            {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
-              <button
-                className="boton-eliminar-subseccion"
-                onClick={() => eliminar(subseccion.id)}
-                title={`Eliminar subsección "${subseccion.nombre}"`}
-              >
-                <FontAwesomeIcon icon={iconoEliminar} />
-              </button>
-            }
+            <div className="acciones-subseccion">
+              {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
+                <button
+                  className="boton-eliminar-subseccion"
+                  onClick={() => eliminar(subseccion.id)}
+                  title={`Eliminar subsección "${subseccion.nombre}"`}
+                >
+                  <FontAwesomeIcon icon={iconoEliminar} />
+                </button>
+              }
+            </div>
           </li>
       ))}
     </ul>

@@ -1,0 +1,8 @@
+.acciones-subseccion {
+  opacity: 0;
+  transition: all .1s ease-in-out;
+}
+
+.lista-items li:hover .acciones-subseccion {
+  opacity: 1;
+}
