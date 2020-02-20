@@ -7,7 +7,7 @@ import { mostrarFormularioNuevaImagen, mostrarImagenDeContenido } from '../../..
 
 const Miniaturas = () => {
 
-  const { contenido } = useSelector(state => state.contenido)
+  const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
   const dispatch = useDispatch()
 
   return (
@@ -18,6 +18,7 @@ const Miniaturas = () => {
           src={`http://localhost:1027/thumbnail/${archivo}`}
           alt="imagen contenido"
           onClick={() => dispatch(mostrarImagenDeContenido(i))}
+          className={indiceImagenActual === i ? 'imagen-seleccionada' : ''}
         />
       ))}
       <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>

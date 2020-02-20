@@ -107,11 +107,13 @@ div[class^="seccion-fondo-oscuro"] {
 span[class^="tag-"] {
   font-size: 8px;
   color: white;
-  padding: 2px 5px;
+  padding: 6px 5px;
   margin-left: 4px;
   border-radius: 6px;
   height: 12px;
   pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .tag-usuario-nuevo {
@@ -119,7 +121,7 @@ span[class^="tag-"] {
 }
 
 .tag-usuario-grupo {
-  margin-right: 8px;
+  margin-left: 0;
 }
 
 .busqueda-destacada {
@@ -138,6 +140,7 @@ span[class^="tag-"] {
   text-align: center;
   padding: 0;
   margin: 0;
+  margin-left: 6px;
   cursor: pointer;
   transition: all .1s ease-in-out;
 }
