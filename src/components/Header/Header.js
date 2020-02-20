@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fijarSeccion, esconderNavegacion, mostrarAdministracion } from '../../redux/actions'
 import Usuario from './Usuario'
 import Secciones from './Secciones/Secciones'
+import logo from '../../assets/logo_superior.png'
 
 const Header = () => {
 
@@ -17,7 +18,9 @@ const Header = () => {
         <Link to="/" onClick={e => {
           dispatch(esconderNavegacion())
           dispatch(fijarSeccion(null))
-        }}>Morfo</Link>
+        }}>
+          <img src={logo} alt="logo morfo" />
+        </Link>
       </div>
       <nav>
         <Link
