@@ -1,8 +1,9 @@
-import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, MOSTRAR_NAVEGACION } from "../actionTypes"
+import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO, MOSTRAR_NAVEGACION, MOSTRAR_ADMINISTRACION } from "../actionTypes"
 
 const initialState = {
   seccion: null,
   subseccion: null,
+  mostrandoAdministracion: false,
   activa: false
 }
 
@@ -36,6 +37,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         activa: action.payload
+      }
+    }
+    case MOSTRAR_ADMINISTRACION: {
+      return {
+        ...state,
+        mostrandoAdministracion: action.payload
       }
     }
     default:
