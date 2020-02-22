@@ -19,7 +19,7 @@ const Header = () => {
           dispatch(esconderNavegacion())
           dispatch(fijarSeccion(null))
         }}>
-          <img src={logo} alt="logo morfo" />
+          <img src={logo} alt="logo morfo, ícono por FreePik de www.flaticon.com" />
         </Link>
       </div>
       <nav>

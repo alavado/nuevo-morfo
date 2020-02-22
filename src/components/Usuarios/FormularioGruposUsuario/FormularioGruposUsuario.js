@@ -48,7 +48,9 @@ const FormularioGruposUsuario = ({ usuario }) => {
         <h3>Grupos a los que pertenece<br />{usuario.nombre}</h3>
         {loading ? <MiLoader /> :
           <form onSubmit={actualizarGrupos} className="contenedor-checkboxes">
-            {data.grupos.sort(compararPropiedadString('nombre')).map(grupo => (
+            {data.grupos
+              .filter(g => g.nombre !== 'Administración')
+              .sort(compararPropiedadString('nombre')).map(grupo => (
               <label key={`label-${grupo.id}`}>
                 <input
                   type="checkbox"

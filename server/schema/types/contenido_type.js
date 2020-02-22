@@ -21,6 +21,12 @@ const ContenidoType = new GraphQLObjectType({
         return Contenido.findSubseccion(parentValue.id)
       }
     },
+    grupos: {
+      type: new GraphQLList(require('./grupo_type')),
+      resolve(parentValue) {
+        return Contenido.findGrupos(parentValue.id)
+      }
+    },
     deleted: { type: GraphQLBoolean }
   })
 })

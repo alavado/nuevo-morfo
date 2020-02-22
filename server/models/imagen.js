@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Marcador = require('./marcador')
 
 const imagenSchema = new Schema({
   archivo: {
@@ -21,7 +22,7 @@ const imagenSchema = new Schema({
 })
 
 imagenSchema.statics.findMarcadores = function(id) {
-  return require('./marcador').find({ imagen: id })
+  return Marcador.find({ imagen: id })
 }
 
 module.exports = mongoose.model('Imagen', imagenSchema)

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const mongooseDelete = require('mongoose-delete')
+const Imagen = require('./imagen')
+const Grupo = require('./grupo')
 
 const contenidoSchema = new Schema({
   titulo: {
@@ -15,6 +17,10 @@ const contenidoSchema = new Schema({
   imagenes: [{
     type: Schema.Types.ObjectId,
     ref: 'Imagen'
+  }],
+  grupos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Grupo'
   }]
 })
 
@@ -28,7 +34,11 @@ contenidoSchema.statics.findSubseccion = function(id) {
 }
 
 contenidoSchema.statics.findImagenes = function(id) {
-  return require('./imagen').find({ contenido: id })
+  return Imagen.find({ contenido: id })
+}
+
+contenidoSchema.statics.findGrupos = function(id) {
+  return this.findById(id).then(res => Grupo.find({ _id: { $in: res.grupos }}))
 }
 
 module.exports = mongoose.model('Contenido', contenidoSchema)
