@@ -16,11 +16,11 @@ const MENSAJE_ERROR = 'Surgió un error finalizando la autenticación. Si el pro
 var SESSION = {}
 
 app.post('/auth', (req, res) => {
-  if (!req.fields.ticket) {
+  if (!req.body.ticket) {
     res.status(400).end()
     return
   }
-  const url = `${CONTENT_PROVIDER_URL}servicio=${APP_NAME}&ticket=${req.fields.ticket}`
+  const url = `${CONTENT_PROVIDER_URL}servicio=${APP_NAME}&ticket=${req.body.ticket}`
   https.get(url, r => {
     let data = ''
     r.on('data', d => data += d)
