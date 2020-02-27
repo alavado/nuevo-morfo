@@ -9,8 +9,8 @@ const multer  = require('multer')
 const upload = multer({ dest: 'server/uploads/' })
 const fs = require('fs')
 const { crearThumbnail, crearPiramide } = require('./tiles')
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require('cors')
 app.use(cors())
