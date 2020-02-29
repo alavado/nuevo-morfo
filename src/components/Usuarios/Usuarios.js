@@ -64,6 +64,7 @@ const Usuarios = () => {
               icon={iconoAgregar}
               size="sm"
               title="Agregar usuario"
+              className="boton-agregar"
               onClick={() => dispatch(mostrarFormularioNuevoUsuario())}
             />
           </div>

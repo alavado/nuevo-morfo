@@ -104,6 +104,10 @@ div[class^="seccion-fondo-oscuro"] {
   align-items: center;
 }
 
+.boton-agregar {
+  cursor: pointer;
+}
+
 span[class^="tag-"] {
   font-size: 8px;
   color: white;

@@ -36,6 +36,7 @@ const Grupos = () => {
               icon={iconoAgregar}
               size="sm"
               title="Agregar grupo"
+              className="boton-agregar"
               onClick={() => dispatch(mostrarFormularioNuevoGrupo())}
             />
           </div>
