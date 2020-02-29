@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Buscador.css'
 import { useSelector } from 'react-redux'
+import logoCentral from '../../assets/logo_central.png'
 
 const Buscador = () => {
 
@@ -8,7 +9,17 @@ const Buscador = () => {
 
   return (
     <div className={`contenedor-buscador${activa ? ' compacto': ''}`}>
-      Esto es morfo
+      <div></div>
+      <div className="bienvenida">
+        <img src={logoCentral} alt="logo morfo uchile" />
+        <p>
+          Sitio de apoyo docente multimedia para los estudiantes de la
+          Facultad de Medicina de la Universidad de Chile
+          en el estudio de las Ciencias Morfológicas aplicadas a la Clínica.
+        </p>
+        <button>Comenzar</button>
+      </div>
+      <div></div>
     </div>
   )
 }

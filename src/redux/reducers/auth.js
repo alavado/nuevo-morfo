@@ -14,6 +14,7 @@ export default function(state = initialState, action) {
       }
     }
     case FIJAR_USUARIO: {
+      console.log(action.payload)
       return {
         ...state,
         usuario: action.payload,

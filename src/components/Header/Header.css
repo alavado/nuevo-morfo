@@ -70,6 +70,19 @@ nav a.seccion-activa {
   margin-top: 0;
 }
 
+#contenedor-selector-grupo label, #contenedor-selector-grupo option {
+  font-size: 12px;
+}
+
+#contenedor-selector-grupo select option::after {
+  content: 'x';
+}
+
+#contenedor-selector-grupo label {
+  color: white;
+  margin-right: 8px;
+}
+
 @keyframes aparece-nombre-seccion {
   0% {
     opacity: 0;

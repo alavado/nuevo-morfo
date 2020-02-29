@@ -3,8 +3,43 @@
   width: 100vw;
   transition: all .35s ease-in-out;
   padding: 16px;
+  background-color: #212322;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor-buscador img {
+  max-width: 240px;
+  margin-bottom: 32px;
 }
 
 .contenedor-buscador.compacto {
   width: calc(100vw - 240px);
+}
+
+.contenedor-buscador .bienvenida {
+  color: white;
+  padding: 24px;
+  line-height: 2;
+  font-size: 16px;
+  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.contenedor-buscador button {
+  background-color: #D4001C;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  margin-top: 24px;
+  height: 40px;
+  cursor: pointer;
 }
