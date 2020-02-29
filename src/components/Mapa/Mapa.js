@@ -93,6 +93,7 @@ const Mapa = () => {
         mapStyle={mapStyle}
         dragRotate={false}
         onContextMenu={onLeftClick}
+        style={{ backgroundColor: '#212322' }}
       >
         <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
           <div style={{ marginBottom: 8 }}>

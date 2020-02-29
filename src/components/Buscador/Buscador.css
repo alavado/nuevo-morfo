@@ -12,6 +12,11 @@
 .contenedor-buscador img {
   max-width: 240px;
   margin-bottom: 32px;
+  animation: aparece-bienvenida .3s ease-in-out both;
+}
+
+.contenedor-buscador p {
+  animation: aparece-bienvenida .3s .25s ease-in-out both;
 }
 
 .contenedor-buscador.compacto {
@@ -42,4 +47,16 @@
   margin-top: 24px;
   height: 40px;
   cursor: pointer;
+  animation: aparece-bienvenida .3s .5s ease-in-out both;
+}
+
+@keyframes aparece-bienvenida {
+  0% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }
