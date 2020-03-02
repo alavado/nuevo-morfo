@@ -3,10 +3,9 @@ a.nombre-usuario {
 }
 
 a.nombre-usuario div {
-  font-size: 10px;
   line-height: 1.2;
 }
 
 a.nombre-usuario svg {
-  margin-right: 12px;
+  margin-right: 16px;
 }

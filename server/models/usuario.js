@@ -61,7 +61,7 @@ usuarioSchema.statics.login = function(args) {
       }
       if (bcrypt.compareSync(password, usuarioDB.password)) {
         return jwt.sign(
-          _.pick(usuarioDB, ['id', 'nombre', 'email']),
+          _.pick(usuarioDB, ['id', 'nombre', 'email', 'grupos']),
           jwtSecret,
           { expiresIn: '2d' }
         )

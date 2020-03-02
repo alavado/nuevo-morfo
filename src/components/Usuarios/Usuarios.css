@@ -59,6 +59,7 @@ div[class^="seccion-fondo-oscuro"] {
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-right: 8px;
+  color: white;
 }
 
 .contenedor-tabla-grande table {
@@ -106,6 +107,7 @@ div[class^="seccion-fondo-oscuro"] {
 
 .boton-agregar {
   cursor: pointer;
+  color: white;
 }
 
 span[class^="tag-"] {

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { mostrarLogin } from '../../../redux/actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser as iconoUsuario } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const Usuario = () => {
 
@@ -13,10 +14,10 @@ const Usuario = () => {
   return (
     <>
       {usuario !== null ?
-        <a href="/usuario" className="nombre-usuario">
+        <Link to="/usuario" className="nombre-usuario">
           <FontAwesomeIcon icon={iconoUsuario} size="lg" />
           <div>{usuario.nombre}</div>
-        </a> :
+        </Link> :
         <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
       }
     </>
