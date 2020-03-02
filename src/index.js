@@ -19,6 +19,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 if (urlParams.has('token')) {
   localStorage.setItem('token', urlParams.get('token'))
+  window.location.href = window.location.origin
 }
 
 const httpLink = createHttpLink({
