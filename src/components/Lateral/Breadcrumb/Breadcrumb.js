@@ -12,10 +12,7 @@ const Breadcrumb = () => {
   const dispatch = useDispatch()
   
   return (
-    <div
-      className="breadcrumb"
-      style={!seccion ? { backgroundColor: 'white' } : {}}
-    >
+    <div className="breadcrumb">
       <Link to="/" onClick={e => {
         dispatch(esconderNavegacion())
         dispatch(fijarSeccion(null))
