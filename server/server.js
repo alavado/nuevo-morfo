@@ -9,8 +9,7 @@ const multer  = require('multer')
 const upload = multer({ dest: 'server/uploads/' })
 const fs = require('fs')
 const { crearThumbnail, crearPiramide } = require('./tiles')
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({ extended: true }));
+const bodyParser = require('body-parser');
 
 const cors = require('cors')
 app.use(cors())
@@ -44,12 +43,15 @@ app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
   })
 })
 
-app.use(require('./services/auth'))
 
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
 }))
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(require('./services/auth'))
 
 const ip = require('ip').address()
 if (ip === '45.55.54.91') {
