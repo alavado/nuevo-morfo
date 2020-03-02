@@ -17,7 +17,7 @@ const Principal = () => {
         <Route path="/subseccion/:id" component={Buscador} />
         <Route path="/seccion/:id" component={Buscador} />
         <Route path="/usuarios" component={Usuarios} />
-        <Route path="/usuario" component={Perfil} />
+        <Route path="/perfil" component={Perfil} />
         <Route path="/grupos" component={Grupos} />
         <Route path="/" component={Buscador} />
       </Switch>

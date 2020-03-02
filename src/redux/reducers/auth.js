@@ -1,4 +1,4 @@
-import { MOSTRAR_LOGIN, FIJAR_USUARIO } from "../actionTypes"
+import { MOSTRAR_LOGIN, FIJAR_USUARIO, LOGOUT } from "../actionTypes"
 
 const initialState = {
   mostrandoLogin: false,
@@ -14,11 +14,16 @@ export default function(state = initialState, action) {
       }
     }
     case FIJAR_USUARIO: {
-      console.log(action.payload)
       return {
         ...state,
         usuario: action.payload,
         mostrandoLogin: false
+      }
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        usuario: null
       }
     }
     default:

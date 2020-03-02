@@ -29,7 +29,7 @@ const Header = () => {
       {usuario && <div id="contenedor-selector-grupo">
         <label>Ver como:</label>
         <select>
-          {data && data.grupos.map(g => <option style={{ '--color': g.color }}>{g.nombre}</option>)}
+          {data && data.grupos.map(({nombre, id}) => <option key={`selector-vista-grupo-${id}`}>{nombre}</option>)}
         </select>
       </div>}
       <nav>

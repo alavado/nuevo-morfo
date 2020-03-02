@@ -1,7 +1,7 @@
 import React from 'react'
 import { Marker } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
-import { eliminarMarcadorDeImagenActual, mostrarPopup } from '../../../redux/actions'
+import { mostrarPopup } from '../../../redux/actions'
 import { parametrosMapa } from '../../../helpers/mapa'
 import './Marcador.css'
 
