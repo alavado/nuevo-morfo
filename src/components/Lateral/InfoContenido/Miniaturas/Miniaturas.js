@@ -8,6 +8,7 @@ import { mostrarFormularioNuevaImagen, mostrarImagenDeContenido } from '../../..
 const Miniaturas = () => {
 
   const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
+  const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   return (
@@ -21,9 +22,9 @@ const Miniaturas = () => {
           className={indiceImagenActual === i ? 'imagen-seleccionada' : ''}
         />
       ))}
-      <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>
+      {usuario && <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>
         <FontAwesomeIcon icon={faPlus} />
-      </button>
+      </button>}
     </div>
   )
 }

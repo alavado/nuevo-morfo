@@ -2,7 +2,7 @@ import React from 'react'
 import './Principal.css'
 import Mapa from '../Mapa'
 import { Switch, Route } from 'react-router-dom'
-import Buscador from '../Buscador'
+import Landing from '../Landing'
 import Usuarios from '../Usuarios'
 import Grupos from '../Grupos'
 import Relleno from '../Relleno'
@@ -14,12 +14,12 @@ const Principal = () => {
       <Switch>
         <Route path="/contenido/nuevo" component={Relleno} />
         <Route path="/contenido/:id" component={Mapa} />
-        <Route path="/subseccion/:id" component={Buscador} />
-        <Route path="/seccion/:id" component={Buscador} />
+        <Route path="/subseccion/:id" component={Landing} />
+        <Route path="/seccion/:id" component={Landing} />
         <Route path="/usuarios" component={Usuarios} />
         <Route path="/perfil" component={Perfil} />
         <Route path="/grupos" component={Grupos} />
-        <Route path="/" component={Buscador} />
+        <Route path="/" component={Landing} />
       </Switch>
     </section>
   )

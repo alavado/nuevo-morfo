@@ -18,6 +18,7 @@ const Mapa = () => {
 
   const { contenido, indiceImagenActual, mostrandoFormularioNuevaImagen } = useSelector(state => state.contenido)
   const destino = useSelector(state => state.mapa.destino)
+  const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const { id } = useParams()
 
@@ -54,6 +55,9 @@ const Mapa = () => {
 
   const onLeftClick = e => {
     e.preventDefault()
+    if (!usuario) {
+      return
+    }
     const [lng, lat] = e.lngLat
     agregarMarcador({
       variables: {

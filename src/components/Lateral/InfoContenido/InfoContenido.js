@@ -14,6 +14,7 @@ import { mostrarNavegacion } from '../../../redux/actions'
 const InfoContenido = () => {
 
   const { contenido } = useSelector(state => state.contenido)
+  const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const [eliminar] = useMutation(eliminarMutation)
   const [restaurar] = useMutation(restaurarMutation)
@@ -56,7 +57,7 @@ const InfoContenido = () => {
       <p>{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />
-      <BotonCambiarEstado />
+      {usuario && <BotonCambiarEstado />}
     </div>
   )
 }

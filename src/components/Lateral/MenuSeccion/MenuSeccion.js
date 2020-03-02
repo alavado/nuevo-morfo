@@ -15,6 +15,7 @@ const MenuSeccion = () => {
 
   const dispatch = useDispatch()
   const { mostrandoFormulario } = useSelector(state => state.seccion)
+  const { usuario } = useSelector(state => state.auth)
   const { id } = useParams()
   const { loading, error, data } = useQuery(query, {
     variables: { id },
@@ -62,7 +63,7 @@ const MenuSeccion = () => {
           <input type="submit" value="Agregar" />
         </form>
       }
-      {!loading && !mostrandoFormulario &&
+      {!loading && !mostrandoFormulario && usuario &&
         <button
           className="boton-agregar"
           onClick={() => dispatch(mostrarFormularioNuevaSeccion())}

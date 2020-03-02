@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../../queries/subseccion'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
 import './MenuSubseccion.css'
 import Loader from '../../Loader'
@@ -13,6 +13,7 @@ import { compararPropiedadString } from '../../../helpers/utiles'
 const MenuSubseccion = () => {
 
   const dispatch = useDispatch()
+  const { usuario } = useSelector(state => state.auth)
   const { id } = useParams()
   const { loading, error, data } = useQuery(query, {
     variables: { id },
@@ -51,7 +52,7 @@ const MenuSubseccion = () => {
   return (
     <div className="contenedor-lista">
       <ListaContenidos />
-      {!loading &&
+      {!loading && usuario &&
         <Link to={`/contenido/nuevo/${id}`} className="boton-agregar">
           Agregar contenido
         </Link>

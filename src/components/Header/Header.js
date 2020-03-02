@@ -33,7 +33,7 @@ const Header = () => {
         </select>
       </div>}
       <nav>
-        <Link
+        {usuario && <Link
           to="/admin"
           className={mostrandoAdministracion ? 'seccion-activa': ''}
           onClick={e => {
@@ -42,7 +42,7 @@ const Header = () => {
           }}
         >
           Administración
-        </Link>
+        </Link>}
         <Secciones />
         <Usuario />
       </nav>

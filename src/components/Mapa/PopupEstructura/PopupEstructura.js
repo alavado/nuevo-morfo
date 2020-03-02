@@ -16,6 +16,7 @@ const { tamañoMarcador } = parametrosMapa
 const PopupEstructura = () => {
 
   const { popup, editandoMarcador } = useSelector(state => state.contenido)
+  const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
 
@@ -61,14 +62,14 @@ const PopupEstructura = () => {
           <FormularioEdicionMarcador /> :
           <>
             <p>{popup.titulo}</p>
-            <div className="botones">
+            {usuario && <div className="botones">
               <button title="Editar marcador" onClick={mostrarFormularioEditarMarcador}>
                 <FontAwesomeIcon icon={iconoEditar} size="sm" />
               </button>
               <button title="Eliminar marcador" onClick={eliminarMarcador}>
                 <FontAwesomeIcon icon={iconoEliminar} size="sm" />
               </button>
-            </div>
+            </div>}
           </>
         }
       </div>
