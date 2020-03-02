@@ -15,6 +15,12 @@ import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { isDev } from './helpers/dev'
 
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+if (urlParams.has('token')) {
+  localStorage.setItem('token', urlParams.get('token'))
+}
+
 const httpLink = createHttpLink({
   uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`
 })
