@@ -22,8 +22,10 @@ app.post('/auth', (req, res) => {
         res.status(500).send(MENSAJE_ERROR)
         return
       }
-      const token = Usuario.loginUcampus(data.email)
-			res.send(`${REDIRECT_URL}?token=${token}`)
+      Usuario
+        .loginUcampus('alejandro.lvd@gmail.com')
+        .then(d => res.send(`${REDIRECT_URL}?token=${d}`))
+        .catch(err => res.send('Error en la autenticacion'))
     })
     r.on('error', () => res.status(500).send(MENSAJE_ERROR))
   })
