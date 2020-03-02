@@ -1,19 +1,11 @@
 const express = require('express')
 const app = express()
-// const Usuario = require('../models/usuarios')
-// const bcrypt = require('bcrypt')
-// const jwt = require('jsonwebtoken')
-// const _ = require('lodash')
-
-// const { CADUCIDAD_TOKEN, SEED } = require('../config/config')
-
+const Usuario = require('../models/usuario')
 const https = require('https')
-const uid = require('uid-safe').sync
 const APP_NAME = 'morfo'
 const CONTENT_PROVIDER_URL = 'https://www.u-cursos.cl/upasaporte/?'
 const REDIRECT_URL = 'https://nuevo-morfo.netlify.com/'
 const MENSAJE_ERROR = 'Surgió un error finalizando la autenticación. Si el problema persiste, contáctese a soporte.'
-var SESSION = {}
 
 app.post('/auth', (req, res) => {
   if (!req.body.ticket) {
@@ -30,9 +22,8 @@ app.post('/auth', (req, res) => {
         res.status(500).send(MENSAJE_ERROR)
         return
       }
-      const sess_id = uid(24)
-      SESSION[sess_id] = JSON.parse(data)
-			res.send(`${REDIRECT_URL}?sess_id=${sess_id}`)
+      const token = Usuario.loginUcampus(data.email)
+			res.send(`${REDIRECT_URL}?token=${token}`)
     })
     r.on('error', () => res.status(500).send(MENSAJE_ERROR))
   })

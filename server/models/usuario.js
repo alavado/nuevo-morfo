@@ -36,6 +36,21 @@ usuarioSchema.statics.agregar = function(args) {
   })).save()
 }
 
+usuarioSchema.statics.loginUcampus = function(email) {
+  return this
+    .findOne({ email })
+    .then((usuarioDB, err) => {
+      if (err) {
+        return err
+      }
+      return jwt.sign(
+        _.pick(usuarioDB, ['id', 'nombre', 'email']),
+        jwtSecret,
+        { expiresIn: '2d' }
+      )
+    })
+}
+
 usuarioSchema.statics.login = function(args) {
   const { email, password } = args
   return this
