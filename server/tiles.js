@@ -1,28 +1,29 @@
 const childProcess = require('child_process')
+const path = require('path')
 const isDev = require('./helpers/dev').isDev()
 
 const crearThumbnail = archivo => {
   if (isDev) {
-    const original = `.\\server\\images\\${archivo}\\original.jpg`
-    const pathVipsThumbnail = '.\\server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe'
+    const original = path.resolve(`.\\server\\images\\${archivo}\\original.jpg`)
+    const pathVipsThumbnail = path.resolve('.\\server\\tools\\vips-dev-8.9\\bin\\vipsthumbnail.exe')
     childProcess.execSync(`${pathVipsThumbnail} ${original} --smartcrop centre -s 128`)
   }
   else {
-    const original = `./server/images/${archivo}/original.jpg`
+    const original = path.resolve(`./server/images/${archivo}/original.jpg`)
     childProcess.execSync(`vipsthumbnail ${original} --smartcrop centre -s 128`)
   }
 }
 
 const crearPiramide = archivo => {
   if (isDev) {
-    const destino = `.\\server\\images\\${archivo}\\pyramid`
-    const original = `.\\server\\images\\${archivo}\\original.jpg`
-    const pathVips = `.\\server\\tools\\vips-dev-8.9\\bin\\vips.exe`
+    const destino = path.resolve(`.\\server\\images\\${archivo}\\pyramid`)
+    const original = path.resolve(`.\\server\\images\\${archivo}\\original.jpg`)
+    const pathVips = path.resolve(`.\\server\\tools\\vips-dev-8.9\\bin\\vips.exe`)
     childProcess.execSync(`mkdir ${destino} && ${pathVips} dzsave ${original} ${destino} --layout google`)
   }
   else {
-    const destino = `./server/images/${archivo}/pyramid`
-    const original = `./server/images/${archivo}/original.jpg`
+    const destino = path.resolve(`./server/images/${archivo}/pyramid`)
+    const original = path.resolve(`./server/images/${archivo}/original.jpg`)
     childProcess.execSync(`mkdir ${destino} && vips dzsave ${original} ${destino} --layout google`)
   }
 }
