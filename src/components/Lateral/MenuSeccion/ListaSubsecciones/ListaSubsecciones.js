@@ -1,6 +1,6 @@
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import { Link, useParams } from 'react-router-dom'
@@ -14,6 +14,7 @@ import './ListaSubsecciones.css'
 const ListaSubsecciones = ({ data }) => {
 
   const [eliminarMutate] = useMutation(eliminarSubseccionMutation)
+  const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const { id } = useParams()
 
@@ -39,7 +40,7 @@ const ListaSubsecciones = ({ data }) => {
             >
               {subseccion.nombre}
             </Link>
-            <div className="acciones-subseccion">
+            {usuario && <div className="acciones-subseccion">
               {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
                 <button
                   className="boton-eliminar-subseccion"
@@ -49,7 +50,7 @@ const ListaSubsecciones = ({ data }) => {
                   <FontAwesomeIcon icon={iconoEliminar} />
                 </button>
               }
-            </div>
+            </div>}
           </li>
       ))}
     </ul>
