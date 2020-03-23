@@ -11,7 +11,7 @@ const MenuAdmin = () => {
 
   useLateral()
 
-  useEffect(() => () => dispatch(esconderAdministracion()), [])
+  useEffect(() => () => dispatch(esconderAdministracion()), [dispatch])
 
   return (
     <ul className="lista-items">

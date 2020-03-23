@@ -8,7 +8,6 @@ import agregarSubseccionMutation from '../../../mutations/agregarSubseccion'
 import Loader from '../../Loader'
 import useLateral from '../../../hooks/useLateral'
 import ListaSubsecciones from './ListaSubsecciones'
-import _ from 'lodash'
 import './MenuSeccion.css'
 
 const MenuSeccion = () => {
@@ -17,7 +16,7 @@ const MenuSeccion = () => {
   const { mostrandoFormulario } = useSelector(state => state.seccion)
   const { usuario } = useSelector(state => state.auth)
   const { id } = useParams()
-  const { loading, error, data } = useQuery(query, {
+  const { loading, data } = useQuery(query, {
     variables: { id },
     onCompleted: data => dispatch(fijarSeccion(data.seccion))
   })
@@ -30,7 +29,7 @@ const MenuSeccion = () => {
     dispatch(fijarSubseccion(null))
     dispatch(esconderFormularioNuevaSeccion())
     return () => dispatch(esconderFormularioNuevaSeccion())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     if (mostrandoFormulario) {

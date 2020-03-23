@@ -51,7 +51,8 @@ const mutation = new GraphQLObjectType({
       args: {
         titulo: { type: GraphQLString },
         descripcion: { type: GraphQLString },
-        subseccion: { type: GraphQLID }
+        subseccion: { type: GraphQLID },
+        grupos: { type: new GraphQLList(GraphQLID) }
       },
       resolve(parentValue, args) {
         return (new Contenido(args)).save()

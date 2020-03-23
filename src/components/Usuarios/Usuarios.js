@@ -21,7 +21,7 @@ const Usuarios = () => {
   const { mostrandoDialogoNuevoUsuario, mostrandoDialogoGrupos } = useSelector(state => state.usuarios)
   const { nuevosUsuarios } = useSelector(state => state.usuarios)
   const dispatch = useDispatch()
-  const { loading, error, data } = useQuery(query)
+  const { loading, data } = useQuery(query)
 
   const usuariosOrdenados = useCallback(
     () => {

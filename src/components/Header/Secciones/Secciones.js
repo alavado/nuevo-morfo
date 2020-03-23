@@ -9,7 +9,7 @@ import './Secciones.css'
 const Secciones = () => {
 
   const { seccion: seccionSeleccionada } = useSelector(state => state.navegacion)
-  const { loading, error, data } = useQuery(query)
+  const { loading, data } = useQuery(query)
   const dispatch = useDispatch()
 
   return (

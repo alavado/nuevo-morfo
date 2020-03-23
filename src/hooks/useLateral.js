@@ -8,7 +8,7 @@ function useLateral() {
 
   useEffect(() => {
     dispatch(mostrarNavegacion())
-  }, [])
+  }, [dispatch])
 
 }
 

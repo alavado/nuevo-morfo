@@ -7,14 +7,13 @@ import query from '../../../queries/grupos'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import MiLoader from '../../Loader'
 import { compararPropiedadString } from '../../../helpers/utiles'
-import _ from 'lodash'
 
 const FormularioGruposUsuario = ({ usuario }) => {
 
   const [grupos, setGrupos] = useState(usuario.grupos.map(g => g.id))
   const dispatch = useDispatch()
   const [actualizarUsuarioMutate] = useMutation(editarUsuarioMutation)
-  const { loading, error, data } = useQuery(query)
+  const { loading, data } = useQuery(query)
 
   const actualizarGrupos = e => {
     e.preventDefault()
@@ -26,12 +25,7 @@ const FormularioGruposUsuario = ({ usuario }) => {
   }
 
   const toggleGrupo = (id, agregar) => {
-    if (agregar) {
-      setGrupos([...grupos, id])
-    }
-    else {
-      setGrupos(grupos.filter(g => g !== id))
-    }
+    setGrupos(agregar ? [...grupos, id] : grupos.filter(g => g !== id))
   }
 
   useEffect(() => () => dispatch(esconderFormularioGruposUsuario()), [])

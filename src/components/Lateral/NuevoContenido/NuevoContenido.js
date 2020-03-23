@@ -3,10 +3,11 @@ import axios from 'axios'
 import './NuevoContenido.css'
 import useLateral from '../../../hooks/useLateral'
 import { isDev } from '../../../helpers/dev'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import agregarContenidoMutation from '../../../mutations/agregarContenido'
 import agregarImagenMutation from '../../../mutations/agregarImagen'
 import query from '../../../queries/subseccion'
+import queryGrupos from '../../../queries/grupos'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido, fijarProgresoSubidaNuevoContenido } from '../../../redux/actions'
@@ -15,11 +16,13 @@ const NuevoContenido = () => {
 
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
+  const [grupos, setGrupos] = useState([])
+  const { subseccion } = useParams()
   const [envioBloqueado, setEnvioBloqueado] = useState(false)
   const [imagen, setImagen] = useState(null)
   const [agregarContenido] = useMutation(agregarContenidoMutation)
   const [agregarImagen] = useMutation(agregarImagenMutation)
-  const { subseccion } = useParams()
+  const { loading: cargandoGrupos, data: dataGrupos } = useQuery(queryGrupos)
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -33,7 +36,7 @@ const NuevoContenido = () => {
     e.preventDefault()
     setEnvioBloqueado(true)
     let contenido = ''
-    agregarContenido({ variables: { titulo, descripcion, subseccion } })
+    agregarContenido({ variables: { titulo, descripcion, subseccion, grupos } })
       .then(({ data }) => {
         contenido = data.agregarContenido.id
         let formData = new FormData()
@@ -63,6 +66,10 @@ const NuevoContenido = () => {
       })
   }
 
+  const fijarGrupo = (id, agregar) => {
+    setGrupos(agregar ? [...grupos, id] : grupos.filter(g => g !== id))
+  }
+
   return (
     <div className="contenedor-formulario-lateral">
       <h2>Nuevo contenido</h2>
@@ -78,6 +85,19 @@ const NuevoContenido = () => {
         <div>
           <label htmlFor="imagen">Imagen</label>
           <input onChange={e => setImagen(e.target.files[0])} id="imagen" type="file" />
+        </div>
+        <div>
+          <label htmlFor="grupos">Grupos</label>
+          {!cargandoGrupos && dataGrupos.grupos.map(grupo => grupo.nombre !== 'Administración' && (
+            <div className="contenedor-checkbox-grupo" key={grupo.id}>
+              <input
+                type="checkbox"
+                value={grupo.id}
+                onChange={e => fijarGrupo(grupo.id, e.target.checked)}
+              />
+              <label>{grupo.nombre}</label>
+            </div>
+          ))}
         </div>
         <input
           type="submit"

@@ -14,7 +14,7 @@ const Grupos = () => {
 
   const dispatch = useDispatch()
   const { mostrandoFormularioNuevoGrupo } = useSelector(state => state.grupos)
-  const { loading, error, data } = useQuery(query)
+  const { loading, data } = useQuery(query)
 
   const ordenarGrupos = useCallback(() => (
     data.grupos.sort(compararPropiedadString('nombre'))), [data]

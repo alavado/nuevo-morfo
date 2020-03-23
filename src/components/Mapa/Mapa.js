@@ -22,11 +22,11 @@ const Mapa = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
 
-  const { loading, error, data } = useQuery(query, {
+  useQuery(query, {
     variables: { id },
     onCompleted: data => dispatch(fijarContenido(data.contenido))
   })
-  const [agregarMarcador, { dataNuevoMarcador }] = useMutation(agregarMarcadorMutation)
+  const [agregarMarcador] = useMutation(agregarMarcadorMutation)
 
   const [viewport, setViewport] = useState({
     width: '100%',

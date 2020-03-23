@@ -15,7 +15,7 @@ const App = () => {
     if (window.localStorage.getItem('token')) {
       dispatch(fijarUsuario(window.localStorage.getItem('token')))
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="app">

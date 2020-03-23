@@ -41,3 +41,11 @@
   margin: 0;
   margin-top: 16px;
 }
+
+.contenedor-checkbox-grupo {
+  display: grid;
+  grid-template-columns: 20px auto;
+  align-items: center;
+  justify-items: center;
+  margin-top: 4px;
+}

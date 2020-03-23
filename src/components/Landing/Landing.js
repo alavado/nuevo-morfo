@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import './Landing.css'
 import { useSelector } from 'react-redux'
 import logoCentral from '../../assets/logo_central.png'

@@ -15,7 +15,7 @@ const MenuSubseccion = () => {
   const dispatch = useDispatch()
   const { usuario } = useSelector(state => state.auth)
   const { id } = useParams()
-  const { loading, error, data } = useQuery(query, {
+  const { loading, data } = useQuery(query, {
     variables: { id },
     onCompleted: data => {
       dispatch(fijarSeccion(data.subseccion.seccion))

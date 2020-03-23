@@ -11,7 +11,7 @@ import query from '../../queries/grupos'
 
 const Header = () => {
 
-  const { loading, error, data } = useQuery(query)
+  const { data } = useQuery(query)
   const { mostrandoAdministracion } = useSelector(state => state.navegacion)
   const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()

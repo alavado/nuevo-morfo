@@ -15,7 +15,7 @@ const Perfil = () => {
 
   useEffect(() => {
     dispatch(esconderNavegacion())
-  }, [])
+  }, [dispatch])
 
   if (!usuario) {
     return <Redirect to="/" />
