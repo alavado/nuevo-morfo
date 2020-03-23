@@ -4,7 +4,7 @@ import { FIJAR_SECCION, FIJAR_SUBSECCION, FIJAR_CONTENIDO,
   FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO,
   EDITAR_MARCADOR, EDITANDO_MARCADOR, MOSTRAR_FORMULARIO_NUEVO_USUARIO, AGREGAR_USUARIO_NUEVO,
   MOSTRAR_FORMULARIO_NUEVO_GRUPO, MOSTRAR_FORMULARIO_NUEVA_IMAGEN, SELECCIONAR_IMAGEN_DE_CONTENIDO,
-  MOSTRAR_FORMULARIO_GRUPOS_USUARIO, LOGOUT,
+  MOSTRAR_FORMULARIO_GRUPOS_USUARIO, LOGOUT, SELECCIONAR_VISTA_CONTENIDOS_GRUPO,
   MOSTRAR_ADMINISTRACION} from "./actionTypes"
 import { decode } from 'jsonwebtoken'
 
@@ -70,9 +70,10 @@ export const esconderLogin = () => ({
 
 export const fijarUsuario = token => {
   window.localStorage.setItem('token', token)
+  const usuario = decode(token)
   return {
     type: FIJAR_USUARIO,
-    payload: {...decode(token), token}
+    payload: {...usuario, token}
   }
 }
 
@@ -188,4 +189,9 @@ export const esconderAdministracion = () => ({
 
 export const logout = () => ({
   type: LOGOUT
+})
+
+export const seleccionarVistaContenidosGrupo = idGrupo => ({
+  type: SELECCIONAR_VISTA_CONTENIDOS_GRUPO,
+  payload: idGrupo
 })

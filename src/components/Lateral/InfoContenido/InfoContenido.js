@@ -22,7 +22,7 @@ const InfoContenido = () => {
 
   useEffect(() => {
     dispatch(mostrarNavegacion())
-  }, [])
+  }, [dispatch])
 
   if (!contenido || !contenido.imagenes) {
     return <Loader />

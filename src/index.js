@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 
 import { ApolloProvider } from '@apollo/react-hooks'
-import ApolloClient from 'apollo-boost'
+import ApolloClient from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -37,7 +37,6 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const client = new ApolloClient({
-  uri: `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/graphql`,
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 })

@@ -16,8 +16,8 @@ const SubseccionType = new GraphQLObjectType({
     },
     contenidos: {
       type: new GraphQLList(require('./contenido_type')),
-      resolve(parentValue) {
-        return Subseccion.findContenidos(parentValue.id)
+      resolve(parentValue, args, req) {
+        return Subseccion.findContenidos(parentValue.id, req.headers.authorization)
       }
     }
   })

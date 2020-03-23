@@ -1,7 +1,8 @@
 import { FIJAR_CONTENIDO, AGREGAR_MARCADOR, ELIMINAR_MARCADOR, DESTACAR_MARCADOR, MOSTRAR_POPUP_MARCADOR,
   FIJAR_PROGRESO_SUBIDA_NUEVO_CONTENIDO, CAMBIAR_ESTADO_SUBIDA_NUEVO_CONTENIDO, EDITAR_MARCADOR, EDITANDO_MARCADOR,
   MOSTRAR_FORMULARIO_NUEVA_IMAGEN, 
-  SELECCIONAR_IMAGEN_DE_CONTENIDO} from "../actionTypes"
+  SELECCIONAR_IMAGEN_DE_CONTENIDO,
+  SELECCIONAR_VISTA_CONTENIDOS_GRUPO } from "../actionTypes"
 
 const initialState = {
   contenido: null,
@@ -13,7 +14,8 @@ const initialState = {
     subiendo: false,
     progreso: 0
   },
-  mostrandoFormularioNuevaImagen: false
+  mostrandoFormularioNuevaImagen: false,
+  idGrupoContenidosVisible: null
 }
 
 export default function(state = initialState, action) {
@@ -112,6 +114,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         indiceImagenActual: action.payload
+      }
+    }
+    case SELECCIONAR_VISTA_CONTENIDOS_GRUPO: {
+      return {
+        ...state,
+        idGrupoContenidosVisible: action.payload
       }
     }
     default:

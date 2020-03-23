@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fijarSeccion, esconderNavegacion, mostrarAdministracion } from '../../redux/actions'
+import { fijarSeccion, esconderNavegacion, mostrarAdministracion, seleccionarVistaContenidosGrupo } from '../../redux/actions'
 import Usuario from './Usuario'
 import Secciones from './Secciones/Secciones'
 import logo from '../../assets/logo_superior.png'
@@ -28,8 +28,10 @@ const Header = () => {
       </div>
       {usuario && <div id="contenedor-selector-grupo">
         <label>Ver como:</label>
-        <select>
-          {data && data.grupos.map(({nombre, id}) => <option key={`selector-vista-grupo-${id}`}>{nombre}</option>)}
+        <select onChange={e => dispatch(seleccionarVistaContenidosGrupo(e.target.value))}>
+          {data && data.grupos.map(({nombre, id}) => (
+            <option key={`selector-vista-grupo-${id}`} value={id}>{nombre}</option>
+          ))}
         </select>
       </div>}
       <nav>
