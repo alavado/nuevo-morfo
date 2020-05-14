@@ -1,4 +1,4 @@
-.miniaturas {
+.Miniaturas {
   display: flex;
   align-items: center;
   margin-top: 12px;
@@ -6,21 +6,21 @@
   padding-bottom: 4px;
 }
 
-.miniaturas > * {
-  animation: aparece-miniatura .25s ease-in-out both;
-  transition: all .25s ease-in-out;
-}
-
-.miniaturas img {
-  min-width: 42px;
+.Miniaturas__miniatura_imagen {
   height: 42px;
+  min-width: 42px;
   margin-right: 5px;
   border-radius: 4px;
-  border: 2px solid #D4001C;
+  transition: all .25s ease-in-out;
+  animation: aparece-miniatura .25s ease-in-out both;
   cursor: pointer;
 }
 
-.miniaturas button {
+.Miniaturas__miniatura_imagen_seleccionada {
+  border: 2px solid #D4001C;
+}
+
+.Miniaturas__boton_agregar_imagen {
   min-width: 42px;
   height: 42px;
   background-color: transparent;
@@ -28,19 +28,20 @@
   color: #9E9E9E;
   border-radius: 8px;
   cursor: pointer;
+  animation: aparece-miniatura .25s ease-in-out both;
 }
 
-.miniaturas button:hover {
+.Miniaturas__boton_agregar_imagen:hover {
   border: 1px dashed #222222;
   color: #222222;
 }
 
-.miniaturas img:not(.imagen-seleccionada) {
+.Miniaturas__miniatura_imagen:not(.Miniaturas__miniatura_imagen_seleccionada) {
   filter: saturate(0);
   border: 2px solid #212322;
 }
 
-.miniaturas img:hover {
+.Miniaturas__miniatura_imagen:hover {
   filter: saturate(1);
 }
 

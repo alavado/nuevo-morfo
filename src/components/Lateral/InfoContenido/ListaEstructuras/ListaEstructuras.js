@@ -12,18 +12,19 @@ const ListaEstructuras = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="lista-estructuras">
-      <h4>Estructuras</h4>
+    <div className="ListaEstructuras">
+      <h4 className="ListaEstructuras__titulo">Estructuras</h4>
       {_.isEmpty(contenido.imagenes[indiceImagenActual].marcadores) ?
         <>
-          <p className="mensaje-lista-vacia">No hay estructuras en esta imagen.</p>
-          <p className="mensaje-lista-vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>
+          <p className="ListaEstructuras__mensaje_lista_vacia">No hay estructuras en esta imagen.</p>
+          <p className="ListaEstructuras__mensaje_lista_vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>
         </> : 
-        <ul>
+        <ul className="ListaEstructuras__lista">
           {contenido.imagenes[indiceImagenActual].marcadores
             .sort(compararPropiedadString('titulo'))
             .map((marcador, i) => (
               <li
+                className="ListaEstructuras__elemento"
                 key={marcador.id}
                 style={{ animationDelay: `${i * .05}s` }}
                 onMouseEnter={() => {
@@ -42,7 +43,7 @@ const ListaEstructuras = () => {
                   setEstructuraClickeada(false)
                 }}
               >
-                <a className="nombre-estructura">{marcador.titulo}</a>
+                <a className="ListaEstructuras__nombre_estructura">{marcador.titulo}</a>
               </li>
           ))}
         </ul>

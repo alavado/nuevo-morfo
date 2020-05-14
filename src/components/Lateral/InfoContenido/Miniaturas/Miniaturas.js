@@ -12,19 +12,25 @@ const Miniaturas = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="miniaturas">
+    <div className="Miniaturas">
       {contenido.imagenes.map(({ archivo }, i) => (
         <img
           key={`miniatura-${i}`}
           src={`http://localhost:1027/thumbnail/${archivo}`}
           alt="imagen contenido"
           onClick={() => dispatch(mostrarImagenDeContenido(i))}
-          className={indiceImagenActual === i ? 'imagen-seleccionada' : ''}
+          className={`Miniaturas__miniatura_imagen${indiceImagenActual === i ? ' Miniaturas__miniatura_imagen_seleccionada' : ''}`}
         />
       ))}
-      {usuario && <button title="Agregar imagen" onClick={() => dispatch(mostrarFormularioNuevaImagen())}>
-        <FontAwesomeIcon icon={faPlus} />
-      </button>}
+      {usuario &&
+        <button
+          title="Agregar imagen"
+          onClick={() => dispatch(mostrarFormularioNuevaImagen())}
+          className="Miniaturas__boton_agregar_imagen"
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      }
     </div>
   )
 }

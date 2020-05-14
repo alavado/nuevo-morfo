@@ -1,3 +1,14 @@
+.MenuSeccion {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 110px);
+}
+
+.MenuSeccion__formulario_agregar_subseccion {
+
+}
+
 .boton-eliminar-subseccion {
   background: none;
   border: none;
@@ -7,4 +18,13 @@
 
 .boton-eliminar-subseccion:hover {
   color: #AB989D;
+}
+
+.MenuSeccion__boton_agregar_subseccion {
+  background-color: #D4001C;
+  color: white;
+  margin: 32px 24px;
+  transition: all .15s ease-in-out;
+  animation: aparece-boton-agregar .25s ease-in-out both;
+  border: none;
 }

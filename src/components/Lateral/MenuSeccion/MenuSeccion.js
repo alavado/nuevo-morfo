@@ -54,10 +54,10 @@ const MenuSeccion = () => {
   }
   
   return (
-    <div className="contenedor-lista">
+    <div className="MenuSeccion">
       <ListaSubsecciones data={data} />
       {mostrandoFormulario &&
-        <form className="formulario-agregar-subseccion" onSubmit={agregar}>
+        <form className="MenuSeccion__formulario_agregar_subseccion" onSubmit={agregar}>
           <input ref={tituloNuevaSubseccion} type="text" />
           <input type="submit" value="Agregar" />
         </form>

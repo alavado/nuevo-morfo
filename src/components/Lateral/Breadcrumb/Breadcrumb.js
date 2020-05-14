@@ -12,15 +12,26 @@ const Breadcrumb = () => {
   const dispatch = useDispatch()
   
   return (
-    <div className="breadcrumb">
-      <Link to="/" onClick={e => {
-        dispatch(esconderNavegacion())
-        dispatch(fijarSeccion(null))
-      }}>
+    <div className="Breadcrumb">
+      <Link
+        to="/"
+        className="Breadcrumb__link"
+        onClick={e => {
+          dispatch(esconderNavegacion())
+          dispatch(fijarSeccion(null))
+        }}
+      >
         <FontAwesomeIcon icon={faHome} />
       </Link>
-      {seccion && <Link to={`/seccion/${seccion.id}`}>{seccion.nombre}</Link>}
-      {subseccion && <Link to={`/subseccion/${subseccion.id}`}>{subseccion.nombre}</Link>}
+      {seccion &&
+        <Link className="Breadcrumb__link" to={`/seccion/${seccion.id}`}>
+          {seccion.nombre}
+        </Link>
+      }
+      {subseccion &&
+        <Link className="Breadcrumb__link" to={`/subseccion/${subseccion.id}`}>
+          {subseccion.nombre}
+        </Link>}
     </div>
   )
 }

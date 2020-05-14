@@ -52,9 +52,9 @@ const InfoContenido = () => {
   }
 
   return (
-    <div className="info-contenido">
-      <h3>{contenido.titulo}</h3>
-      <p>{contenido.descripcion}</p>
+    <div className="InfoContenido">
+      <h3 className="InfoContenido__titulo">{contenido.titulo}</h3>
+      <p className="InfoContenido__descripcion">{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />
       {usuario && <BotonCambiarEstado />}

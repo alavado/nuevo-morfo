@@ -1,10 +1,10 @@
-.info-contenido {
+.InfoContenido {
   overflow-y: auto;
   color: #212322;
   padding: 20px 24px 8px 24px;
 }
 
-.info-contenido h3 {
+.InfoContenido__titulo {
   text-transform: uppercase;
   font-size: 12px;
   margin-bottom: 12px;
@@ -13,7 +13,7 @@
   animation: aparece-contenido .25s ease-in-out both;
 }
 
-.info-contenido p {
+.InfoContenido__descripcion {
   font-size: 12px;
   line-height: 1.5;
   animation: aparece-contenido .25s ease-in-out both;
