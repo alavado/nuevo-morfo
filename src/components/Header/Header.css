@@ -1,20 +1,4 @@
-#brand {
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-
-#brand img {
-  height: 22px;
-  width: auto;
-}
-
-#brand a {
-  color: white;
-}
-
-header {
+.Header {
   height: 64px;
   background-color: #212322;
   display: flex;
@@ -24,61 +8,37 @@ header {
   justify-content: space-between;
 }
 
-nav {
+.Header__brand {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.Header__brand_image {
+  height: 22px;
+  width: auto;
+}
+
+.Header__brand_link {
+  color: white;
+}
+
+.Header__navegacion {
   height: 60px;
   display: flex;
   align-items: center;
 }
 
-nav a {
-  margin-left: 36px;
-  text-transform: uppercase;
-  font-size: 11px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  margin-top: 4px;
-  border-color: black;
-  animation: aparece-nombre-seccion .25s ease-in-out both;
-  transition: color .15s ease-in, border-color .15s ease-in;
-}
-
-nav a, nav a:visited {
-  color: #AB989D;
-}
-
-nav a:hover {
-  color: white;
-}
-
-nav a:last-child {
-  margin-left: 36px;
-  border-left: 1px solid #AB989D;
-  padding-left: 36px;
-  padding-right: 12px;
-  height: 24px;
-}
-
-nav a:hover:not(:last-child):not(.seccion-activa) {
-  border-top: 4px solid #AB989D;
-  margin-top: 0;
-}
-
-nav a.seccion-activa {
-  color: white;
-  border-top: 4px solid #D6001C;
-  margin-top: 0;
-}
-
-#contenedor-selector-grupo label, #contenedor-selector-grupo option {
+.Header__contenedor_selector_grupo label, .Header__contenedor_selector_grupo option {
   font-size: 12px;
 }
 
-#contenedor-selector-grupo select option::after {
+.Header__contenedor_selector_grupo select option::after {
   content: 'x';
 }
 
-#contenedor-selector-grupo label {
+.Header__contenedor_selector_grupo label {
   color: white;
   margin-right: 8px;
 }

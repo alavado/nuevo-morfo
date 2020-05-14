@@ -12,15 +12,15 @@ const Usuario = () => {
   const dispatch = useDispatch()
 
   return (
-    <>
+    <div className="Usuario">
       {usuario !== null ?
-        <Link to="/perfil" className="nombre-usuario">
-          <FontAwesomeIcon icon={iconoUsuario} size="1x" />
-          <div>{usuario.nombre}</div>
+        <Link to="/perfil" className="Usuario__link">
+          <FontAwesomeIcon className="Usuario__icono" icon={iconoUsuario} size="1x" />
+          <div className="Usuario__nombre">{usuario.nombre}</div>
         </Link> :
         <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
       }
-    </>
+    </div>
   )
 }
 

@@ -8,9 +8,9 @@ const Buscador = () => {
   const { activa } = useSelector(state => state.navegacion)
 
   return (
-    <div className={`contenedor-buscador${activa ? ' compacto': ''}`}>
+    <div className={`Landing${activa ? ' Landing--compacto' : ''}`}>
       <div></div>
-      <div className="bienvenida">
+      <div className="Landing__bienvenida">
         <img src={logoCentral} alt="logo morfo uchile" />
         <p>
           Sitio de apoyo docente multimedia para los estudiantes de la

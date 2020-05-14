@@ -9,7 +9,7 @@ const multer  = require('multer')
 const upload = multer({ dest: 'server/uploads/' })
 const fs = require('fs')
 const { crearThumbnail, crearPiramide } = require('./tiles')
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 
 const cors = require('cors')
 app.use(cors())
@@ -43,13 +43,12 @@ app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
   })
 })
 
-
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
 }))
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(require('./services/auth'))
 const isDev = require('./helpers/dev').isDev()
@@ -64,7 +63,7 @@ if (!isDev) {
   })
 }
 else {
-  console.log(`No estoy en el servidor (IP: ${require('ip').address()})`);
+  console.log(`No estoy en el servidor (IP: ${require('ip').address()})`)
   app.listen(1027, () => {
     console.log('Escuchando puerto:', 1027)
   })

@@ -7,58 +7,18 @@
   url("fonts/11469c307f0de6481e3a04cc5d54ae93.svg#Uber Move Text") format("svg"); /* iOS 4.1- */
 }
 
-.app {
+.App {
   height: 100vh;
   font-family: "Uber Move Text", sans-serif;
   background-color: #212322;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-main {
+.App__principal {
   display: flex;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
-}
-
-button:focus, input:focus {
-  outline: none;
-}
-
-input {
-  border: 1px solid #BAC5B9;
-  font-family: "Uber Move Text", sans-serif;
-}
-
-textarea {
-  font-family: "Uber Move Text", sans-serif;
-  padding: 8px;
-}
-
-input:-webkit-autofill {
-  border: 1px solid #30B700;
-  box-shadow: 0 0 0px 1000px white inset;
-}
-
-option {
-  font-family: "Uber Move Text", sans-serif;
-}
-
-@media (max-width: 760px) {
-  main {
+@media (orientation: portrait) {
+  .App__principal {
     flex-direction: column;
   }
 }

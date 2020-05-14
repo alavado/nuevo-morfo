@@ -18,10 +18,10 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <div className="app">
+    <div className="App">
       <Login />
       <Header />
-      <main>
+      <main className="App__principal">
         <Lateral />
         <Principal />
       </main>

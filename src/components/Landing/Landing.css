@@ -1,4 +1,4 @@
-.contenedor-buscador {
+.Landing {
   height: 100%;
   width: 100vw;
   transition: all .35s ease-in-out;
@@ -9,21 +9,21 @@
   align-items: center;
 }
 
-.contenedor-buscador img {
+.Landing img {
   max-width: 240px;
   margin-bottom: 32px;
   animation: aparece-bienvenida .3s ease-in-out both;
 }
 
-.contenedor-buscador p {
+.Landing p {
   animation: aparece-bienvenida .3s .25s ease-in-out both;
 }
 
-.contenedor-buscador.compacto {
+.Landing--compacto {
   width: calc(100vw - 240px);
 }
 
-.contenedor-buscador .bienvenida {
+.Landing__bienvenida {
   color: white;
   padding: 24px;
   line-height: 2;
@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-.contenedor-buscador button {
+.Landing button {
   background-color: #D4001C;
   border: none;
   color: white;
