@@ -34,3 +34,47 @@
   width: 10em;
   background-color: #212322;
 }
+
+.Slider__imagen_fondo {
+  position: absolute;
+  width: 10em;
+  height: 100%;
+  pointer-events: none;
+}
+
+.Slider__marcador_y {
+  flex: 1;
+  background-color: #D4001C;
+  transition: background-color .15s ease-in-out;
+  position: absolute;
+  z-index: 2;
+  width: 10em;
+  height: .15em;
+  cursor: pointer;
+}
+
+.Slider__miniatura_imagen {
+  height: 1.5em;
+  min-width: 1.5em;
+  margin-right: 5px;
+  border-radius: 4px;
+  /* transition: all .25s ease-in-out; */
+  animation: aparece-miniatura .25s ease-in-out both;
+  cursor: move;
+  position: absolute;
+  z-index: 3;
+  -webkit-user-drag: none;
+}
+
+.Slider__miniatura_imagen_seleccionada {
+  border: 2px solid #D4001C;
+}
+
+.Slider__miniatura_imagen:not(.Slider__miniatura_imagen_seleccionada) {
+  filter: saturate(0);
+  border: 2px solid #212322;
+}
+
+.Slider__miniatura_imagen:hover {
+  filter: saturate(1);
+}
