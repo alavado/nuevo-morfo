@@ -19,12 +19,12 @@ const crearPiramide = archivo => {
     const destino = path.resolve(`.\\server\\images\\${archivo}\\pyramid`)
     const original = path.resolve(`.\\server\\images\\${archivo}\\original.jpg`)
     const pathVips = path.resolve(`.\\server\\tools\\vips-dev-8.9\\bin\\vips.exe`)
-    childProcess.execSync(`mkdir ${destino} && ${pathVips} dzsave ${original} ${destino} --layout google`)
+    childProcess.execSync(`mkdir ${destino} && ${pathVips} dzsave ${original} ${destino} --layout google --centre`)
   }
   else {
     const destino = path.resolve(`./server/images/${archivo}/pyramid`)
     const original = path.resolve(`./server/images/${archivo}/original.jpg`)
-    childProcess.execSync(`mkdir ${destino} && vips dzsave ${original} ${destino} --layout google`)
+    childProcess.execSync(`mkdir ${destino} && vips dzsave ${original} ${destino} --layout google --centre`)
   }
 }
 

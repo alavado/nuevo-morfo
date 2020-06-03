@@ -21,7 +21,14 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.get('/foto/:id/:z/:x/:y', (req, res) => {
   const { id, x, y, z } = req.params
-  res.sendFile(path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`))
+  const imagen = path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`)
+  fs.access(imagen, fs.constants.R_OK, err => {
+    if (err) {
+      res.sendFile(path.join(__dirname, 'images/blank.png'))
+      return
+    }
+    res.sendFile(imagen)
+  })
 })
 
 app.get('/thumbnail/:id', (req, res) => {
