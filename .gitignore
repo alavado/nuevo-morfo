@@ -10,6 +10,7 @@
 
 # images
 /server/images
+/server/uploads
 /src/data
 
 # testing

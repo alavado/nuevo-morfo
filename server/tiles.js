@@ -24,7 +24,7 @@ const crearPiramide = archivo => {
   else {
     const destino = path.resolve(`./server/images/${archivo}/pyramid`)
     const original = path.resolve(`./server/images/${archivo}/original.jpg`)
-    childProcess.execSync(`mkdir ${destino} && vips dzsave ${original} ${destino} --layout google --centre`)
+    childProcess.execSync(`mkdir ${destino} && /var/local/libvips/tools/vips dzsave ${original} ${destino} --layout google --centre`)
   }
 }
 

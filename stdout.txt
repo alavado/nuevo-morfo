@@ -1,0 +1,8 @@
+[33m[nodemon] 1.18.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node server/server.js`[39m
+Escuchando puerto (HTTPS): 1027
+Conectado a MongoDB Atlas
+data: {"alias":"Alejandro Lavado A.","base":"guia","email":"ultramegaok@gmx.com","pers_id":16748970,"servicio":"morfo"}
+[32m[nodemon] restarting child process[39m
