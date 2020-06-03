@@ -15,7 +15,7 @@ const Slider = () => {
   const [imagenes, setImagenes] = useState([])
 
   useEffect(() => {
-    if (contenido) {
+    if (contenido && contenido.imagenes) {
       setImagenes(contenido.imagenes.map(img => ({ ...img, y: 0 })))
     }
   }, [contenido])
@@ -25,15 +25,12 @@ const Slider = () => {
   }
 
   const test = (e, i) => {
-    console.log(e)
     setImagenes(prev => {
       prev[i].y = e.y - e.offsetY - 55
-      console.log({prev})
+      console.log((e.y - e.offsetY - 55) / (window.innerHeight - 55))
       return [...prev]
     })
   }
-
-  console.log({imagenes})
 
   return (
     <div className={`Slider${abierto ? ' Slider--abierto' : ''}`}>

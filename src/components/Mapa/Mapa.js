@@ -45,10 +45,9 @@ const Mapa = () => {
   }, [contenido, indiceImagenActual])
 
   const actualizarVP = vp => {
-    vp.zoom = Math.max(minZoom, vp.zoom)
-    vp.zoom = Math.min(maxZoom, vp.zoom)
     setViewport({
-      ...vp, 
+      ...vp,
+      zoom: Math.max(minZoom, Math.min(maxZoom, vp.zoom)),
       width: '100%',
       height: 'calc(100vh - 64px)',
     })

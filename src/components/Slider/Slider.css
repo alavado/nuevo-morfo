@@ -5,6 +5,7 @@
   position: fixed;
   right: -10em;
   transition: all .35s ease-in-out;
+  z-index: 3;
 }
 
 .Slider--abierto {

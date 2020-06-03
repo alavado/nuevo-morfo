@@ -25,7 +25,7 @@ const Header = () => {
           <img className="Header__brand_image" src={logo} alt="logo morfo, ícono por FreePik de www.flaticon.com" />
         </Link>
       </div>
-      {usuario && <div className="Header__contenedor_selector_grupo">
+      {usuario && false && <div className="Header__contenedor_selector_grupo">
         <label>Ver como:</label>
         <select onChange={e => dispatch(seleccionarVistaContenidosGrupo(e.target.value))}>
           {data && data.grupos.map(({nombre, id}) => (

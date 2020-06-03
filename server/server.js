@@ -43,6 +43,11 @@ app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
   })
 })
 
+app.post('/subir_imagen_pierna', upload.single('imagen'), (req, res) => {
+  const { filename } = req.file
+  res.status(200).send(filename)
+})
+
 app.use('/graphql', expressGraphQL({
   schema,
   graphiql: true
