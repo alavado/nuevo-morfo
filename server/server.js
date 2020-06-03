@@ -24,8 +24,7 @@ app.get('/foto/:id/:z/:x/:y', (req, res) => {
   const imagen = path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`)
   fs.access(imagen, fs.constants.R_OK, err => {
     if (err) {
-      res.sendFile(path.join(__dirname, 'images/blank.png'))
-      return
+      return res.sendFile(path.join(__dirname, 'images/blank.png'))
     }
     res.sendFile(imagen)
   })
