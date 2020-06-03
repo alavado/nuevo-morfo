@@ -38,8 +38,8 @@ app.get('/thumbnail/:id', (req, res) => {
 
 app.post('/subir_imagen', upload.single('imagen'), (req, res) => {
   const { filename } = req.file
-  fs.mkdirSync(`server/images/${filename}`)
-  fs.rename(req.file.path, `server/images/${filename}/original.jpg`, err => {
+  fs.mkdirSync(`./server/images/${filename}`)
+  fs.rename(req.file.path, `./server/images/${filename}/original.jpg`, err => {
     crearThumbnail(filename)
     crearPiramide(filename)
     if (err) {
