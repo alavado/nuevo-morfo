@@ -18,7 +18,7 @@ app.post('/auth', (req, res) => {
     r.on('data', d => data += d)
     r.on('end', () => {
       console.log(`data: ${JSON.stringify(JSON.parse(data))}`)
-      if (r.statusCode != 200) {
+      if (r.statusCode !== 200) {
         res.status(500).send(MENSAJE_ERROR)
         return
       }

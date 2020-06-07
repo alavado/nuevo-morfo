@@ -44,7 +44,7 @@ usuarioSchema.statics.loginUcampus = function(email) {
         return err
       }
       return jwt.sign(
-        _.pick(usuarioDB, ['id', 'nombre', 'email']),
+        _.pick(usuarioDB, ['id', 'nombre', 'email', 'grupos']),
         jwtSecret,
         { expiresIn: '2d' }
       )

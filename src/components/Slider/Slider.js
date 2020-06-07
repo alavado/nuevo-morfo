@@ -23,6 +23,8 @@ const Slider = () => {
   if (!imagenes) {
     return '...'
   }
+  
+  return null
 
   const test = (e, i) => {
     setImagenes(prev => {
