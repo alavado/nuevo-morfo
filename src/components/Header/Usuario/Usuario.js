@@ -18,7 +18,12 @@ const Usuario = () => {
           <FontAwesomeIcon className="Usuario__icono" icon={iconoUsuario} size="1x" />
           <div className="Usuario__nombre">{usuario.nombre}</div>
         </Link> :
-        <a href="#" onClick={() => dispatch(mostrarLogin())}>Acceder</a>
+        <button
+          className="Usuario__boton_acceder"
+          onClick={() => dispatch(mostrarLogin())}
+        >
+          Acceder
+        </button>
       }
     </div>
   )

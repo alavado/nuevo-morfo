@@ -10,6 +10,7 @@ import { fijarSubseccion } from '../../../../redux/actions'
 import query from '../../../../queries/seccion'
 import _ from 'lodash'
 import './ListaSubsecciones.css'
+import { esAdmin } from '../../../../helpers/auth'
 
 const ListaSubsecciones = ({ data }) => {
 
@@ -40,7 +41,7 @@ const ListaSubsecciones = ({ data }) => {
             >
               {subseccion.nombre}
             </Link>
-            {usuario && <div className="acciones-subseccion">
+            {usuario && esAdmin(usuario) && <div className="acciones-subseccion">
               {_.isEmpty(subseccion.contenidos.filter(c => !c.deleted)) &&
                 <button
                   className="boton-eliminar-subseccion"

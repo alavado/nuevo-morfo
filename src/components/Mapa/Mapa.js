@@ -12,6 +12,7 @@ import './Mapa.css'
 import { useParams } from 'react-router-dom'
 import FormularioNuevaImagen from './FormularioNuevaImagen'
 import Slider from '../Slider'
+import { esAdmin } from '../../helpers/auth'
 
 const { minZoom, maxZoom } = parametrosMapa
 
@@ -55,7 +56,7 @@ const Mapa = () => {
 
   const onLeftClick = e => {
     e.preventDefault()
-    if (!usuario) {
+    if (!usuario || !esAdmin(usuario)) {
       return
     }
     const [lng, lat] = e.lngLat

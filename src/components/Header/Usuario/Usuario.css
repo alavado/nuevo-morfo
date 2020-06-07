@@ -26,3 +26,14 @@
 .Usuario__nombre {
   color: #AB989D;
 }
+
+.Usuario__boton_acceder {
+  border: none;
+  background-color: #D3001C;
+  color: white;
+  padding: .75em 1.25em;
+  text-transform: uppercase;
+  border-radius: 2em;
+  font-size: .9em;
+  cursor: pointer;
+}

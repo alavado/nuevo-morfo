@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { mostrarFormularioNuevaImagen, mostrarImagenDeContenido } from '../../../../redux/actions'
+import { esAdmin } from '../../../../helpers/auth'
 
 const Miniaturas = () => {
 
@@ -23,7 +24,7 @@ const Miniaturas = () => {
           className={`Miniaturas__miniatura_imagen${indiceImagenActual === i ? ' Miniaturas__miniatura_imagen_seleccionada' : ''}`}
         />
       ))}
-      {usuario &&
+      {usuario && esAdmin(usuario) &&
         <button
           title="Agregar imagen"
           onClick={() => dispatch(mostrarFormularioNuevaImagen())}

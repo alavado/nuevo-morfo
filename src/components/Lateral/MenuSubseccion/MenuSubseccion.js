@@ -9,6 +9,7 @@ import Loader from '../../Loader'
 import _ from 'lodash'
 import useLateral from '../../../hooks/useLateral'
 import { compararPropiedadString } from '../../../helpers/utiles'
+import { esAdmin } from '../../../helpers/auth'
 
 const MenuSubseccion = () => {
 
@@ -52,7 +53,7 @@ const MenuSubseccion = () => {
   return (
     <div className="contenedor-lista">
       <ListaContenidos />
-      {!loading && usuario &&
+      {!loading && usuario && esAdmin(usuario) &&
         <Link to={`/contenido/nuevo/${id}`} className="boton-agregar">
           Agregar contenido
         </Link>

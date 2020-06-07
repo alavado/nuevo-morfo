@@ -99,7 +99,7 @@ const Usuarios = () => {
           <tbody>
             {usuariosOrdenados().map((u, i) => (
               <tr key={u.id}>
-                <td>
+                <td className="Usuarios__nombre">
                   {destacarBusqueda(u.nombre)}
                   {u.nuevo && <span className="tag-usuario-nuevo">Nuevo</span>}
                 </td>

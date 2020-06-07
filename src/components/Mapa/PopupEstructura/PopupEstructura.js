@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
 import { faEdit as iconoEditar } from '@fortawesome/free-solid-svg-icons'
 import FormularioEdicionMarcador from './FormularioEdicionMarcador'
+import { esAdmin } from '../../../helpers/auth'
 
 const { tamañoMarcador } = parametrosMapa
 
@@ -62,7 +63,7 @@ const PopupEstructura = () => {
           <FormularioEdicionMarcador /> :
           <>
             <p>{popup.titulo}</p>
-            {usuario && <div className="botones">
+            {usuario && esAdmin(usuario) && <div className="botones">
               <button title="Editar marcador" onClick={mostrarFormularioEditarMarcador}>
                 <FontAwesomeIcon icon={iconoEditar} size="sm" />
               </button>

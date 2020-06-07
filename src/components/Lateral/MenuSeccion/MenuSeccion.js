@@ -9,6 +9,7 @@ import Loader from '../../Loader'
 import useLateral from '../../../hooks/useLateral'
 import ListaSubsecciones from './ListaSubsecciones'
 import './MenuSeccion.css'
+import { esAdmin } from '../../../helpers/auth'
 
 const MenuSeccion = () => {
 
@@ -64,7 +65,7 @@ const MenuSeccion = () => {
           <input type="submit" value="Agregar" />
         </form>
       }
-      {!loading && !mostrandoFormulario && usuario &&
+      {!loading && !mostrandoFormulario && usuario && esAdmin(usuario) &&
         <button
           className="boton-agregar"
           onClick={() => dispatch(mostrarFormularioNuevaSeccion())}

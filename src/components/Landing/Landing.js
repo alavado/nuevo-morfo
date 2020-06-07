@@ -17,7 +17,6 @@ const Buscador = () => {
           Facultad de Medicina de la Universidad de Chile
           en el estudio de las Ciencias Morfológicas aplicadas a la Clínica.
         </p>
-        <button>Comenzar</button>
       </div>
       <div></div>
     </div>

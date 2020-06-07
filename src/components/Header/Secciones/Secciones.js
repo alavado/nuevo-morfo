@@ -5,6 +5,7 @@ import { NavLink as Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fijarSeccion, mostrarAdministracion } from '../../../redux/actions'
 import './Secciones.css'
+import { esAdmin } from '../../../helpers/auth'
 
 const Secciones = () => {
 
@@ -15,7 +16,7 @@ const Secciones = () => {
 
   return (
     <div className="Secciones">
-      {usuario && <Link
+      {usuario && esAdmin(usuario) && <Link
         to="/admin"
         activeClassName="Secciones__link_navegacion--activo"
         className="Secciones__link_navegacion"

@@ -10,6 +10,7 @@ import restaurarMutation from '../../../mutations/restaurarContenido'
 import { useHistory } from 'react-router-dom'
 import Loader from '../../Loader'
 import { mostrarNavegacion } from '../../../redux/actions'
+import { esAdmin } from '../../../helpers/auth'
 
 const InfoContenido = () => {
 
@@ -57,7 +58,7 @@ const InfoContenido = () => {
       <p className="InfoContenido__descripcion">{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />
-      {usuario && <BotonCambiarEstado />}
+      {usuario && esAdmin(usuario) && <BotonCambiarEstado />}
     </div>
   )
 }
