@@ -1,5 +1,6 @@
 import React from 'react'
 import './Miniaturas.css'
+import { isDev } from '../../../../helpers/dev'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -16,7 +17,7 @@ const Miniaturas = () => {
       {contenido.imagenes.map(({ archivo }, i) => (
         <img
           key={`miniatura-${i}`}
-          src={`http://localhost:1027/thumbnail/${archivo}`}
+          src={`${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`}
           alt="imagen contenido"
           onClick={() => dispatch(mostrarImagenDeContenido(i))}
           className={`Miniaturas__miniatura_imagen${indiceImagenActual === i ? ' Miniaturas__miniatura_imagen_seleccionada' : ''}`}
