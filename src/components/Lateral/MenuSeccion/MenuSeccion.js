@@ -16,7 +16,7 @@ const MenuSeccion = () => {
   const { mostrandoFormulario } = useSelector(state => state.seccion)
   const { usuario } = useSelector(state => state.auth)
   const { id } = useParams()
-  const { loading, data } = useQuery(query, {
+  const { loading, data, error } = useQuery(query, {
     variables: { id },
     onCompleted: data => dispatch(fijarSeccion(data.seccion))
   })
@@ -52,6 +52,8 @@ const MenuSeccion = () => {
   if (loading) {
     return <Loader />
   }
+
+  console.log(error)
   
   return (
     <div className="MenuSeccion">
