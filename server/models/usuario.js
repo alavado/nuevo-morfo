@@ -36,12 +36,19 @@ usuarioSchema.statics.agregar = function(args) {
   })).save()
 }
 
-usuarioSchema.statics.loginUcampus = function(email) {
+usuarioSchema.statics.loginUcampus = async function(email, nombre) {
   return this
     .findOne({ email })
-    .then((usuarioDB, err) => {
+    .then(async (usuarioDB, err) => {
       if (err) {
         return err
+      }
+      if (!usuarioDB) {
+        usuarioDB = await this.agregar({
+          nombre,
+          email,
+          password: 'yngfgf'
+        })
       }
       return jwt.sign(
         _.pick(usuarioDB, ['id', 'nombre', 'email', 'grupos']),
