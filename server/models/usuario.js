@@ -7,6 +7,8 @@ const jwt = require('jsonwebtoken')
 const { jwtSecret } = require('../secret')
 const Grupo = require('./grupo')
 
+const grupoUCampus = mongoose.Types.ObjectId('5edd3fff5b66ba4026f3120d')
+
 const usuarioSchema = new Schema({
   email: {
     type: String,
@@ -28,11 +30,12 @@ const usuarioSchema = new Schema({
 })
 
 usuarioSchema.statics.agregar = function(args) {
-  const { nombre, email, password } = args
+  const { nombre, email, password, grupos = [] } = args
   return (new this({
     nombre,
     email,
-    password: bcrypt.hashSync(password, saltRounds)
+    password: bcrypt.hashSync(password, saltRounds),
+    grupos
   })).save()
 }
 
@@ -47,7 +50,8 @@ usuarioSchema.statics.loginUcampus = async function(email, nombre) {
         usuarioDB = await this.agregar({
           nombre,
           email,
-          password: 'yngfgf'
+          password: 'yngfgf',
+          grupos: [grupoUCampus]
         })
       }
       return jwt.sign(
