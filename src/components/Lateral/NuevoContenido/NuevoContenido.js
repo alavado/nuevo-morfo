@@ -71,39 +71,75 @@ const NuevoContenido = () => {
   }
 
   return (
-    <div className="contenedor-formulario-lateral">
-      <h2>Nuevo contenido</h2>
-      <form onSubmit={enviarFormulario}>
-        <div>
-          <label htmlFor="titulo">Título</label>
-          <input onChange={e => setTitulo(e.target.value)} id="titulo" type="text" />
+    <div className="NuevoContenido">
+      <h2 className="NuevoContenido__titulo">Nuevo contenido</h2>
+      <form className="NuevoContenido__formulario" onSubmit={enviarFormulario}>
+        <div className="NuevoContenido__campo">
+          <label
+            className="NuevoContenido__label"
+            htmlFor="titulo"
+          >
+            Título
+          </label>
+          <input
+            className="NuevoContenido__input"
+            onChange={e => setTitulo(e.target.value)}
+            id="titulo"
+            type="text"
+          />
         </div>
-        <div>
-          <label htmlFor="descripcion">Descripción</label>
-          <textarea onChange={e => setDescripcion(e.target.value)} id="descripcion"></textarea>
+        <div className="NuevoContenido__campo">
+          <label
+            className="NuevoContenido__label"
+            htmlFor="descripcion"
+          >
+            Descripción
+          </label>
+          <textarea
+            onChange={e => setDescripcion(e.target.value)}
+            id="descripcion"
+            className="NuevoContenido__textarea"
+          ></textarea>
         </div>
-        <div>
-          <label htmlFor="imagen">Imagen</label>
-          <input onChange={e => setImagen(e.target.files[0])} id="imagen" type="file" />
+        <div className="NuevoContenido__campo">
+          <label
+            className="NuevoContenido__label"
+            htmlFor="imagen"
+          >
+            Imagen
+          </label>
+          <input
+            onChange={e => setImagen(e.target.files[0])}
+            id="imagen"
+            type="file"
+            className="NuevoContenido__input"
+          />
         </div>
-        <div>
-          <label htmlFor="grupos">Grupos</label>
+        <div className="NuevoContenido__campo">
+          <label className="NuevoContenido__label" htmlFor="grupos">Grupos</label>
           {!cargandoGrupos && dataGrupos.grupos.map(grupo => grupo.nombre !== 'Administración' && (
-            <div className="contenedor-checkbox-grupo" key={grupo.id}>
+            <div className="NuevoContenido__contenedor_cb" key={grupo.id}>
               <input
+                className="NuevoContenido__cb_grupo"
                 type="checkbox"
+                id={`cb-grupo-${grupo.id}`}
                 value={grupo.id}
                 onChange={e => fijarGrupo(grupo.id, e.target.checked)}
               />
-              <label>{grupo.nombre}</label>
+              <label 
+                className="NuevoContenido__label_cb_grupo"
+                htmlFor={`cb-grupo-${grupo.id}`}
+              >
+                {grupo.nombre}
+              </label>
             </div>
           ))}
         </div>
         <input
           type="submit"
           value="Agregar"
-          className="boton-agregar"
-          disabled={envioBloqueado || titulo.length < 3 || !imagen}
+          className="NuevoContenido__boton_agregar"
+          disabled={envioBloqueado || titulo.length < 3 || !imagen || grupos.length < 1}
         />
       </form>
     </div>

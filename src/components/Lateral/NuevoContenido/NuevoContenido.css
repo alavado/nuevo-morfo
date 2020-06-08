@@ -1,51 +1,77 @@
-.contenedor-formulario-lateral {
-  display: grid;
-  padding: 24px;
-  gap: 16px;
+.NuevoContenido {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
 }
 
-.contenedor-formulario-lateral h2 {
-  font-size: 12px;
-  font-weight: bold;
+.NuevoContenido__titulo {
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-.contenedor-formulario-lateral > form {
-  display: grid;
-  gap: 12px;
-}
-
-.contenedor-formulario-lateral input, .contenedor-formulario-lateral textarea {
-  width: 100%;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.contenedor-formulario-lateral textarea {
-  height: 80px;
-  line-height: 1.5;
-}
-
-.contenedor-formulario-lateral label {
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: .8em;
   letter-spacing: 1px;
+  user-select: none;
+  font-weight: bold;
 }
 
-.contenedor-formulario-lateral input[type="text"] {
-  padding: 8px;
+.NuevoContenido__campo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
 }
 
-.contenedor-formulario-lateral input.boton-agregar {
-  margin: 0;
-  margin-top: 16px;
+.NuevoContenido__label {
+  text-transform: uppercase;
+  margin-bottom: .25em;
+  font-size: .8em;
+  letter-spacing: 1px;
+  user-select: none;
 }
 
-.contenedor-checkbox-grupo {
-  display: grid;
-  grid-template-columns: 20px auto;
+.NuevoContenido__label_cb_grupo {
+  text-transform: uppercase;
+  font-size: .8em;
+  user-select: none;
+  cursor: pointer;
+}
+
+.NuevoContenido__input[type=text] {
+  padding: .5em;
+}
+
+.NuevoContenido__textarea {
+  height: 5em;
+  resize: none;
+  padding: .5em;
+}
+
+.NuevoContenido__contenedor_cb {
+  margin-bottom: .5em;
+  display: flex;
   align-items: center;
-  justify-items: center;
-  margin-top: 4px;
+}
+
+.NuevoContenido__cb_grupo {
+  margin-right: .5em;
+  cursor: pointer;
+}
+
+.NuevoContenido__boton_agregar:disabled {
+  background-color: white;
+  border: 1px dashed #cecece;
+  color: gray;
+  cursor: not-allowed;
+}
+
+.NuevoContenido__boton_agregar {
+  background-color: #D4001C;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  height: 2.5em;
+  border-radius: 1.5em;
+  border: none;
+  letter-spacing: 1px;
+  font-size: .8em;
+  width: 100%;
+  margin-top: 1em;
+  transition: all .25s ease-in;
 }
