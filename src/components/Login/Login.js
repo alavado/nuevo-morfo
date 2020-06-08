@@ -13,6 +13,7 @@ const Login = () => {
     email: '',
     password: ''
   })
+  const [error, setError] = useState(null)
   const fondo = useRef()
   const inputEmail = useRef()
   const { mostrandoLogin } = useSelector(state => state.auth)
@@ -30,7 +31,9 @@ const Login = () => {
         const { token } = res.data.login
         dispatch(fijarUsuario(token))
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setError('Usuario o contraseña incorrectos')
+      })
   }
 
   useEffect(() => {
@@ -51,7 +54,7 @@ const Login = () => {
     >
       {mostrandoLogin &&
         <div className="contenedor-formulario" onClick={e => e.stopPropagation()}>
-          <h3>Acceder a Morfo</h3>
+          <h3>Ingresar a Morfo</h3>
           <form onSubmit={acceder}>
             <div>
               <label htmlFor="login-email">E-mail</label>
@@ -71,10 +74,11 @@ const Login = () => {
                 onChange={e => setVariables({...variables, password: e.target.value})}
               />
             </div>
-            <input type="submit" value="Acceder" />
+            {error && <div className="Login__error">{error}</div>}
+            <button type="submit">Ingresar</button>
           </form>
           <button id="boton-ucampus" onClick={autenticarConUCampus}>
-            Acceder con U-Pasaporte <FontAwesomeIcon icon={iconoEnlaceExterno} />
+            Ingresar con U-Pasaporte <FontAwesomeIcon icon={iconoEnlaceExterno} />
           </button>
         </div>
       }

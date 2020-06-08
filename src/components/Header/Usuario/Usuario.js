@@ -22,7 +22,7 @@ const Usuario = () => {
           className="Usuario__boton_acceder"
           onClick={() => dispatch(mostrarLogin())}
         >
-          Acceder
+          Ingresar
         </button>
       }
     </div>
