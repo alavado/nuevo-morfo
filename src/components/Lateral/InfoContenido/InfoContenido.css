@@ -13,6 +13,21 @@
   animation: aparece-contenido .25s ease-in-out both;
 }
 
+.InfoContenido__contenedor_grupos {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.InfoContenido__grupo {
+  font-size: .6em;
+  border-radius: .9em;
+  padding: .5em 1em;
+  color: white;
+  margin-right: .25em;
+  user-select: none;
+  cursor: help;
+}
+
 .InfoContenido__descripcion {
   font-size: 12px;
   line-height: 1.5;

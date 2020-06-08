@@ -7,6 +7,11 @@ export default gql`
       titulo
       descripcion
       deleted
+      grupos {
+        id
+        nombre
+        color
+      }
       imagenes {
         id
         descripcion

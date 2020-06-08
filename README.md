@@ -11,7 +11,6 @@ Por hacer:
 - Implementar buscador de estructuras
 - Implementar el cortes
 - Implementar el slider
-- Agregar error de email duplicado
 - Agregar lista de grupos a los que pertenece una imagen
 
 - Diseñar la pantalla de inicio

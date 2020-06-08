@@ -52,9 +52,24 @@ const InfoContenido = () => {
     )
   }
 
+  console.log(contenido)
+
   return (
     <div className="InfoContenido">
       <h3 className="InfoContenido__titulo">{contenido.titulo}</h3>
+      {usuario && esAdmin(usuario) &&
+        <div className="InfoContenido__contenedor_grupos">
+          {contenido.grupos.map(grupo => (
+            <div
+              className="InfoContenido__grupo"
+              style={{ backgroundColor: grupo.color }}
+              title={`Este contenido está disponible para ${grupo.nombre}`}
+            >
+              {grupo.nombre}
+            </div>
+          ))}
+        </div>
+      }
       <p className="InfoContenido__descripcion">{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />
