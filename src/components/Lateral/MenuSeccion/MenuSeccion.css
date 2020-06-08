@@ -6,7 +6,44 @@
 }
 
 .MenuSeccion__formulario_agregar_subseccion {
+  padding: 1em;
+}
 
+.MenuSeccion__formulario_label {
+  text-transform: uppercase;
+  margin-bottom: .35em;
+  font-size: .7em;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.MenuSeccion__formulario_input {
+  width: 100%;
+  padding: .5em;
+  text-transform: uppercase;
+  font-size: .8em;
+}
+
+.MenuSeccion__boton_agregar {
+  background-color: #D4001C;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  height: 2.5em;
+  border-radius: 1.5em;
+  border: none;
+  letter-spacing: 1px;
+  font-size: .65em;
+  width: 100%;
+  margin-top: 1em;
+  transition: all .25s ease-in;
+}
+
+.MenuSeccion__boton_agregar:disabled {
+  background-color: white;
+  border: 1px dashed #cecece;
+  color: gray;
+  cursor: not-allowed;
 }
 
 .boton-eliminar-subseccion {

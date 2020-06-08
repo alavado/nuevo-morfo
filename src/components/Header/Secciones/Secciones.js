@@ -27,7 +27,7 @@ const Secciones = () => {
       >
         Administración
       </Link>}
-      {!loading && data && data.secciones.map((seccion, i) => (
+      {usuario && !loading && data && data.secciones.map((seccion, i) => (
         <Link
           key={seccion.id}
           to={`/seccion/${seccion.id}`}

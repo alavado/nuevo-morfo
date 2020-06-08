@@ -12,7 +12,7 @@ const Usuario = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="Usuario">
+    <div className="Usuario" style={!usuario ? { border: 'none' } : {}}>
       {usuario !== null ?
         <Link to="/perfil" className="Usuario__link">
           <FontAwesomeIcon className="Usuario__icono" icon={iconoUsuario} size="1x" />

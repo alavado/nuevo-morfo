@@ -16,22 +16,24 @@ const FormularioNuevoUsuario = () => {
   const confirmacionPassword = useRef()
   const dispatch = useDispatch()
   const [agregarUsuarioMutate] = useMutation(mutation)
+  const [error, setError] = useState(null)
 
   const registrarNuevoUsuario = e => {
     e.preventDefault()
     if (variables.password !== confirmacionPassword.current.value) {
-      console.log("los passwordos no coinciden")
+      setError("Las contraseñas no coinciden")
       return
     }
     agregarUsuarioMutate({
       variables,
       refetchQueries: [{ query }]
     })
-    .then(({ data }) => {
-      const { id } = data.agregarUsuario
-      dispatch(agregarNuevoUsuario(id))
-      dispatch(esconderFormularioNuevoUsuario())
-    })
+      .then(({ data }) => {
+        const { id } = data.agregarUsuario
+        dispatch(agregarNuevoUsuario(id))
+        dispatch(esconderFormularioNuevoUsuario())
+      })
+      .catch(() => setError('Ya existe un usuario con ese e-mail'))
   }
 
   return (
@@ -88,6 +90,7 @@ const FormularioNuevoUsuario = () => {
             />
           </div>
           <input type="submit" value="Registrar" />
+          {error && <div>{error}</div>}
         </form>
       </div>
     </div>

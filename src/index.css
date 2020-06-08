@@ -64,6 +64,10 @@ a:visited {
   color: inherit;
 }
 
+button {
+  user-select: none;
+}
+
 button:focus, input:focus {
   outline: none;
 }

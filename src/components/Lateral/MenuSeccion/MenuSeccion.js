@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import query from '../../../queries/seccion'
@@ -23,6 +23,7 @@ const MenuSeccion = () => {
   })
   const [mutation] = useMutation(agregarSubseccionMutation)
   const tituloNuevaSubseccion = useRef()
+  const [nombre, setNombre] = useState('')
 
   useLateral()
 
@@ -54,15 +55,20 @@ const MenuSeccion = () => {
     return <Loader />
   }
 
-  console.log(error)
-  
   return (
     <div className="MenuSeccion">
       <ListaSubsecciones data={data} />
       {mostrandoFormulario &&
         <form className="MenuSeccion__formulario_agregar_subseccion" onSubmit={agregar}>
-          <input ref={tituloNuevaSubseccion} type="text" />
-          <input type="submit" value="Agregar" />
+          <label className="MenuSeccion__formulario_label">Nombre</label>
+          <input className="MenuSeccion__formulario_input"
+            onChange={e => setNombre(e.target.value)} ref={tituloNuevaSubseccion} type="text" />
+          <input
+            className="MenuSeccion__boton_agregar"
+            type="submit"
+            disabled={nombre.length < 3}
+            value="Agregar"
+          />
         </form>
       }
       {!loading && !mostrandoFormulario && usuario && esAdmin(usuario) &&
