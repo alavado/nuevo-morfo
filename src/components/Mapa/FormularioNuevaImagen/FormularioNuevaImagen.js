@@ -19,6 +19,9 @@ const FormularioNuevaImagen = () => {
 
   const agregarImagen = e => {
     e.preventDefault()
+    if (envioBloqueado) {
+      return
+    }
     setEnvioBloqueado(true)
     let formData = new FormData()
     formData.append('imagen', imagen)
@@ -60,6 +63,7 @@ const FormularioNuevaImagen = () => {
             <input onChange={e => setImagen(e.target.files[0])} id="imagen" type="file" />
           </div>
           <input type="submit" value="Agregar" disabled={envioBloqueado} />
+          {envioBloqueado && <div>Subiendo...</div>}
         </form>
       </div>
     </div>
