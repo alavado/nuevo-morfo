@@ -10,6 +10,7 @@ const FormularioNuevoGrupo = () => {
 
   const [variables, setVariables] = useState({
     nombre: '',
+    color: '#ff00ff'
   })
   const dispatch = useDispatch()
   const [agregarGrupoMutate] = useMutation(mutation)
@@ -41,6 +42,17 @@ const FormularioNuevoGrupo = () => {
               autoFocus
               value={variables.nombre}
               onChange={e => setVariables({...variables, nombre: e.target.value})}
+            />
+          </div>
+          <div>
+            <label htmlFor="nuevo-grupo-color">Color</label>
+            <input
+              id="nuevo-grupo-color"
+              type="text"
+              spellCheck={false}
+              autoFocus
+              value={variables.color}
+              onChange={e => setVariables({...variables, color: e.target.value})}
             />
           </div>
           <input type="submit" value="Registrar" />

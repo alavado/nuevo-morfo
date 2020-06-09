@@ -148,7 +148,8 @@ const mutation = new GraphQLObjectType({
     agregarGrupo: {
       type: GrupoType,
       args: {
-        nombre: { type: GraphQLString }
+        nombre: { type: GraphQLString },
+        color: { type: GraphQLString }
       },
       resolve(parentValue, args) {
         return (new Grupo(args)).save()
