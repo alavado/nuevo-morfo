@@ -35,3 +35,24 @@
   border-top: 4px solid #D6001C;
   margin-top: 0;
 }
+
+@media (orientation:portrait) {
+  
+  .Secciones {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex: 2;
+  }
+
+  .Secciones__link_navegacion {
+    margin: 0;
+    flex: 1;
+    font-size: .8em;
+  }
+}

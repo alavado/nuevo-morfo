@@ -52,8 +52,6 @@ const InfoContenido = () => {
     )
   }
 
-  console.log(contenido)
-
   return (
     <div className="InfoContenido">
       <h3 className="InfoContenido__titulo">{contenido.titulo}</h3>
@@ -61,6 +59,7 @@ const InfoContenido = () => {
         <div className="InfoContenido__contenedor_grupos">
           {contenido.grupos.map(grupo => (
             <div
+              key={grupo.id}
               className="InfoContenido__grupo"
               style={{ backgroundColor: grupo.color }}
               title={`Este contenido está disponible para ${grupo.nombre}`}

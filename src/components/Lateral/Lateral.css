@@ -3,7 +3,6 @@ aside {
   background-color: white;
   box-shadow: 2px 0 4px rgba(0,0,0,.15);
   z-index: 2;
-  height: calc(100vh - 64px);
   overflow-x: auto;
   transform: translateX(-240px);
   transition: all .5s ease-in-out;
@@ -12,6 +11,10 @@ aside {
 
 aside.visible {
   transform: translateX(0);
+}
+
+aside.invisible {
+  display: none;
 }
 
 aside ul.lista-items {
@@ -48,7 +51,6 @@ aside .contenedor-lista {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: calc(100vh - 110px);
 }
 
 aside *[class^="boton"] {
@@ -118,10 +120,8 @@ aside .mensaje-lista-vacia {
   }
 }
 
-@media (max-width: 760px) {
+@media (orientation: portrait) {
   aside {
     width: 100%;
-    height: auto;
-    padding-bottom: 16px;
   }
 }

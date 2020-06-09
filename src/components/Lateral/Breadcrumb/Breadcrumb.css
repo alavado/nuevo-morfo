@@ -34,3 +34,9 @@
     transform: translateX(0);
   }
 }
+
+@media (orientation:portrait) {
+  .Breadcrumb {
+    display: none;
+  }
+}

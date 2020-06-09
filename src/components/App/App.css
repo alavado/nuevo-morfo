@@ -11,13 +11,20 @@
   height: 100vh;
   font-family: "Uber Move Text", sans-serif;
   background-color: #212322;
+  display: flex;
+  flex-direction: column;
 }
 
 .App__principal {
   display: flex;
+  flex: 1;
 }
 
 @media (orientation: portrait) {
+  .App {
+    height: auto;
+    min-height: 100vh;
+  }
   .App__principal {
     flex-direction: column;
   }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,15 +8,18 @@ import Secciones from './Secciones/Secciones'
 import logo from '../../assets/logo_superior.png'
 import { useQuery } from '@apollo/react-hooks'
 import query from '../../queries/grupos'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
 
+  const [mostrarMenu, setMostrarMenu] = useState(false)
   const { data } = useQuery(query)
   const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   return (
-    <header className="Header">
+    <header className="Header" onClick={() => mostrarMenu && setMostrarMenu(false)}>
       <div className="Header__brand">
         <Link to="/" className="Header__brand_link" onClick={e => {
           dispatch(esconderNavegacion())
@@ -33,10 +36,16 @@ const Header = () => {
           ))}
         </select>
       </div>}
-      <nav className="Header__navegacion">
+      <nav className={`Header__navegacion${mostrarMenu ? ' Header__navegacion--activa' : ''}`}>
+        <button className="Header__ocultar_menu" onClick={() => setMostrarMenu(false)}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
         <Secciones />
         <Usuario />
       </nav>
+      <button className="Header__mostrar_menu" onClick={() => setMostrarMenu(true)}>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
     </header>
   )
 }

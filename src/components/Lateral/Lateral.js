@@ -14,7 +14,7 @@ const Lateral = () => {
   const { activa } = useSelector(state => state.navegacion)
 
   return (
-    <aside className={activa ? 'visible' : ''}>
+    <aside className={activa ? 'visible' : 'invisible'}>
       <Breadcrumb />
       <Switch>
         <Route path="/admin" component={MenuAdmin} />

@@ -13,5 +13,6 @@ Por hacer:
 - Implementar el slider
 - Agregar lista de grupos a los que pertenece una imagen
 - corregir que se puedan agregar nuevas imagenes
+- menu chico
 
 - Diseñar la pantalla de inicio

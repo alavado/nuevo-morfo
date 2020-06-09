@@ -1,8 +1,7 @@
 .Landing {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   transition: all .35s ease-in-out;
-  padding: 16px;
   background-color: #212322;
   display: flex;
   justify-content: center;
@@ -58,5 +57,11 @@
   100% {
     transform: translateY(0px);
     opacity: 1;
+  }
+}
+
+@media (orientation: portrait) {
+  .Landing--compacto {
+    width: 100vw;
   }
 }
