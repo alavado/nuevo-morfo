@@ -39,6 +39,7 @@ const FormularioNuevaImagen = () => {
         refetchQueries: [{ query, variables: { id } }],
         awaitRefetchQueries: true
       })
+      .then(() => window.location.reload())
     })
     .catch(err => {
       setEnvioBloqueado(false)

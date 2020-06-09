@@ -16,6 +16,7 @@
 .InfoContenido__contenedor_grupos {
   display: flex;
   margin-bottom: 1em;
+  flex-wrap: wrap;
 }
 
 .InfoContenido__grupo {
@@ -26,6 +27,7 @@
   margin-right: .25em;
   user-select: none;
   cursor: help;
+  margin-bottom: .25em;
 }
 
 .InfoContenido__descripcion {

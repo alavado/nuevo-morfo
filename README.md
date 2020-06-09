@@ -12,7 +12,6 @@ Por hacer:
 - Implementar el cortes
 - Implementar el slider
 - Agregar lista de grupos a los que pertenece una imagen
-- corregir que se puedan agregar nuevas imagenes
-- menu chico
+- corregir en agregado de nuevas imagenes
 
 - Diseñar la pantalla de inicio
