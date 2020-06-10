@@ -55,7 +55,7 @@ const FormularioNuevoGrupo = () => {
               onChange={e => setVariables({...variables, color: e.target.value})}
             />
           </div>
-          <input type="submit" value="Registrar" />
+          <input className="FormularioNuevoGrupo__boton" type="submit" disabled={variables.nombre.length < 4 || !(/^#[0-9A-F]{6}$/i.test(variables.color))} value="Registrar" />
         </form>
       </div>
     </div>

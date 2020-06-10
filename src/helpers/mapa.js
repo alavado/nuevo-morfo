@@ -17,6 +17,7 @@ export const construirMapStyle = idImagen => ({
       tiles: [
         `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/foto/${idImagen}/{z}/{x}/{y}`
       ],
+      
       tileSize: 128,
       attribution:
         `
@@ -35,7 +36,7 @@ export const construirMapStyle = idImagen => ({
     {
       id: 'simple-tiles',
       type: 'raster',
-      source: 'raster-tiles'
+      source: 'raster-tiles',
     }
-  ]
+  ],
 })

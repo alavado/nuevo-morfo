@@ -2,3 +2,8 @@
   padding-bottom: 16px;
   min-width: 240px;
 }
+
+#formulario-nuevo-grupo .FormularioNuevoGrupo__boton:disabled {
+  filter: saturate(50%);
+  cursor: not-allowed;
+}

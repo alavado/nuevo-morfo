@@ -33,9 +33,9 @@ const Mapa = () => {
   const [viewport, setViewport] = useState({
     width: '100%',
     height: 'calc(100vh - 64px)',
-    latitude: 79.61614103319404,
-    longitude: -65.68750000000037,
-    zoom: minZoom
+    latitude: 0,
+    longitude: 0,
+    zoom: minZoom,
   })
 
   const mapStyle = useMemo(() => {
@@ -50,7 +50,7 @@ const Mapa = () => {
       ...vp,
       zoom: Math.max(minZoom, Math.min(maxZoom, vp.zoom)),
       width: '100%',
-      height: 'calc(100vh - 64px)',
+      height: 'calc(100vh - 64px)'
     })
   }
 
