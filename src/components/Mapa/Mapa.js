@@ -35,7 +35,9 @@ const Mapa = () => {
     height: 'calc(100vh - 64px)',
     latitude: 0,
     longitude: 0,
-    zoom: minZoom,
+    minZoom: 1,
+    maxZoom: 3,
+    zoom: minZoom
   })
 
   const mapStyle = useMemo(() => {
@@ -47,8 +49,8 @@ const Mapa = () => {
 
   const actualizarVP = vp => {
     setViewport({
+      ...viewport,
       ...vp,
-      zoom: Math.max(minZoom, Math.min(maxZoom, vp.zoom)),
       width: '100%',
       height: 'calc(100vh - 64px)'
     })
@@ -85,7 +87,6 @@ const Mapa = () => {
         transitionInterpolator: new FlyToInterpolator({ speed: 1.5 }),
         transitionDuration: 'auto'
       }))
-      dispatch(fijarDestino(null))
     }
   }, [destino])
 
