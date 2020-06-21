@@ -15,6 +15,4 @@ Por hacer:
 - corregir en agregado de nuevas imagenes
 
 - Diseñar la pantalla de inicio
-- Corregir error lista estructuras
-- Corregir scroll en imagen
 - Achicar pines
