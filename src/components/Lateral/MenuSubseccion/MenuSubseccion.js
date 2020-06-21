@@ -31,6 +31,7 @@ const MenuSubseccion = () => {
       <ul className="lista-items">
         {data.subseccion.contenidos
           .sort(compararPropiedadString('titulo'))
+          .filter(c => !c.deleted)
           .map((contenido, i) => (
             <li
               key={contenido.id}

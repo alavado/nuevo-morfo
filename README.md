@@ -16,3 +16,4 @@ Por hacer:
 
 - Diseñar la pantalla de inicio
 - Achicar pines
+- Que no se muestren los contenido eliminados (que no se saquen de la bd)

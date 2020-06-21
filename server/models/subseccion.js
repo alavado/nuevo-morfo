@@ -28,7 +28,11 @@ subseccionSchema.statics.findSeccion = function(id) {
 subseccionSchema.statics.findContenidos = function(id, bearer) {
   const usuario = jwt.decode(bearer.split(' ')[1])
   const { grupos: gruposUsuario } = usuario
-  return require('./contenido').find({ subseccion: id, grupos: { $in: gruposUsuario } })
+  return require('./contenido').find({
+    subseccion: id,
+    deleted: false,
+    grupos: { $in: gruposUsuario }
+  })
 }
 
 module.exports = mongoose.model('Subseccion', subseccionSchema)

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './InfoContenido.css'
 import { useSelector, useDispatch } from 'react-redux'
 import ListaEstructuras from './ListaEstructuras/ListaEstructuras'
@@ -11,9 +11,11 @@ import { useHistory } from 'react-router-dom'
 import Loader from '../../Loader'
 import { mostrarNavegacion } from '../../../redux/actions'
 import { esAdmin } from '../../../helpers/auth'
+import PopupEliminar from './PopupEliminar'
 
 const InfoContenido = () => {
 
+  const [eliminando, setEliminando] = useState(false)
   const { contenido } = useSelector(state => state.contenido)
   const { usuario } = useSelector(state => state.auth)
   const dispatch = useDispatch()
@@ -32,20 +34,28 @@ const InfoContenido = () => {
   const BotonCambiarEstado = () => {
     const { id } = contenido
     const mutacion = contenido.deleted ? restaurar : eliminar
-    const texto = contenido.deleted ? 'Restaurar' : 'Deshabilitar'
-    return (
+    const texto = contenido.deleted ? 'Restaurar' : 'Eliminar'
+
+    const eliminarEstructura = () => {
+      eliminar({
+        variables: { id },
+        refetchQueries: [{
+          query,
+          variables: { id }
+        }],
+        awaitRefetchQueries: true
+      })
+      .then(() => history.push(`/subseccion/${contenido.subseccion.id}`))
+    }
+
+    return (eliminando ?
+      <PopupEliminar
+        cancelar={() => setEliminando(false)}
+        eliminar={eliminarEstructura}
+      /> :
       <button
         className="boton-eliminar"
-        onClick={() => (
-          mutacion({
-            variables: { id },
-            refetchQueries: [{
-              query,
-              variables: { id }
-            }],
-            awaitRefetchQueries: true
-          })).then(() => history.push(`/subseccion/${contenido.subseccion.id}`))
-        }
+        onClick={() => setEliminando(true)}
       >
         {texto}
       </button>
