@@ -24,7 +24,8 @@ export default function(state = initialState, action) {
       const contenido = action.payload
       return {
         ...state,
-        contenido
+        contenido,
+        indiceImagenActual: 0
       }
     }
     case AGREGAR_MARCADOR: {
