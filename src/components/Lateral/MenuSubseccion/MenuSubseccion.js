@@ -12,6 +12,11 @@ import { esAdmin } from '../../../helpers/auth'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import './MenuSubseccion.css'
+import { isDev } from '../../../helpers/dev'
+
+const thumbnail = archivo => {
+  return `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`
+}
 
 const MenuSubseccion = () => {
 
@@ -48,7 +53,7 @@ const MenuSubseccion = () => {
                 >
                   <div
                     className="MenuSubseccion__avatar_contenido"
-                    style={{ backgroundImage: `url('http://localhost:1027/thumbnail/${contenido.imagenes[0].archivo}')` }}
+                    style={{ backgroundImage: `url('${thumbnail(contenido.imagenes[0].archivo)}')` }}
                   />
                   <Link
                     to={`/contenido/${contenido.id}`}
