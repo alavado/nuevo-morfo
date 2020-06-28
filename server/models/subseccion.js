@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const jwt = require('jsonwebtoken')
 const { jwtSecret } = require('../secret')
+const ObjectId = mongoose.Types.ObjectId
 
 const subseccionSchema = new Schema({
   nombre: {
@@ -10,7 +11,13 @@ const subseccionSchema = new Schema({
   },
   seccion: {
     type: Schema.Types.ObjectId,
-    ref: 'Seccion'
+    ref: 'Seccion',
+    default: null
+  },
+  subseccion: {
+    type: Schema.Types.ObjectId,
+    ref: 'Subseccion',
+    default: null
   },
   contenidos: [{
     type: Schema.Types.ObjectId,
@@ -32,6 +39,12 @@ subseccionSchema.statics.findContenidos = function(id, bearer) {
     subseccion: id,
     deleted: false,
     grupos: { $in: gruposUsuario }
+  })
+}
+
+subseccionSchema.statics.findSubsecciones = function(subseccion) {
+  return require('./subseccion').find({
+    subseccion: mongoose.Types.ObjectId(subseccion)
   })
 }
 

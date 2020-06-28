@@ -27,7 +27,7 @@ const InfoContenido = () => {
     dispatch(mostrarNavegacion())
   }, [dispatch])
 
-  if (!contenido || !contenido.imagenes) {
+  if (!contenido || !contenido.imagenes || !contenido.imagenes[0].id) {
     return <Loader />
   }
 

@@ -4,12 +4,14 @@ import { useQuery } from '@apollo/react-hooks'
 import query from '../../../queries/subseccion'
 import { useSelector, useDispatch } from 'react-redux'
 import { fijarSeccion, fijarSubseccion, fijarContenido } from '../../../redux/actions'
-import './MenuSubseccion.css'
 import Loader from '../../Loader'
 import _ from 'lodash'
 import useLateral from '../../../hooks/useLateral'
 import { compararPropiedadString } from '../../../helpers/utiles'
 import { esAdmin } from '../../../helpers/auth'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
+import './MenuSubseccion.css'
 
 const MenuSubseccion = () => {
 
@@ -25,31 +27,62 @@ const MenuSubseccion = () => {
   })
   useLateral()
 
+  console.log(data)
+
   const ListaContenidos = () => loading ? <Loader /> :
-    (_.isEmpty(data.subseccion.contenidos) ?
-      <p className="mensaje-lista-vacia">No hay contenidos</p> :
-      <ul className="lista-items">
-        {data.subseccion.contenidos
-          .sort(compararPropiedadString('titulo'))
-          .filter(c => !c.deleted)
-          .map((contenido, i) => (
-            <li
-              key={contenido.id}
-              style={{
-                animationDelay: `${i * .05}s`,
-                textDecoration: contenido.deleted ? 'line-through' : 'none'
-              }}
-            >
+    <>
+      {(_.isEmpty(data.subseccion.contenidos) ?
+        <p className="mensaje-lista-vacia">No hay contenidos</p> :
+        <>
+          <ul className="lista-items">
+            {data.subseccion.contenidos
+              .sort(compararPropiedadString('titulo'))
+              .filter(c => !c.deleted)
+              .map((contenido, i) => (
+                <li
+                  key={contenido.id}
+                  style={{
+                    animationDelay: `${i * .05}s`,
+                    textDecoration: contenido.deleted ? 'line-through' : 'none'
+                  }}
+                >
+                  <div
+                    className="MenuSubseccion__avatar_contenido"
+                    style={{ backgroundImage: `url('http://localhost:1027/thumbnail/${contenido.imagenes[0].archivo}')` }}
+                  />
+                  <Link
+                    to={`/contenido/${contenido.id}`}
+                    onClick={e => dispatch(fijarContenido(contenido))}
+                    key={contenido.id}
+                  >
+                    {contenido.titulo}
+                  </Link>
+                </li>
+            ))}
+          </ul>
+          </>
+        )}
+      {!_.isEmpty(data.subseccion.subsecciones) &&
+        <ul className="lista-items">
+          {data.subseccion.subsecciones.map(subs => (
+            <li key={subs.id}>
               <Link
-                to={`/contenido/${contenido.id}`}
-                onClick={e => dispatch(fijarContenido(contenido))}
-                key={contenido.id}
+                className="MenuSubseccion__link_subseccion"
+                to={`/subseccion/${subs.id}`}
+                onClick={e => dispatch(fijarSubseccion(subs))}
+                key={subs.id}
               >
-                {contenido.titulo}
+                <FontAwesomeIcon
+                  className="MenuSubseccion__icono_link_subseccion"
+                  icon={faCaretRight}
+                  />
+                  {subs.nombre}
               </Link>
             </li>
-        ))}
-      </ul>)
+          ))}
+        </ul>
+      }
+    </>
   
   return (
     <div className="contenedor-lista">

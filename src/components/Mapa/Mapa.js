@@ -24,7 +24,7 @@ const Mapa = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
 
-  useQuery(query, {
+  const { loading } = useQuery(query, {
     variables: { id },
     onCompleted: data => dispatch(fijarContenido(data.contenido))
   })
@@ -41,7 +41,7 @@ const Mapa = () => {
   })
 
   const mapStyle = useMemo(() => {
-    if (!contenido || !contenido.imagenes) {
+    if (!contenido || !contenido.imagenes || !contenido.imagenes[0].id) {
       return ''
     }
     return construirMapStyle(contenido.imagenes[indiceImagenActual].archivo)
@@ -89,6 +89,10 @@ const Mapa = () => {
       }))
     }
   }, [destino])
+
+  if (loading || !mapStyle) {
+    return null
+  }
 
   return (
     <>

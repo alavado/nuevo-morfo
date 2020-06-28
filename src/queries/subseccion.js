@@ -9,6 +9,13 @@ export default gql`
         id
         titulo
         deleted
+        imagenes {
+          archivo
+        }
+      }
+      subsecciones {
+        id
+        nombre
       }
       seccion {
         id

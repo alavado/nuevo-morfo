@@ -19,6 +19,12 @@ const SubseccionType = new GraphQLObjectType({
       resolve(parentValue, args, req) {
         return Subseccion.findContenidos(parentValue.id, req.headers.authorization)
       }
+    },
+    subsecciones: {
+      type: new GraphQLList(require('./subseccion_type')),
+      resolve(parentValue, args, req) {
+        return Subseccion.findSubsecciones(parentValue.id)
+      }
     }
   })
 })

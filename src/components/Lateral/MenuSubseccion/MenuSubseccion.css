@@ -1,0 +1,19 @@
+.MenuSubseccion__avatar_contenido {
+  width: 2.2em;
+  height: 2.2em;
+  background-color: red;
+  border-radius: 100%;
+  margin-right: 1em;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.MenuSubseccion__link_subseccion {
+  display: flex;
+  align-items: center;
+}
+
+.MenuSubseccion__icono_link_subseccion {
+  margin-left: .25em;
+  font-size: 1.25em;
+  margin-right: 1em;
+}
