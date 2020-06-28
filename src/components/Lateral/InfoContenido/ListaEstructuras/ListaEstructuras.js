@@ -4,10 +4,12 @@ import { destacarMarcador, dejarDeDestacarMarcador, mostrarPopup, esconderPopup,
 import './ListaEstructuras.css'
 import _ from 'lodash'
 import { compararPropiedadString } from '../../../../helpers/utiles'
+import { esAdmin } from '../../../../helpers/auth'
 
 const ListaEstructuras = () => {
 
   const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
+  const { usuario } = useSelector(state => state.auth)
   const [estructuraClickeada, setEstructuraClickeada] = useState(false)
   const dispatch = useDispatch()
 
@@ -17,7 +19,7 @@ const ListaEstructuras = () => {
       {_.isEmpty(contenido.imagenes[indiceImagenActual].marcadores) ?
         <>
           <p className="ListaEstructuras__mensaje_lista_vacia">No hay estructuras en esta imagen.</p>
-          <p className="ListaEstructuras__mensaje_lista_vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>
+          {esAdmin(usuario) && <p className="ListaEstructuras__mensaje_lista_vacia">Recuerda que puedes agregar estructuras haciendo click derecho sobre la imagen</p>}
         </> : 
         <ul className="ListaEstructuras__lista">
           {contenido.imagenes[indiceImagenActual].marcadores

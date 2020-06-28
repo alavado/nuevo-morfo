@@ -6,3 +6,9 @@
 .lista-items li:hover .acciones-subseccion {
   opacity: 1;
 }
+
+.ListaSubsecciones__icono_link_subseccion {
+  margin-left: .25em;
+  font-size: 1.25em;
+  margin-right: 1em;
+}

@@ -9,8 +9,9 @@ import { compararPropiedadString } from '../../../../helpers/utiles'
 import { fijarSubseccion } from '../../../../redux/actions'
 import query from '../../../../queries/seccion'
 import _ from 'lodash'
-import './ListaSubsecciones.css'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { esAdmin } from '../../../../helpers/auth'
+import './ListaSubsecciones.css'
 
 const ListaSubsecciones = ({ data }) => {
 
@@ -39,6 +40,10 @@ const ListaSubsecciones = ({ data }) => {
               to={`/subseccion/${subseccion.id}`} key={subseccion.id}
               onClick={e => dispatch(fijarSubseccion(subseccion))}
             >
+              <FontAwesomeIcon
+                className="ListaSubsecciones__icono_link_subseccion"
+                icon={faCaretRight}
+              />
               {subseccion.nombre}
             </Link>
             {usuario && esAdmin(usuario) && <div className="acciones-subseccion">
