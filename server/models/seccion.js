@@ -17,7 +17,7 @@ const seccionSchema = new Schema({
 seccionSchema.plugin(uniqueValidator)
 
 seccionSchema.statics.findSubsecciones = function(id) {
-  return require('./subseccion').find({ seccion: id })
+  return require('./subseccion').find({ seccion: id, subseccion: null })
 }
 
 module.exports = mongoose.model('Seccion', seccionSchema)
