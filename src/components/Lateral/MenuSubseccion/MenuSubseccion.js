@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import './MenuSubseccion.css'
 import { isDev } from '../../../helpers/dev'
+import FormularioNuevaSubseccion from './FormularioNuevaSubseccion'
 
 const thumbnail = archivo => {
   return `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`
@@ -31,8 +32,6 @@ const MenuSubseccion = () => {
     }
   })
   useLateral()
-
-  console.log(data)
 
   const ListaContenidos = () => loading ? <Loader /> :
     <>
@@ -93,9 +92,18 @@ const MenuSubseccion = () => {
     <div className="contenedor-lista">
       <ListaContenidos />
       {!loading && usuario && esAdmin(usuario) &&
-        <Link to={`/contenido/nuevo/${id}`} className="boton-agregar">
-          Agregar contenido
-        </Link>
+        <>
+          <Link
+            to={`/contenido/nuevo/${id}`}
+            className="boton-agregar"
+          >
+            Agregar contenido
+          </Link>
+          <FormularioNuevaSubseccion
+            idSubseccion={id}
+            idSeccion={data.subseccion.seccion.id}
+          />
+        </>
       }
     </div>
   )

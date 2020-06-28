@@ -33,7 +33,8 @@ const mutation = new GraphQLObjectType({
       type: SubseccionType,
       args: {
         nombre: { type: GraphQLString },
-        seccion: { type: GraphQLID }
+        seccion: { type: GraphQLID },
+        subseccion: { type: GraphQLID }
       },
       resolve(parentValue, args) {
         return (new Subseccion(args)).save()

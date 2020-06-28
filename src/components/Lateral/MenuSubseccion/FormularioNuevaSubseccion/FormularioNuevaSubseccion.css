@@ -1,0 +1,11 @@
+.FormularioNuevaSubseccion {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.FormularioNuevaSubseccion__input {
+  border-radius: 2em;
+  padding: .5em;
+  margin-bottom: -2em;
+}
