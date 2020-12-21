@@ -23,7 +23,7 @@ if (urlParams.has('token')) {
 }
 
 const httpLink = createHttpLink({
-  uri: `${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/graphql`
+  uri: `${isDev ? 'http://localhost:1027' : 'https://compsci.cl:1027'}/graphql`
 })
 
 const authLink = setContext((_, { headers }) => {
