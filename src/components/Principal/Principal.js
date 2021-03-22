@@ -6,14 +6,14 @@ import Landing from '../Landing'
 import Usuarios from '../Usuarios'
 import Grupos from '../Grupos'
 import Relleno from '../Relleno'
-import Slider from '../Slider'
+import Cortes from '../Cortes'
 import Perfil from '../Perfil'
 
 const Principal = () => {
   return (
     <section className="Principal">
       <Switch>
-        <Route path="/slider" component={Slider} />
+        <Route path="/cortes" component={Cortes} />
         <Route path="/contenido/nuevo" component={Relleno} />
         <Route path="/contenido/:id" component={Mapa} />
         <Route path="/subseccion/:id" component={Landing} />

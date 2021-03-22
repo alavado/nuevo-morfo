@@ -24,7 +24,7 @@
 
 .Slider__boton_cerrar_texto {
   text-transform: uppercase;
-  font-size: .5em;
+  font-size: .9rem;
   writing-mode: vertical-rl;
   text-orientation: upright;
   transition: all .25s ease-in-out;

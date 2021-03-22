@@ -5,13 +5,13 @@
 }
 
 .Secciones__link_navegacion {
-  margin-left: 36px;
+  margin-left: 4rem;
   text-transform: uppercase;
-  font-size: 11px;
-  height: 64px;
+  font-size: .9rem;
+  height: 4rem;
   display: flex;
   align-items: center;
-  margin-top: 4px;
+  margin-top: .4rem;
   border-color: black;
   animation: aparece-nombre-seccion .25s ease-in-out both;
   transition: color .15s ease-in, border-color .15s ease-in;
@@ -26,13 +26,13 @@
 }
 
 .Secciones__link_navegacion:hover:not(:last-child):not(.seccion-activa) {
-  border-top: 4px solid #AB989D;
+  border-top: .4rem solid #AB989D;
   margin-top: 0;
 }
 
 .Secciones__link_navegacion--activo {
   color: white;
-  border-top: 4px solid #D6001C;
+  border-top: .4rem solid #D6001C;
   margin-top: 0;
 }
 
@@ -53,6 +53,6 @@
   .Secciones__link_navegacion {
     margin: 0;
     flex: 1;
-    font-size: .8em;
+    font-size: .8rem;
   }
 }

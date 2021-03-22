@@ -11,7 +11,7 @@ import PopupEstructura from './PopupEstructura'
 import './Mapa.css'
 import { useParams } from 'react-router-dom'
 import FormularioNuevaImagen from './FormularioNuevaImagen'
-import Slider from '../Slider'
+import Cortes from '../Cortes'
 import { esAdmin } from '../../helpers/auth'
 
 const { minZoom, maxZoom } = parametrosMapa
@@ -32,7 +32,7 @@ const Mapa = () => {
 
   const [viewport, setViewport] = useState({
     width: '100%',
-    height: 'calc(100vh - 64px)',
+    height: 'calc(100vh - 4rem)',
     latitude: 0,
     longitude: 0,
     minZoom: 1,
@@ -52,7 +52,7 @@ const Mapa = () => {
       ...viewport,
       ...vp,
       width: '100%',
-      height: 'calc(100vh - 64px)'
+      height: 'calc(100vh - 4rem)'
     })
   }
 
@@ -123,7 +123,7 @@ const Mapa = () => {
           })}
           <PopupEstructura />
         </ReactMapGL>
-        <Slider />
+        <Cortes />
       </div>
     </>
   )
