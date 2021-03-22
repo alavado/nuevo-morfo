@@ -1,1 +1,1 @@
-export const isDev = false//window.location.href.indexOf('localhost') >= 0
+export const isDev = window.location.href.indexOf('localhost') >= 0

@@ -26,7 +26,7 @@ const PopupEstructura = () => {
     dispatch(esconderEdicionMarcador())
   }
 
-  useEffect(() => esconderEdicion, [])
+  useEffect(esconderEdicion, [])
 
   if (!popup) {
     return null

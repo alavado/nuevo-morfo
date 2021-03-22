@@ -9,7 +9,7 @@
 }
 
 .Landing img {
-  max-width: 240px;
+  max-width: 25rem;
   margin-bottom: 32px;
   animation: aparece-bienvenida .3s ease-in-out both;
 }
@@ -19,7 +19,7 @@
 }
 
 .Landing--compacto {
-  width: calc(100vw - 240px);
+  width: calc(100vw - 25rem);
 }
 
 .Landing__bienvenida {

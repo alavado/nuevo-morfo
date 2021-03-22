@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './FormularioEdicionMarcador.css'
 import { useMutation } from '@apollo/react-hooks'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,15 +9,15 @@ const FormularioEdicionMarcador = () => {
 
   const { popup } = useSelector(state => state.contenido)
   const dispatch = useDispatch()
+  const nombreRef = useRef()
   const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
   const [titulo, setTitulo] = useState('')
   const { id } = popup
 
   useEffect(() => {
-    if (popup) {
-      setTitulo(popup.titulo)
-    }
-  }, [popup])
+    nombreRef.current.focus()
+    nombreRef.current.setSelectionRange(0, 2)
+  }, [])
 
   const enviarEditarMarcador = e => {
     e.preventDefault()
@@ -35,10 +35,10 @@ const FormularioEdicionMarcador = () => {
     >
       <input
         type="text"
-        autoFocus
         value={titulo}
-        onFocus={e => e.target.select()}
         onChange={e => setTitulo(e.target.value)}
+        ref={nombreRef}
+        placeholder={popup?.titulo}
       />
       <input type="submit" value="Aceptar" />
     </form>

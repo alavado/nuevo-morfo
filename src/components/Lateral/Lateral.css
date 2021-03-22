@@ -1,5 +1,6 @@
 aside {
-  width: 240px;
+  min-width: 25rem;
+  width: 25rem;
   background-color: white;
   box-shadow: 2px 0 4px rgba(0,0,0,.15);
   z-index: 2;
@@ -8,6 +9,17 @@ aside {
   transition: all .5s ease-in-out;
   background-image: url('../../assets/textura_textil.png');
   max-height: calc(100vh - 64px);
+}
+
+aside::-webkit-scrollbar {
+  background-color: #ddd;
+  width: .6em;
+  height: .6em;
+}
+
+aside::-webkit-scrollbar-thumb {
+  border-radius: .25em;
+  background-color: #D4001C;
 }
 
 aside.visible {

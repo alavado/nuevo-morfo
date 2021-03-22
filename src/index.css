@@ -90,3 +90,7 @@ input:-webkit-autofill {
 option {
   font-family: "Uber Move Text", sans-serif;
 }
+
+:root {
+  font-size: 1vmax;
+}
