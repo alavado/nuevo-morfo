@@ -51,6 +51,7 @@ const mutation = new GraphQLObjectType({
       type: ContenidoType,
       args: {
         titulo: { type: GraphQLString },
+        tipo: { type: GraphQLString },
         descripcion: { type: GraphQLString },
         subseccion: { type: GraphQLID },
         grupos: { type: new GraphQLList(GraphQLID) }

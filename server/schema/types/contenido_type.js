@@ -9,6 +9,7 @@ const ContenidoType = new GraphQLObjectType({
     id: { type: GraphQLID },
     titulo: { type: GraphQLString },
     descripcion: { type: GraphQLString },
+    tipo: { type: GraphQLString },
     imagenes: {
       type: new GraphQLList(require('./imagen_type')),
       resolve(parentValue) {

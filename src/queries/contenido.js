@@ -5,6 +5,7 @@ export default gql`
     contenido(id: $id) {
       id
       titulo
+      tipo
       descripcion
       deleted
       grupos {

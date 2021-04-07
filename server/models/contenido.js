@@ -9,6 +9,10 @@ const contenidoSchema = new Schema({
     type: String,
     required: true
   },
+  tipo: {
+    type: String,
+    required: false
+  },
   descripcion: String,
   subseccion: {
     type: Schema.Types.ObjectId,

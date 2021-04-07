@@ -12,8 +12,20 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido, fijarProgresoSubidaNuevoContenido } from '../../../redux/actions'
 
+const TIPOS = [
+  {
+    id: 'TIPO_IMAGEN_GRANDE',
+    label: 'Imagen grande'
+  },
+  {
+    id: 'TIPO_SLIDER',
+    label: 'Slider'
+  }
+]
+
 const NuevoContenido = () => {
 
+  const [tipo, setTipo] = useState(TIPOS[0].id)
   const [titulo, setTitulo] = useState('')
   const [descripcion, setDescripcion] = useState('')
   const [grupos, setGrupos] = useState([])
@@ -36,7 +48,7 @@ const NuevoContenido = () => {
     e.preventDefault()
     setEnvioBloqueado(true)
     let contenido = ''
-    agregarContenido({ variables: { titulo, descripcion, subseccion, grupos } })
+    agregarContenido({ variables: { tipo, titulo, descripcion, subseccion, grupos } })
       .then(({ data }) => {
         contenido = data.agregarContenido.id
         let formData = new FormData()
@@ -74,6 +86,29 @@ const NuevoContenido = () => {
     <div className="NuevoContenido">
       <h2 className="NuevoContenido__titulo">Nuevo contenido</h2>
       <form className="NuevoContenido__formulario" onSubmit={enviarFormulario}>
+        <div className="NuevoContenido__campo">
+          <label
+            className="NuevoContenido__label"
+            htmlFor="tipo"
+          >
+            Tipo
+          </label>
+          <select
+            id="tipo"
+            name="tipo"
+            className="NuevoContenido__input"
+            onChange={e => setTipo(e.target.value)}
+          >
+            {TIPOS.map(tipo => (
+              <option
+                key={`option-${tipo.id}`}
+                value={tipo.id}
+              >
+                {tipo.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="NuevoContenido__campo">
           <label
             className="NuevoContenido__label"
