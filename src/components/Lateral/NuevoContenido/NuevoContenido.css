@@ -37,6 +37,10 @@
   padding: .5em;
 }
 
+.NuevoContenido__select {
+  padding: .5em;
+}
+
 .NuevoContenido__textarea {
   height: 10rem;
   resize: none;

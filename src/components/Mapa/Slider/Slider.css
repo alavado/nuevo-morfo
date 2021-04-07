@@ -1,0 +1,40 @@
+.Slider {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 15rem);
+  background-color: black;
+
+}
+
+.Slider__contenedor_imagen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-height: calc(100vh - 8rem);
+  overflow: hidden;
+}
+
+.Slider__imagen {
+  max-height: calc(100vh - 8rem);
+}
+
+.Slider__control {
+  height: 4rem;
+  margin-left: 4rem;
+  width: 80%;
+}
+
+@media (orientation: portrait) {
+
+  .Slider {
+    width:100vw;
+  }
+
+  .Slider__contenedor_imagen {
+    max-height: calc(100vh - 58rem);
+  }
+  
+  .Slider__imagen {
+    max-height: calc(100vh - 58rem);
+  }
+}

@@ -51,6 +51,7 @@ const FormularioNuevaImagen = () => {
     <div
       className="seccion-fondo-oscuro"
       onClick={() => dispatch(esconderFormularioNuevaImagen())}
+      style={{ zIndex: 13 }}
     >
       <div
         className="contenedor-formulario"

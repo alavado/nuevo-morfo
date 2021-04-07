@@ -11,17 +11,7 @@ import queryGrupos from '../../../queries/grupos'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { comenzarSubidaNuevoContenido, terminarSubidaNuevoContenido, fijarProgresoSubidaNuevoContenido } from '../../../redux/actions'
-
-const TIPOS = [
-  {
-    id: 'TIPO_IMAGEN_GRANDE',
-    label: 'Imagen grande'
-  },
-  {
-    id: 'TIPO_SLIDER',
-    label: 'Slider'
-  }
-]
+import TIPOS from '../../../config/tiposContenidos'
 
 const NuevoContenido = () => {
 
@@ -96,15 +86,16 @@ const NuevoContenido = () => {
           <select
             id="tipo"
             name="tipo"
-            className="NuevoContenido__input"
+            className="NuevoContenido__select"
             onChange={e => setTipo(e.target.value)}
           >
             {TIPOS.map(tipo => (
               <option
                 key={`option-${tipo.id}`}
                 value={tipo.id}
+                className="NuevoContenido__option"
               >
-                {tipo.label}
+                {tipo.nombre}
               </option>
             ))}
           </select>

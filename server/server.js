@@ -19,6 +19,17 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado a MongoDB Atlas'))
   .catch(err => console.error('Error conectando a MongoDB Atlas', err))
 
+app.get('/foto/:id', (req, res) => {
+  const { id } = req.params
+  const imagen = path.join(__dirname, `images/${id}/original.jpg`)
+  fs.access(imagen, fs.constants.R_OK, err => {
+    if (err) {
+      return res.sendFile(path.join(__dirname, 'images/blank.png'))
+    }
+    res.sendFile(imagen)
+  })
+})
+
 app.get('/foto/:id/:z/:x/:y', (req, res) => {
   const { id, x, y, z } = req.params
   const imagen = path.join(__dirname, `images/${id}/pyramid/${z}/${y}/${x}.jpg`)

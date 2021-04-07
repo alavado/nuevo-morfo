@@ -12,6 +12,7 @@ import Loader from '../../Loader'
 import { mostrarNavegacion } from '../../../redux/actions'
 import { esAdmin } from '../../../helpers/auth'
 import PopupEliminar from './PopupEliminar'
+import TIPOS from '../../../config/tiposContenidos'
 
 const InfoContenido = () => {
 
@@ -79,6 +80,9 @@ const InfoContenido = () => {
           ))}
         </div>
       }
+      {usuario && esAdmin(usuario) && (
+        <div>Tipo contenido: {TIPOS.find(t => t.id === contenido.tipo)?.nombre || TIPOS[0].nombre}</div>
+      )}
       <p className="InfoContenido__descripcion">{contenido.descripcion}</p>
       <Miniaturas />
       <ListaEstructuras />

@@ -13,6 +13,8 @@ import { useParams } from 'react-router-dom'
 import FormularioNuevaImagen from './FormularioNuevaImagen'
 import Cortes from '../Cortes'
 import { esAdmin } from '../../helpers/auth'
+import TIPOS from '../../config/tiposContenidos'
+import Slider from './Slider'
 
 const { minZoom, maxZoom } = parametrosMapa
 
@@ -97,34 +99,37 @@ const Mapa = () => {
   return (
     <>
       {mostrandoFormularioNuevaImagen && <FormularioNuevaImagen />}
-      <div className="Mapa__contenedor">
-        <ReactMapGL
-          {...viewport}
-          onViewportChange={actualizarVP}
-          mapStyle={mapStyle}
-          dragRotate={false}
-          onContextMenu={onLeftClick}
-          style={{ backgroundColor: '#212322' }}
-        >
-          <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
-            <div style={{ marginBottom: 8 }}>
-              <FullscreenControl />
-            </div>
-            <NavigationControl
-              captureScroll={true}
-              showCompass={false}
-              zoomInLabel="Acercar"
-              zoomOutLabel="Alejar"
-              style={{ padding: '119px' }}
-            />
+      {!contenido.tipo || contenido.tipo === TIPOS[0].id
+        ? <div className="Mapa__contenedor">
+            <ReactMapGL
+              {...viewport}
+              onViewportChange={actualizarVP}
+              mapStyle={mapStyle}
+              dragRotate={false}
+              onContextMenu={onLeftClick}
+              style={{ backgroundColor: '#212322' }}
+            >
+              <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
+                <div style={{ marginBottom: 8 }}>
+                  <FullscreenControl />
+                </div>
+                <NavigationControl
+                  captureScroll={true}
+                  showCompass={false}
+                  zoomInLabel="Acercar"
+                  zoomOutLabel="Alejar"
+                  style={{ padding: '119px' }}
+                />
+              </div>
+              {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
+                return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} />
+              })}
+              <PopupEstructura />
+            </ReactMapGL>
+            <Cortes />
           </div>
-          {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
-            return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} />
-          })}
-          <PopupEstructura />
-        </ReactMapGL>
-        <Cortes />
-      </div>
+        : <Slider />
+      }
     </>
   )
 }
