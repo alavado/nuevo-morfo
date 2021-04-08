@@ -1,17 +1,15 @@
 .Slider {
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 15rem);
   background-color: black;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .Slider__contenedor_imagen {
-  flex: 1;
   display: flex;
-  justify-content: center;
-  max-height: calc(100vh - 8rem);
   overflow: hidden;
+  position: relative;
 }
 
 .Slider__imagen {
@@ -19,9 +17,18 @@
 }
 
 .Slider__control {
-  height: 4rem;
-  margin-left: 4rem;
-  width: 80%;
+  margin: 0 4rem;
+  width: 90%;
+}
+
+.Slider__marcador_imagen {
+  width: .5rem;
+  height: .5rem;
+  background: red;
+  position: absolute;
+  border-radius: 1in;
+  cursor: pointer;
+  transform: translate(-.25rem, -.25rem);
 }
 
 @media (orientation: portrait) {

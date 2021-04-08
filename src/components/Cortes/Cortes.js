@@ -33,21 +33,21 @@ const Cortes = () => {
   }
 
   return (
-    <div className={`Slider${abierto ? ' Slider--abierto' : ''}`}>
+    <div className={`Cortes${abierto ? ' Cortes--abierto' : ''}`}>
       <div
-        className="Slider__boton_cerrar"
+        className="Cortes__boton_cerrar"
         onClick={() => setAbierto(!abierto)}
       >
         <FontAwesomeIcon icon={abierto ? faCaretRight : faCaretLeft} />
-        <div className="Slider__boton_cerrar_texto">
+        <div className="Cortes__boton_cerrar_texto">
           Cortes
         </div>
       </div>
-      <div className="Slider__contenedor_pierna">
-        <img alt="Fondo cortes" className="Slider__imagen_fondo" src={pierna} />
+      <div className="Cortes__contenedor_pierna">
+        <img alt="Fondo cortes" className="Cortes__imagen_fondo" src={pierna} />
         {imagenes.map((imagen, i) => (
           <div
-            className="Slider__marcador_y"
+            className="Cortes__marcador_y"
             key={`marcador-imagen-${i}`}
             style={{
               top: imagen.y,
@@ -59,7 +59,7 @@ const Cortes = () => {
         ))}
         {imagenes.map(({ archivo }, i) => (
           <Draggable
-            key={`miniatura-slider-${i}`}
+            key={`miniatura-Cortes-${i}`}
             onDrag={e => test(e, i)}
             bounds="parent"
           >
@@ -67,7 +67,7 @@ const Cortes = () => {
               src={`http://localhost:1027/thumbnail/${archivo}`}
               alt="imagen contenido"
               onClick={() => dispatch(mostrarImagenDeContenido(i))}
-              className={`Slider__miniatura_imagen${indiceImagenActual === i ? ' Slider__miniatura_imagen_seleccionada' : ''}`}
+              className={`Cortes__miniatura_imagen${indiceImagenActual === i ? ' Cortes__miniatura_imagen_seleccionada' : ''}`}
             />
           </Draggable>
         ))}

@@ -18,7 +18,7 @@ const initialState = {
   idGrupoContenidosVisible: null
 }
 
-export default function(state = initialState, action) {
+const reducer = function(state = initialState, action) {
   switch (action.type) {
     case FIJAR_CONTENIDO: {
       const contenido = action.payload
@@ -127,3 +127,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default reducer
