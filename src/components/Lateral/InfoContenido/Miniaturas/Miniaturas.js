@@ -15,7 +15,7 @@ const Miniaturas = () => {
 
   return (
     <div className="Miniaturas">
-      {contenido.imagenes.map(({ archivo }, i) => (
+      {contenido.imagenes.filter(i => !i.esCorte).map(({ archivo }, i) => (
         <img
           key={`miniatura-${i}`}
           src={`${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`}

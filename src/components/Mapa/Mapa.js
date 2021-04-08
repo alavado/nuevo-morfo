@@ -126,7 +126,7 @@ const Mapa = () => {
               })}
               <PopupEstructura />
             </ReactMapGL>
-            <Cortes />
+            {(contenido.imagenes.find(i => i.esCorte) || esAdmin(usuario)) && <Cortes />}
           </div>
         : <Slider />
       }

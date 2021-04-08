@@ -11,6 +11,10 @@ const imagenSchema = new Schema({
     type: String,
     required: false
   },
+  esCorte: {
+    type: Boolean,
+    default: false
+  },
   marcadores: [{
     type: Schema.Types.ObjectId,
     ref: 'Marcador'

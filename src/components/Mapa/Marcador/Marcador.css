@@ -1,7 +1,8 @@
 svg[class^="marcador"] {
   cursor: pointer;
-  fill: #D4001C;
+  fill: red;
   transition: all .1s ease-in-out;
+  clip-path: circle(.3rem);
 }
 
 .marcador-destacado {

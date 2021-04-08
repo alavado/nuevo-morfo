@@ -1,5 +1,5 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLFloat, GraphQLList } = graphql
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLFloat, GraphQLList, GraphQLBoolean } = graphql
 const mongoose = require('mongoose')
 const Seccion = mongoose.model('Seccion')
 const Subseccion = mongoose.model('Subseccion')
@@ -79,7 +79,8 @@ const mutation = new GraphQLObjectType({
       args: {
         descripcion: { type: GraphQLString },
         contenido: { type: GraphQLID },
-        archivo: { type: GraphQLString }
+        archivo: { type: GraphQLString },
+        esCorte: { type: GraphQLBoolean }
       },
       resolve(parentValue, args) {
         return (new Imagen(args)).save()
@@ -105,6 +106,16 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { id, titulo }) {
         return Marcador.findByIdAndUpdate(id, { $set: { titulo } }, { new: true })
+      }
+    },
+    editarMarcadorCorte: {
+      type: MarcadorType,
+      args: {
+        id: { type: GraphQLID },
+        y: { type: GraphQLString }
+      },
+      resolve(parentValue, { id, y }) {
+        return Marcador.findByIdAndUpdate(id, { $set: { lat: y } }, { new: true })
       }
     },
     eliminarMarcador: {

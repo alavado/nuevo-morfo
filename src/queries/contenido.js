@@ -17,6 +17,7 @@ export default gql`
         id
         descripcion
         archivo
+        esCorte
         marcadores {
           id
           titulo
