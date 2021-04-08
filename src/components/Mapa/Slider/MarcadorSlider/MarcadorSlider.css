@@ -1,0 +1,32 @@
+.MarcadorSlider {
+  width: .5rem;
+  height: .5rem;
+  background: red;
+  position: absolute;
+  border-radius: 1in;
+  cursor: pointer;
+  transform: translate(-.25rem, -.25rem);
+  box-shadow: .1rem .1rem black;
+}
+
+.MarcadorSlider__etiqueta {
+  position: absolute;
+  color: white;
+  text-shadow: .1rem .1rem black;
+  font-size: .75rem;
+  top: .75rem;
+}
+
+.MarcadorSlider__formulario_nombre {
+  display: flex;
+  padding: .5rem;
+  gap: .5rem;
+}
+
+.MarcadorSlider__boton_cerrar_formulario {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-shadow: .1rem .1rem black;
+}

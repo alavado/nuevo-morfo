@@ -21,16 +21,6 @@
   width: 90%;
 }
 
-.Slider__marcador_imagen {
-  width: .5rem;
-  height: .5rem;
-  background: red;
-  position: absolute;
-  border-radius: 1in;
-  cursor: pointer;
-  transform: translate(-.25rem, -.25rem);
-}
-
 @media (orientation: portrait) {
 
   .Slider {

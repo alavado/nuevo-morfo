@@ -5,6 +5,7 @@ import { esAdmin } from '../../../helpers/auth'
 import { isDev } from '../../../helpers/dev'
 import agregarMarcadorMutation from '../../../mutations/agregarMarcador'
 import { agregarMarcadorAImagenActual, mostrarEdicionMarcador, mostrarImagenDeContenido, mostrarPopup } from '../../../redux/actions'
+import MarcadorSlider from './MarcadorSlider'
 import './range.css'
 import './Slider.css'
 
@@ -54,12 +55,7 @@ const Slider = () => {
         onContextMenu={onLeftClick}
       >
         {contenido.imagenes[indiceImagenActual].marcadores.map((m, i) => (
-          <div
-            key={`slider-marcador-imagen-${i}`}
-            className="Slider__marcador_imagen"
-            style={{ left: `${m.lng}%`, top: `${m.lat}%` }}
-          >
-          </div>
+          <MarcadorSlider key={`slider-marcador-imagen-${i}`} marcador={m} />
         ))}
         <img
           ref={imagenRef}
