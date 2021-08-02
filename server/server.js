@@ -74,11 +74,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(require('./services/auth'))
 const isDev = require('./helpers/dev').isDev()
-if (!isDev) {
+if (false) {
   const https = require('https')
   const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/compsci.cl-0001/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/compsci.cl-0001/fullchain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/compsci.cl/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/compsci.cl/fullchain.pem')
   }
   https.createServer(options, app).listen(1027, () => {
     console.log('Escuchando puerto (HTTPS):', 1027)
