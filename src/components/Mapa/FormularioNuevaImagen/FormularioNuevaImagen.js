@@ -26,7 +26,7 @@ const FormularioNuevaImagen = () => {
     let formData = new FormData()
     formData.append('imagen', imagen)
     axios.post(
-      `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
+      `${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/subir_imagen`,
       formData,
       {
         headers: { 'Content-Type': 'multipart/form-data' },

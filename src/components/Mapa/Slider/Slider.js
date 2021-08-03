@@ -10,7 +10,7 @@ import './range.css'
 import './Slider.css'
 
 const obtenerUrlImagen = archivo => {
-  return `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/foto/${archivo}`
+  return `${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/foto/${archivo}`
 }
 
 const Slider = () => {

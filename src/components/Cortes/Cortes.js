@@ -50,7 +50,7 @@ const Cortes = () => {
     let formData = new FormData()
     formData.append('imagen', imagen)
     axios.post(
-      `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/subir_imagen`,
+      `${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/subir_imagen`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
@@ -83,7 +83,7 @@ const Cortes = () => {
               <img
                 alt="Fondo cortes"
                 className="Cortes__imagen_fondo"
-                src={`${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${hayCorte.archivo}`}
+                src={`${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${hayCorte.archivo}`}
               />
               {imagenes.map((imagen, i) => (
                 <div
@@ -115,7 +115,7 @@ const Cortes = () => {
             bounds="parent"
           >
             <img
-              src={`http://localhost:1027/thumbnail/${archivo}`}
+              src={`${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${archivo}`}
               alt="imagen contenido"
               onClick={() => dispatch(mostrarImagenDeContenido(i))}
               className={`Cortes__miniatura_imagen${indiceImagenActual === i ? ' Cortes__miniatura_imagen_seleccionada' : ''}`}
