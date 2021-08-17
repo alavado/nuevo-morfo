@@ -2,14 +2,19 @@ import { useMutation } from '@apollo/react-hooks'
 import './MarcadorSlider.css'
 import editarMarcadorMutation from '../../../../mutations/editarMarcador'
 import { useDispatch } from 'react-redux'
-import { editarMarcador, esconderEdicionMarcador } from '../../../../redux/actions'
+import { editarMarcador, eliminarMarcadorDeImagenActual, esconderEdicionMarcador, esconderPopup } from '../../../../redux/actions'
 import { useState } from 'react'
+import eliminarMarcadorMutation from '../../../../mutations/eliminarMarcador'
+import { faTrashAlt as iconoEliminar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { esAdmin } from '../../../../helpers/auth'
 
 const MarcadorSlider = ({ marcador }) => {
 
   const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
   const [editando, setEditando] = useState(false)
   const [tituloMarcador, setTituloMarcador] = useState('')
+  const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
   const dispatch = useDispatch()
 
   const enviarEditarMarcador = e => {
@@ -21,6 +26,13 @@ const MarcadorSlider = ({ marcador }) => {
         dispatch(editarMarcador(data.editarMarcador))
         dispatch(esconderEdicionMarcador())
       })
+  }
+
+  const eliminarMarcador = e => {
+    e.stopPropagation()
+    dispatch(eliminarMarcadorDeImagenActual(marcador.id))
+    dispatch(esconderPopup())
+    eliminarMarcadorMutate({ variables: { id: marcador.id } })
   }
 
   return (
@@ -43,6 +55,9 @@ const MarcadorSlider = ({ marcador }) => {
             >
               x
             </button>
+            {esAdmin && <button title="Eliminar marcador" onClick={eliminarMarcador}>
+              <FontAwesomeIcon icon={iconoEliminar} size="sm" />
+            </button>}
           </div>
         : <div
             className="MarcadorSlider__etiqueta"

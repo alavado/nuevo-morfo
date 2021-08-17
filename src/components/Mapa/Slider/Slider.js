@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/react-hooks'
-import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { esAdmin } from '../../../helpers/auth'
 import { isDev } from '../../../helpers/dev'
@@ -17,7 +16,6 @@ const Slider = () => {
 
   const { usuario } = useSelector(state => state.auth)
   const { contenido, indiceImagenActual } = useSelector(state => state.contenido)
-  const imagenRef = useRef()
   const dispatch = useDispatch()
   const [agregarMarcador] = useMutation(agregarMarcadorMutation)
 
@@ -26,7 +24,7 @@ const Slider = () => {
     if (!usuario || !esAdmin(usuario)) {
       return
     }
-    const rect = imagenRef.current.getBoundingClientRect()
+    const rect = document.getElementById(`imagen-slider-${indiceImagenActual}`).getBoundingClientRect()
     const x = 100 * (e.clientX - rect.left) / rect.width
     const y = 100 * (e.clientY - rect.top ) / rect.height
     console.log(contenido.imagenes[indiceImagenActual].id)
@@ -46,8 +44,6 @@ const Slider = () => {
     })
   }
 
-  console.log(contenido)
-
   return (
     <div className="Slider">
       <div
@@ -57,13 +53,22 @@ const Slider = () => {
         {contenido.imagenes[indiceImagenActual].marcadores.map((m, i) => (
           <MarcadorSlider key={`slider-marcador-imagen-${i}`} marcador={m} />
         ))}
-        <img
+        {contenido.imagenes.map((img, i) => (
+          <img
+            key={`imagen-slider-${i}`}
+            alt={`slider-imagen-${i}`}
+            src={obtenerUrlImagen(img.archivo)}
+            id={`imagen-slider-${i}`}
+            style={{ display: indiceImagenActual === i ? 'block' : 'none' }}
+          />
+        ))}
+        {/* <img
           ref={imagenRef}
           className="Slider__imagen"
           alt={`slider-imagen-${indiceImagenActual}`}
           src={obtenerUrlImagen(contenido.imagenes[indiceImagenActual].archivo)}
           draggable={false}
-        />
+        /> */}
       </div>
       <input
         type="range"
