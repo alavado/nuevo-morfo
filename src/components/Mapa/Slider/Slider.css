@@ -25,11 +25,7 @@
 @media (orientation: portrait) {
 
   .Slider {
-    width:100vw;
-  }
-
-  .Slider__contenedor_imagen {
-    max-height: calc(100vh - 58rem);
+    width: 100vw;
   }
   
   .Slider__imagen {

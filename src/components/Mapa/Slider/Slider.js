@@ -60,6 +60,7 @@ const Slider = () => {
             src={obtenerUrlImagen(img.archivo)}
             id={`imagen-slider-${i}`}
             style={{ display: indiceImagenActual === i ? 'block' : 'none' }}
+            className="Slider__imagen"
           />
         ))}
         {/* <img
