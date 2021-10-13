@@ -18,7 +18,7 @@ const Miniaturas = () => {
       {contenido.imagenes.filter(i => !i.esCorte).map(({ archivo }, i) => (
         <img
           key={`miniatura-${i}`}
-          src={`${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`}
+          src={`${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${archivo}`}
           alt="imagen contenido"
           onClick={() => dispatch(mostrarImagenDeContenido(i))}
           className={`Miniaturas__miniatura_imagen${indiceImagenActual === i ? ' Miniaturas__miniatura_imagen_seleccionada' : ''}`}

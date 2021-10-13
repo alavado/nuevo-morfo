@@ -16,7 +16,7 @@ import { isDev } from '../../../helpers/dev'
 import FormularioNuevaSubseccion from './FormularioNuevaSubseccion'
 
 const thumbnail = archivo => {
-  return `${isDev ? 'http://localhost' : 'https://compsci.cl'}:1027/thumbnail/${archivo}`
+  return `${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${archivo}`
 }
 
 const MenuSubseccion = () => {
