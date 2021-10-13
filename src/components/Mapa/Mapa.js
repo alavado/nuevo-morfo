@@ -39,7 +39,7 @@ const Mapa = () => {
     longitude: 0,
     minZoom: 1,
     maxZoom: 3,
-    zoom: minZoom
+    zoom: minZoom,
   })
 
   const mapStyle = useMemo(() => {
@@ -108,6 +108,9 @@ const Mapa = () => {
               dragRotate={false}
               onContextMenu={onLeftClick}
               style={{ backgroundColor: '#212322' }}
+              mapOptions={{
+                renderWorldCopies: false,
+              }}
             >
               <div style={{ position: 'absolute', left: 16, top: 16, zIndex: 2 }}>
                 <div style={{ marginBottom: 8 }}>
@@ -118,7 +121,7 @@ const Mapa = () => {
                   showCompass={false}
                   zoomInLabel="Acercar"
                   zoomOutLabel="Alejar"
-                  style={{ padding: '119px' }}
+                  style={{ padding: '30px 0px' }}
                 />
               </div>
               {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
