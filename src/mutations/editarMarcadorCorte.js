@@ -1,12 +1,9 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  mutation editarMarcadorCorte($id: ID!, $y: String!) {
-    editarMarcadorCorte(id: $id, y: $y) {
+  mutation editarMarcadorCorte($idImagen: ID!, $idMarcador: ID!, $y: String!) {
+    editarMarcadorCorte(idImagen: $idImagen, idMarcador: $idMarcador, y: $y) {
       id
-      titulo
-      lat
-      lng
     }
   }
 `

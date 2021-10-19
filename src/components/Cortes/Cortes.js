@@ -20,29 +20,40 @@ const Cortes = () => {
   const [abierto, setAbierto] = useState(false)
   const [imagenes, setImagenes] = useState([])
   const [imagen, setImagen] = useState(null)
-  const [mutateAgregarCorte] = useMutation(agregarFondoCorte)
+  const [mutateAgregarFondoCorte] = useMutation(agregarFondoCorte)
   const [mutateEditarCorte] = useMutation(editarMarcadorCorte)
 
   const hayCorte = contenido.imagenes.find(i => i.esCorte)
 
   useEffect(() => {
+    console.log(contenido)
     if (contenido && contenido.imagenes) {
       setImagenes(contenido.imagenes
         .filter(i => !i.esCorte)
-        .map(img => ({ ...img, y: 0 }))
+        .map((img, i) => ({ ...img, y: Number(hayCorte.marcadores[i]?.lat || 0) }))
       )
     }
   }, [contenido])
+
+  console.log(imagenes)
 
   if (!imagenes) {
     return '...'
   }
 
-  const test = (e, i) => {
+  const test = (e, i, id) => {
     setImagenes(prev => {
       prev[i].y = e.y - e.offsetY - 55
       return [...prev]
     })
+    mutateEditarCorte({
+      variables: {
+        idImagen: hayCorte.id,
+        idMarcador: id,
+        y: `${e.y}`
+      }
+    })
+    .catch(err => console.log(err))
   }
 
   const agregarImagenCorte = e => {
@@ -55,7 +66,7 @@ const Cortes = () => {
       { headers: { 'Content-Type': 'multipart/form-data' } }
     )
     .then(({ data: archivo }) => {
-      mutateAgregarCorte({
+      mutateAgregarFondoCorte({
         variables: { contenido: contenido.id, archivo },
         awaitRefetchQueries: true
       })
@@ -108,10 +119,10 @@ const Cortes = () => {
               }
             </div>
         }
-        {imagenes.map(({ archivo }, i) => (
+        {imagenes.map(({ id, archivo }, i) => (
           <Draggable
             key={`miniatura-Cortes-${i}`}
-            onStop={e => test(e, i)}
+            onStop={e => test(e, i, id)}
             bounds="parent"
           >
             <img

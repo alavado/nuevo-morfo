@@ -111,11 +111,13 @@ const mutation = new GraphQLObjectType({
     editarMarcadorCorte: {
       type: MarcadorType,
       args: {
-        id: { type: GraphQLID },
+        idImagen: { type: GraphQLID },
+        idMarcador: { type: GraphQLID },
         y: { type: GraphQLString }
       },
-      resolve(parentValue, { id, y }) {
-        return Marcador.findByIdAndUpdate(id, { $set: { lat: y } }, { new: true })
+      resolve(parentValue, { idImagen, idMarcador, y }) {
+        console.log(idImagen, idMarcador, y)
+        return Marcador.findByIdAndUpdate(idMarcador, { $set: { lat: y, imagen: idImagen } }, { new: true, upsert: true })
       }
     },
     eliminarMarcador: {

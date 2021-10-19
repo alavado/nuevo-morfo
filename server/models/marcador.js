@@ -21,6 +21,10 @@ const marcadorSchema = new Schema({
   }
 })
 
+marcadorSchema.statics.findImagen = function(id) {
+  return this.findById(id).then(res => Imagen.find({ _id: res.imagen }))
+}
+
 marcadorSchema.plugin(mongooseDelete)
 
 module.exports = mongoose.model('Marcador', marcadorSchema)
