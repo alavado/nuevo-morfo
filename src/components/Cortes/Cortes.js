@@ -26,24 +26,21 @@ const Cortes = () => {
   const hayCorte = contenido.imagenes.find(i => i.esCorte)
 
   useEffect(() => {
-    console.log(contenido)
     if (contenido && contenido.imagenes) {
       setImagenes(contenido.imagenes
         .filter(i => !i.esCorte)
-        .map((img, i) => ({ ...img, y: Number(hayCorte.marcadores[i]?.lat || 0) }))
+        .map((img, i) => ({ ...img, y: Number(hayCorte.marcadores[i]?.lat || 0) - 55 }))
       )
     }
   }, [contenido])
-
-  console.log(imagenes)
 
   if (!imagenes) {
     return '...'
   }
 
-  const test = (e, i, id) => {
+  const moverImagen = (e, i, id) => {
     setImagenes(prev => {
-      prev[i].y = e.y - e.offsetY - 55
+      prev[i].y = e.y - 55
       return [...prev]
     })
     mutateEditarCorte({
@@ -119,10 +116,10 @@ const Cortes = () => {
               }
             </div>
         }
-        {imagenes.map(({ id, archivo }, i) => (
+        {esAdmin(usuario) && imagenes.map(({ id, archivo, y }, i) => (
           <Draggable
             key={`miniatura-Cortes-${i}`}
-            onStop={e => test(e, i, id)}
+            onStop={e => moverImagen(e, i, id)}
             bounds="parent"
           >
             <img
