@@ -29,7 +29,7 @@ const Cortes = () => {
     if (contenido && contenido.imagenes) {
       setImagenes(contenido.imagenes
         .filter(i => !i.esCorte)
-        .map((img, i) => ({ ...img, y: Number(hayCorte.marcadores[i]?.lat || 0) - 55 }))
+        .map((img, i) => ({ ...img, y: Number(hayCorte?.marcadores[i]?.lat || 0) - 55 }))
       )
     }
   }, [contenido])
