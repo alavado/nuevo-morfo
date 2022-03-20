@@ -70,7 +70,7 @@ const Mapa = () => {
         titulo: 'Nueva estructura',
         lat,
         lng,
-        color: 'blue'
+        color: 'red'
       }
     })
     .then(({ data }) => {
@@ -96,8 +96,6 @@ const Mapa = () => {
   if (loading || !mapStyle) {
     return null
   }
-
-  console.log(contenido)
 
   return (
     <>

@@ -11,21 +11,26 @@ const FormularioEdicionMarcador = () => {
   const dispatch = useDispatch()
   const nombreRef = useRef()
   const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
-  const [titulo, setTitulo] = useState('')
+  const [titulo, setTitulo] = useState(popup?.titulo || '')
+  const [color, setColor] = useState('#FF0000')
+  const [enviando, setEnviando] = useState(false)
   const { id } = popup
 
   useEffect(() => {
     nombreRef.current.focus()
-    nombreRef.current.setSelectionRange(0, 2)
+    nombreRef.current.setSelectionRange(0, 200)
   }, [])
 
   const enviarEditarMarcador = e => {
     e.preventDefault()
-    editarMarcadorMutate({ variables: { id, titulo } })
+    setEnviando(true)
+    editarMarcadorMutate({ variables: { id, titulo, color } })
       .then(({ data }) => {
+        setEnviando(false)
         dispatch(editarMarcador(data.editarMarcador))
         dispatch(esconderEdicionMarcador())
       })
+      .catch(err => setEnviando(false))
   }
 
   return (
@@ -36,7 +41,8 @@ const FormularioEdicionMarcador = () => {
     >
       <input
         type="color"
-        defaultValue="#D4001C"
+        value={color}
+        onChange={e => setColor(e.target.value)}
       />
       <input
         type="text"
@@ -45,7 +51,11 @@ const FormularioEdicionMarcador = () => {
         ref={nombreRef}
         placeholder={popup?.titulo}
       />
-      <input type="submit" value="Aceptar" />
+      <input
+        type="submit"
+        value="Aceptar"
+        disabled={enviando}
+      />
     </form>
   )
 }

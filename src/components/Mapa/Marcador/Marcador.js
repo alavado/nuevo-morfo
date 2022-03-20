@@ -13,8 +13,6 @@ const Marcador = props => {
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
 
-  console.log(color)
-
   return (
     <Marker
       key={id}
