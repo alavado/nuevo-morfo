@@ -32,7 +32,12 @@ const FormularioEdicionMarcador = () => {
     <form
       onSubmit={enviarEditarMarcador}
       onClick={e => e.stopPropagation()}
+      className="FormularioEdicionMarcador__formulario"
     >
+      <input
+        type="color"
+        defaultValue="#D4001C"
+      />
       <input
         type="text"
         value={titulo}

@@ -103,10 +103,11 @@ const mutation = new GraphQLObjectType({
       type: MarcadorType,
       args: {
         id: { type: GraphQLID },
-        titulo: { type: GraphQLString }
+        titulo: { type: GraphQLString },
+        color: { type: GraphQLString }
       },
-      resolve(parentValue, { id, titulo }) {
-        return Marcador.findByIdAndUpdate(id, { $set: { titulo } }, { new: true })
+      resolve(parentValue, { id, titulo, color }) {
+        return Marcador.findByIdAndUpdate(id, { $set: { titulo, color } }, { new: true })
       }
     },
     editarMarcadorCorte: {

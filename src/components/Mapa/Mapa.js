@@ -97,6 +97,8 @@ const Mapa = () => {
     return null
   }
 
+  console.log(contenido)
+
   return (
     <>
       {mostrandoFormularioNuevaImagen && <FormularioNuevaImagen />}
@@ -125,8 +127,8 @@ const Mapa = () => {
                   style={{ padding: '30px 0px' }}
                 />
               </div>
-              {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng }) => {
-                return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} />
+              {contenido && contenido.imagenes && contenido.imagenes[indiceImagenActual].marcadores.map(({ id, titulo, lat, lng, color }) => {
+                return <Marcador key={id} id={id} lat={lat} lng={lng} titulo={titulo} color={color} />
               })}
               <PopupEstructura />
             </ReactMapGL>

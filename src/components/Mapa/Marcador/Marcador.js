@@ -9,9 +9,11 @@ const { tamañoMarcador } = parametrosMapa
 
 const Marcador = props => {
 
-  const { id, lat, lng, titulo } = props
+  const { id, lat, lng, titulo, color } = props
   const marcadorDestacado = useSelector(state => state.contenido.marcadorDestacado)
   const dispatch = useDispatch()
+
+  console.log(color)
 
   return (
     <Marker
@@ -25,7 +27,8 @@ const Marcador = props => {
         className={marcadorDestacado && marcadorDestacado.id === id ? 'marcador-destacado' : 'marcador'}
         style={{
           opacity: marcadorDestacado && marcadorDestacado.id !== id ? 0.4 : 1, 
-          transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`
+          transform: `translate(${-tamañoMarcador / 2}px, ${-tamañoMarcador}px)`,
+          fill: color || 'red'
         }}
         onClick={() => dispatch(mostrarPopup({ id, titulo, lat, lng }))}
       >
