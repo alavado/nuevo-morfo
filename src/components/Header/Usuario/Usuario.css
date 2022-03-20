@@ -34,7 +34,7 @@
   padding: .75em 1.25em;
   text-transform: uppercase;
   border-radius: 2em;
-  font-size: .9em;
+  font-size: .9rem;
   cursor: pointer;
 }
 
@@ -49,6 +49,6 @@
     display: flex;
     justify-content: center;
     flex: 1;
-    font-size: .8em;
+    font-size: .8rem;
   }
 }

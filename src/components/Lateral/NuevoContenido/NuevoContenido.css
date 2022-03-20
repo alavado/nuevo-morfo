@@ -6,7 +6,7 @@
 
 .NuevoContenido__titulo {
   text-transform: uppercase;
-  font-size: .8em;
+  font-size: .8rem;
   letter-spacing: 1px;
   user-select: none;
   font-weight: bold;
@@ -21,14 +21,14 @@
 .NuevoContenido__label {
   text-transform: uppercase;
   margin-bottom: .25em;
-  font-size: .8em;
+  font-size: .8rem;
   letter-spacing: 1px;
   user-select: none;
 }
 
 .NuevoContenido__label_cb_grupo {
   text-transform: uppercase;
-  font-size: .8em;
+  font-size: .8rem;
   user-select: none;
   cursor: pointer;
 }
@@ -74,7 +74,7 @@
   border-radius: 1.5em;
   border: none;
   letter-spacing: 1px;
-  font-size: .8em;
+  font-size: .8rem;
   width: 100%;
   margin-top: 1em;
   transition: all .25s ease-in;
