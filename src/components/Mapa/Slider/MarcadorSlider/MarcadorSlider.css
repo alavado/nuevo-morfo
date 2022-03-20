@@ -9,6 +9,10 @@
   box-shadow: .1rem .1rem black;
 }
 
+.MarcadorSlider__formulario_nombre button {
+  min-width: 2rem;
+}
+
 .MarcadorSlider__etiqueta {
   position: absolute;
   color: white;
@@ -21,6 +25,7 @@
   display: flex;
   padding: .5rem;
   gap: .5rem;
+  flex-direction: column;
 }
 
 .MarcadorSlider__boton_cerrar_formulario {
@@ -29,4 +34,12 @@
   border: none;
   color: white;
   text-shadow: .1rem .1rem black;
+}
+
+.MarcadorSlider__formulario {
+  display: flex;
+}
+
+.MarcadorSlider__formulario input[type="color"] {
+  min-width: 2rem;
 }

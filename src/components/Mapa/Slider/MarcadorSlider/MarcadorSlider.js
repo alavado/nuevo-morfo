@@ -14,6 +14,7 @@ const MarcadorSlider = ({ marcador }) => {
   const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
   const [editando, setEditando] = useState(false)
   const [tituloMarcador, setTituloMarcador] = useState('')
+  const [colorMarcador, setColorMarcador] = useState(marcador.color || '#FF0000')
   const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
   const dispatch = useDispatch()
   const { usuario } = useSelector(state => state.auth)
@@ -23,7 +24,7 @@ const MarcadorSlider = ({ marcador }) => {
     if (!esAdmin(usuario)) {
       return
     }
-    editarMarcadorMutate({ variables: { id: marcador.id, titulo: tituloMarcador } })
+    editarMarcadorMutate({ variables: { id: marcador.id, titulo: tituloMarcador, color: colorMarcador } })
       .then(({ data }) => {
         setTituloMarcador('')
         setEditando(false)
@@ -42,11 +43,20 @@ const MarcadorSlider = ({ marcador }) => {
   return (
     <div
       className="MarcadorSlider"
-      style={{ left: `${marcador.lng}%`, top: `${marcador.lat}%` }}
+      style={{
+        left: `${marcador.lng}%`,
+        top: `${marcador.lat}%`,
+        background: `${marcador.color || 'red'}`
+      }}
     >
       {editando 
         ? <div className="MarcadorSlider__formulario_nombre">
-            <form onSubmit={enviarEditarMarcador}>
+            <form className="MarcadorSlider__formulario" onSubmit={enviarEditarMarcador}>
+              <input
+                type="color"
+                value={colorMarcador}
+                onChange={e => setColorMarcador(e.target.value)}
+              />
               <input
                 autoFocus
                 defaultValue={marcador.titulo}
@@ -56,6 +66,7 @@ const MarcadorSlider = ({ marcador }) => {
             <button
               className="MarcadorSlider__boton_cerrar_formulario"
               onClick={() => setEditando(false)}
+              title="Cancelar"
             >
               x
             </button>

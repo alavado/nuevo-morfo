@@ -27,13 +27,13 @@ const Slider = () => {
     const rect = document.getElementById(`imagen-slider-${indiceImagenActual}`).getBoundingClientRect()
     const x = 100 * (e.clientX - rect.left) / rect.width
     const y = 100 * (e.clientY - rect.top ) / rect.height
-    console.log(contenido.imagenes[indiceImagenActual].id)
     agregarMarcador({
       variables: {
         imagen: contenido.imagenes[indiceImagenActual].id,
         titulo: 'Nueva estructura',
         lat: y,
-        lng: x
+        lng: x,
+        color: '#ff0000'
       }
     })
     .then(({ data }) => {

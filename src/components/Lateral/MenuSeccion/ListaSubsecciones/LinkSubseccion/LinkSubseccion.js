@@ -51,13 +51,13 @@ const LinkSubseccion = ({ subseccion, i }) => {
             >
               <FontAwesomeIcon icon={iconoEditar} />
             </button>
-            <button
+            {/* <button
               className="boton-eliminar-subseccion"
               onClick={() => eliminar(subseccion.id)}
               title={`Eliminar subsección "${subseccion.nombre}"`}
             >
               <FontAwesomeIcon icon={iconoEliminar} />
-            </button>
+            </button> */}
           </>
         }
       </div>}
