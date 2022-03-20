@@ -31,7 +31,7 @@ div[class^="seccion-fondo-oscuro"] {
   height: 28px;
   border-radius: 14px;
   padding: 0 32px;
-  font-size: 12px;
+  font-size: .8rem;
   min-width: 160px;
 }
 
@@ -55,7 +55,7 @@ div[class^="seccion-fondo-oscuro"] {
 
 .contenedor-tabla-grande h1 {
   font-weight: bold;
-  font-size: 16px;
+  font-size: .9rem;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-right: 8px;
@@ -85,14 +85,14 @@ div[class^="seccion-fondo-oscuro"] {
 .contenedor-tabla-grande th {
   letter-spacing: 1px;
   padding: 24px;
-  font-size: 12px;
+  font-size: .8rem;
   text-transform: uppercase;
   text-align: left;
   font-weight: bold;
 }
  
 .contenedor-tabla-grande td {
-  font-size: 12px;
+  font-size: .8rem;
   padding: 18px 24px;
 }
 
@@ -111,7 +111,7 @@ div[class^="seccion-fondo-oscuro"] {
 }
 
 span[class^="tag-"] {
-  font-size: 8px;
+  font-size: .7rem;
   color: white;
   padding: 6px 5px;
   margin-left: 4px;
@@ -142,7 +142,7 @@ span[class^="tag-"] {
   height: 13px;
   width: 13px;
   border-radius: 100%;
-  font-size: 9px;
+  font-size: .7rem;
   text-align: center;
   padding: 0;
   margin: 0;

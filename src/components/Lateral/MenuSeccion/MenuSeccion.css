@@ -5,13 +5,13 @@
 }
 
 .MenuSeccion__formulario_agregar_subseccion {
-  padding: 1em;
+  padding: 1rem;
 }
 
 .MenuSeccion__formulario_label {
   text-transform: uppercase;
-  margin-bottom: .35em;
-  font-size: .7em;
+  margin-bottom: .35rem;
+  font-size: .7rem;
   letter-spacing: 1px;
   user-select: none;
 }

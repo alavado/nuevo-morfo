@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/react-hooks'
 import './MarcadorSlider.css'
 import editarMarcadorMutation from '../../../../mutations/editarMarcador'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { editarMarcador, eliminarMarcadorDeImagenActual, esconderEdicionMarcador, esconderPopup } from '../../../../redux/actions'
 import { useState } from 'react'
 import eliminarMarcadorMutation from '../../../../mutations/eliminarMarcador'
@@ -16,9 +16,13 @@ const MarcadorSlider = ({ marcador }) => {
   const [tituloMarcador, setTituloMarcador] = useState('')
   const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
   const dispatch = useDispatch()
+  const { usuario } = useSelector(state => state.auth)
 
   const enviarEditarMarcador = e => {
     e.preventDefault()
+    if (!esAdmin(usuario)) {
+      return
+    }
     editarMarcadorMutate({ variables: { id: marcador.id, titulo: tituloMarcador } })
       .then(({ data }) => {
         setTituloMarcador('')
@@ -55,13 +59,13 @@ const MarcadorSlider = ({ marcador }) => {
             >
               x
             </button>
-            {esAdmin && <button title="Eliminar marcador" onClick={eliminarMarcador}>
+            {esAdmin(usuario) && <button title="Eliminar marcador" onClick={eliminarMarcador}>
               <FontAwesomeIcon icon={iconoEliminar} size="sm" />
             </button>}
           </div>
         : <div
             className="MarcadorSlider__etiqueta"
-            onClick={() => setEditando(true)}
+            onClick={() => esAdmin(usuario) && setEditando(true)}
           >
             {marcador.titulo}
           </div>

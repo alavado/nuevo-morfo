@@ -9,14 +9,14 @@
 }
 
 .Header__brand {
-  font-size: 1rem;
+  font-size: .8rem;
   font-weight: bold;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
 
 .Header__brand_image {
-  height: 22px;
+  height: 1.5rem;
   width: auto;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .Header__contenedor_selector_grupo label, .Header__contenedor_selector_grupo option {
-  font-size: 1rem;
+  font-size: .8rem;
 }
 
 .Header__contenedor_selector_grupo select option::after {

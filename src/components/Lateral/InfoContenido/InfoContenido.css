@@ -6,7 +6,7 @@
 
 .InfoContenido__titulo {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: .8rem;
   margin-bottom: 12px;
   letter-spacing: 2px;
   font-weight: bold;
@@ -31,7 +31,7 @@
 }
 
 .InfoContenido__descripcion {
-  font-size: 12px;
+  font-size: .75rem;
   line-height: 1.5;
   animation: aparece-contenido .25s ease-in-out both;
 }

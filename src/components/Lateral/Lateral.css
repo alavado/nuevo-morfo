@@ -71,7 +71,7 @@ aside *[class^="boton"] {
   border-radius: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: .8rem;
   cursor: pointer;
   text-align: center;
 }
@@ -107,7 +107,7 @@ aside .boton-eliminar {
 
 aside .mensaje-lista-vacia {
   padding: 24px;
-  font-size: 12px;
+  font-size: .8rem;
   font-style: italic;
 }
 

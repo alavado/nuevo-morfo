@@ -27,7 +27,7 @@ div[class^="fondo-oscuro"] {
 
 .contenedor-formulario h3 {
   margin: 8px 0;
-  font-size: 14px;
+  font-size: .9rem;
   font-weight: 500;
   color: black;
 }
@@ -40,13 +40,13 @@ div[class^="fondo-oscuro"] {
 }
 
 .contenedor-formulario form label {
-  font-size: 12px;
+  font-size: .8rem;
   margin-bottom: 4px;
   letter-spacing: 1px;
 }
 
 .contenedor-formulario form input {
-  font-size: 12px;
+  font-size: .8rem;
   font-family: "Uber Move Text", sans-serif;
   padding: 4px;
   letter-spacing: 1px;

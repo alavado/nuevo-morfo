@@ -25,7 +25,7 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 12px;
+  font-size: .8rem;
   animation: aparece-mensaje .25s ease-in-out both;
 }
 

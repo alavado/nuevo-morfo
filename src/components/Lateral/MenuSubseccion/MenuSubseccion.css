@@ -12,10 +12,11 @@
 .MenuSubseccion__link_subseccion {
   display: flex;
   align-items: center;
+  font-size: .8rem;
 }
 
 .MenuSubseccion__icono_link_subseccion {
-  margin-left: .25em;
-  font-size: 1.25em;
-  margin-right: 1em;
+  margin-left: .25rem;
+  font-size: 1.25rem;
+  margin-right: 1rem;
 }
