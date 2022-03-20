@@ -92,6 +92,7 @@ const mutation = new GraphQLObjectType({
         titulo: { type: GraphQLString },
         lat: { type: GraphQLFloat },
         lng: { type: GraphQLFloat },
+        color: { type: GraphQLString },
         imagen: { type: GraphQLID }
       },
       resolve(parentValue, args) {

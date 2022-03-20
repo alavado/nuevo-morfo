@@ -15,6 +15,10 @@ const marcadorSchema = new Schema({
     type: Number,
     required: true
   },
+  color: {
+    type: String,
+    required: false
+  },
   imagen: {
     type: Schema.Types.ObjectId,
     ref: 'Imagen'

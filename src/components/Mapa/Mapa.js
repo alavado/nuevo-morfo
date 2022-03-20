@@ -69,7 +69,8 @@ const Mapa = () => {
         imagen: contenido.imagenes[indiceImagenActual].id,
         titulo: 'Nueva estructura',
         lat,
-        lng
+        lng,
+        color: 'blue'
       }
     })
     .then(({ data }) => {

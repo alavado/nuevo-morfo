@@ -23,6 +23,7 @@ export default gql`
           titulo
           lat
           lng
+          color
         }
       }
       subseccion {

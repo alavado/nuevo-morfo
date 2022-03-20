@@ -10,6 +10,7 @@ const MarcadorType = new GraphQLObjectType({
     titulo: { type: GraphQLString },
     lat: { type: GraphQLString },
     lng: { type: GraphQLString },
+    color: { type: GraphQLString },
     imagen: {
       type: require('./imagen_type'),
       resolve(parentValue) {
