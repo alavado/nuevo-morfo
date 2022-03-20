@@ -13,7 +13,7 @@ const MarcadorSlider = ({ marcador }) => {
 
   const [editarMarcadorMutate] = useMutation(editarMarcadorMutation)
   const [editando, setEditando] = useState(false)
-  const [tituloMarcador, setTituloMarcador] = useState('')
+  const [tituloMarcador, setTituloMarcador] = useState(marcador.titulo)
   const [colorMarcador, setColorMarcador] = useState(marcador.color || '#FF0000')
   const [eliminarMarcadorMutate] = useMutation(eliminarMarcadorMutation)
   const dispatch = useDispatch()
@@ -35,6 +35,7 @@ const MarcadorSlider = ({ marcador }) => {
 
   const eliminarMarcador = e => {
     e.stopPropagation()
+    setEditando(false)
     dispatch(eliminarMarcadorDeImagenActual(marcador.id))
     dispatch(esconderPopup())
     eliminarMarcadorMutate({ variables: { id: marcador.id } })
@@ -48,6 +49,7 @@ const MarcadorSlider = ({ marcador }) => {
         top: `${marcador.lat}%`,
         background: `${marcador.color || 'red'}`
       }}
+      onClick={() => esAdmin(usuario) && setEditando(true)}
     >
       {editando 
         ? <div className="MarcadorSlider__formulario_nombre">
@@ -59,13 +61,16 @@ const MarcadorSlider = ({ marcador }) => {
               />
               <input
                 autoFocus
-                defaultValue={marcador.titulo}
+                value={tituloMarcador}
                 onChange={e => setTituloMarcador(e.target.value)}
               />
             </form>
             <button
               className="MarcadorSlider__boton_cerrar_formulario"
-              onClick={() => setEditando(false)}
+              onClick={e => {
+                e.stopPropagation()
+                setEditando(false)
+              }}
               title="Cancelar"
             >
               x
