@@ -29,7 +29,7 @@ const Cortes = () => {
     if (contenido && contenido.imagenes) {
       setImagenes(contenido.imagenes
         .filter(i => !i.esCorte)
-        .map((img, i) => ({ ...img, y: Number(hayCorte?.marcadores[i]?.lat || 0) - 55 }))
+        .map((img, i) => ({ ...img, y: Number(hayCorte?.marcadores[i]?.lat || 0) }))
       )
     }
   }, [contenido])
@@ -39,15 +39,16 @@ const Cortes = () => {
   }
 
   const moverImagen = (e, i, id) => {
+    const y = document.querySelector('#imagen-cortes'+i).getBoundingClientRect().y - document.querySelector('.Header').getBoundingClientRect().height
     setImagenes(prev => {
-      prev[i].y = e.y - 55
+      prev[i].y = y
       return [...prev]
     })
     mutateEditarCorte({
       variables: {
         idImagen: hayCorte.id,
         idMarcador: id,
-        y: `${e.y}`
+        y: String(y)
       }
     })
     .catch(err => console.log(err))
@@ -121,14 +122,26 @@ const Cortes = () => {
             key={`miniatura-Cortes-${i}`}
             onStop={e => moverImagen(e, i, id)}
             bounds="parent"
+            defaultPosition={{ y, x: 0 }}
+            axis='y'
           >
             <img
               src={`${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${archivo}`}
               alt="imagen contenido"
               onClick={() => dispatch(mostrarImagenDeContenido(i))}
+              id={`imagen-cortes${i}`}
               className={`Cortes__miniatura_imagen${indiceImagenActual === i ? ' Cortes__miniatura_imagen_seleccionada' : ''}`}
             />
           </Draggable>
+        ))}
+        {!esAdmin(usuario) && imagenes.map(({ id, archivo, y }, i) => (
+          <img
+            src={`${isDev ? 'http://localhost:1027' : 'https://compsci.cl/nuevo-morfo'}/thumbnail/${archivo}`}
+            alt="imagen contenido"
+            style={{ transform: `translateY(${y}px)` }}
+            onClick={() => dispatch(mostrarImagenDeContenido(i))}
+            className={`Cortes__miniatura_imagen--no-mover Cortes__miniatura_imagen${indiceImagenActual === i ? ' Cortes__miniatura_imagen_seleccionada' : ''}`}
+          />
         ))}
       </div>
     </div>

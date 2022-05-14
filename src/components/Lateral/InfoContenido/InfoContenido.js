@@ -63,8 +63,6 @@ const InfoContenido = () => {
     )
   }
 
-  console.log(contenido)
-
   return (
     <div className="InfoContenido">
       <h3 className="InfoContenido__titulo">{contenido.titulo}</h3>
