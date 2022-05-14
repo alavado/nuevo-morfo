@@ -63,6 +63,8 @@ const InfoContenido = () => {
     )
   }
 
+  console.log(contenido)
+
   return (
     <div className="InfoContenido">
       <h3 className="InfoContenido__titulo">{contenido.titulo}</h3>
@@ -81,7 +83,7 @@ const InfoContenido = () => {
         </div>
       }
       <p className="InfoContenido__descripcion">{contenido.descripcion}</p>
-      {(esAdmin(usuario) || !contenido.tipo || contenido.tipo === TIPOS[0].nombre) && <Miniaturas />}
+      {(esAdmin(usuario) || !contenido.tipo || contenido.tipo === TIPOS[0].id) && <Miniaturas />}
       <ListaEstructuras />
       {usuario && esAdmin(usuario) && <BotonCambiarEstado />}
     </div>

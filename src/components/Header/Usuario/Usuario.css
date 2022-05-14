@@ -11,7 +11,7 @@
   transition: color .15s ease-in, border-color .15s ease-in;
   border-left: 2px solid #AB989D;
   height: 24px;
-  padding-left: 24px;
+  padding-left: 1.5rem;
 }
 
 .Usuario__link {

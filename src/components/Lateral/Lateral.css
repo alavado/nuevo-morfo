@@ -13,8 +13,8 @@ aside {
 
 aside::-webkit-scrollbar {
   background-color: #ddd;
-  width: .6em;
-  height: .6em;
+  width: .6rem;
+  height: .6rem;
 }
 
 aside::-webkit-scrollbar-thumb {
